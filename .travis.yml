@@ -15,6 +15,7 @@ before_script:
 
 script:
     - ./gradlew testDebugUnitTest
+    - ./gradlew build
 
 deploy:
     provider: releases
