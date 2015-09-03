@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dcampogiani/LooxLikeClient.svg?branch=test)](https://travis-ci.org/dcampogiani/LooxLikeClient)
+
 ### Android Client for LooxLike ###
 
 
