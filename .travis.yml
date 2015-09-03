@@ -15,3 +15,11 @@ before_script:
 
 script:
     - ./gradlew testDebugUnitTest
+
+deploy:
+    provider: releases
+    api_key: "64270b1cf5cd479337d2f6057858559fb5125324"
+    file: "/home/travis/build/dcampogiani/LooxLikeClient/app/build/outputs/apk/app-debug.apk"
+    skip_cleanup: true
+    on:
+        tags: true
