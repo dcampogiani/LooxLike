@@ -19,7 +19,7 @@ public class MainActivityTest {
     private MainActivity subjectUnderTest;
 
     @IdRes
-    private int idMainFragment = R.id.fragment_main;
+    private final int idMainFragment = R.id.fragment_main;
 
     @Before
     public void setUp() throws Exception {
