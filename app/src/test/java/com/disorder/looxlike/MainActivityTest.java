@@ -22,7 +22,7 @@ public class MainActivityTest {
     private MainActivity subjectUnderTest;
 
     @IdRes
-    private final int idMainFragment = R.id.fragment_main;
+    private final int idMainFragment = R.id.fragment_container;
 
     @Before
     public void setUp() throws Exception {
@@ -30,7 +30,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void mainFragmentIsShown() {
+    public void mainFragmentIsLoaded() {
         MainFragment mainFragment = (MainFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
         assertNotNull(mainFragment);
     }
