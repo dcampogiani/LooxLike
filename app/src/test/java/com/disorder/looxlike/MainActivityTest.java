@@ -28,7 +28,7 @@ public class MainActivityTest {
 
     @Test
     public void mainFragmentIsShown() {
-        MainActivityFragment mainActivityFragment = (MainActivityFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
-        assertNotNull(mainActivityFragment);
+        MainFragment mainFragment = (MainFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
+        assertNotNull(mainFragment);
     }
 }
