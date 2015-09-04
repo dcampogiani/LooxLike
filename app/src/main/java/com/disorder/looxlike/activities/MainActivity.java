@@ -1,9 +1,11 @@
-package com.disorder.looxlike;
+package com.disorder.looxlike.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.disorder.looxlike.R;
 
 public class MainActivity extends AppCompatActivity {
 

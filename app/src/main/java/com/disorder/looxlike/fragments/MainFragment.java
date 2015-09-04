@@ -1,9 +1,11 @@
-package com.disorder.looxlike;
+package com.disorder.looxlike.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.disorder.looxlike.R;
 
 public class MainFragment extends BaseFragment {
 

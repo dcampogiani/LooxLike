@@ -3,6 +3,9 @@ package com.disorder.looxlike;
 import android.os.Build;
 import android.support.annotation.IdRes;
 
+import com.disorder.looxlike.activities.MainActivity;
+import com.disorder.looxlike.fragments.MainFragment;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
