@@ -22,7 +22,7 @@ deploy:
   api_key: ${GITHUB_TOKEN}
   file:
     - /home/travis/build/dcampogiani/LooxLikeClient/app/build/outputs/apk/app-debug.apk
-    - /home/travis/build/dcampogiani/LooxLikeClient/app/build/reports/tests/debug/index.html
+    - /home/travis/build/dcampogiani/LooxLikeClient/app/build/reports/tests/debug
   skip_cleanup: true
   on:
     tags: true
