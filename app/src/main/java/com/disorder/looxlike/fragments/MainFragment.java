@@ -36,6 +36,7 @@ public class MainFragment extends BaseFragment {
         ButterKnife.bind(this, root);
         mToolbar.setTitleTextColor(iconsColor);
         mToolbar.setTitle(mToolbarTitle);
+        mToolbar.inflateMenu(R.menu.menu_main);
         return root;
     }
 }
