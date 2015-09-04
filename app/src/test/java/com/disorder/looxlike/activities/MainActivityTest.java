@@ -1,9 +1,10 @@
-package com.disorder.looxlike;
+package com.disorder.looxlike.activities;
 
 import android.os.Build;
 import android.support.annotation.IdRes;
 
-import com.disorder.looxlike.activities.MainActivity;
+import com.disorder.looxlike.BuildConfig;
+import com.disorder.looxlike.R;
 import com.disorder.looxlike.fragments.MainFragment;
 
 import org.junit.Before;
