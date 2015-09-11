@@ -3,7 +3,7 @@
     package="com.disorder.looxlike">
 
     <application
-        android:name=".LooxLikeApplication"
+        android:name=".application.LooxLikeApplication"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
