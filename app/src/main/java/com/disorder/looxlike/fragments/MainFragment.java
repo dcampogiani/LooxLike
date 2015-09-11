@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.disorder.looxlike.R;
 
 import butterknife.Bind;
-import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
@@ -19,8 +18,6 @@ public class MainFragment extends BaseFragment {
     Toolbar mToolbar;
     @BindString(R.string.app_name)
     String mToolbarTitle;
-    @BindColor(R.color.icons)
-    int iconsColor;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -34,7 +31,6 @@ public class MainFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, root);
-        mToolbar.setTitleTextColor(iconsColor);
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
         return root;
