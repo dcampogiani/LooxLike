@@ -5,16 +5,19 @@
     <item
         android:id="@+id/action_home"
         android:title="@string/action_home"
+        android:icon="@drawable/ic_home_white_18dp"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_user"
         android:title="@string/action_user"
+        android:icon="@drawable/ic_person_white_18dp"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_wanted"
         android:title="@string/action_wanted"
+        android:icon="@drawable/ic_favorite_white_18dp"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 </menu>
