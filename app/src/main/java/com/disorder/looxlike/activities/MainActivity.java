@@ -11,7 +11,7 @@ import com.disorder.looxlike.fragments.MainFragment;
 public class MainActivity extends AppCompatActivity {
 
     @IdRes
-    private int containerId = R.id.fragment_container;
+    private final int containerId = R.id.fragment_container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
