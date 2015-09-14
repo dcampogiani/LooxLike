@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.disorder.looxlike.R;
+import com.disorder.presentation.view.HomeView;
 
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements HomeView {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
