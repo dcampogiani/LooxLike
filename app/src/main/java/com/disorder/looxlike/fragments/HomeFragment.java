@@ -12,18 +12,18 @@ import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
-public class MainFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @BindString(R.string.app_name)
     String mToolbarTitle;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
-    public MainFragment() {
+    public HomeFragment() {
     }
 
     @Override

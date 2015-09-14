@@ -5,7 +5,7 @@ import android.support.annotation.IdRes;
 
 import com.disorder.looxlike.BuildConfig;
 import com.disorder.looxlike.R;
-import com.disorder.looxlike.fragments.MainFragment;
+import com.disorder.looxlike.fragments.HomeFragment;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class MainActivityTest {
 
     @Test
     public void mainFragmentIsLoaded() {
-        MainFragment mainFragment = (MainFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
-        assertNotNull(mainFragment);
+        HomeFragment homeFragment = (HomeFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
+        assertNotNull(homeFragment);
     }
 }

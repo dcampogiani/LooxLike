@@ -22,13 +22,13 @@ import static org.junit.Assert.assertTrue;
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricGradleTestRunner.class)
-public class MainFragmentTest {
+public class HomeFragmentTest {
 
-    MainFragment subjectUnderTest;
+    HomeFragment subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
-        subjectUnderTest = MainFragment.newInstance();
+        subjectUnderTest = HomeFragment.newInstance();
         SupportFragmentTestUtil.startFragment(subjectUnderTest);
     }
 

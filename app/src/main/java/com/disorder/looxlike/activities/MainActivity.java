@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
 import com.disorder.looxlike.R;
-import com.disorder.looxlike.fragments.MainFragment;
+import com.disorder.looxlike.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().add(containerId, MainFragment.newInstance()).commit();
+        getSupportFragmentManager().beginTransaction().add(containerId, HomeFragment.newInstance()).commit();
     }
 
 
