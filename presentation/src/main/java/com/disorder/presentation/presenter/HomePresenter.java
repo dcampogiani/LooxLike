@@ -2,7 +2,7 @@ package com.disorder.presentation.presenter;
 
 public interface HomePresenter {
 
-    void onHomeButtonClick();
+    void onNewsButtonClick();
 
     void onUserButtonClick();
 
