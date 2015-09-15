@@ -36,4 +36,10 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mToolbar.inflateMenu(R.menu.menu_main);
         return root;
     }
+
+    @Override
+    public void showPage(@Page int page) {
+        //TODO load right fragment
+        throw new UnsupportedOperationException();
+    }
 }
