@@ -2,8 +2,10 @@ package com.disorder.looxlike.fragments;
 
 import android.support.v4.app.Fragment;
 
+import com.disorder.looxlike.activities.BaseActivity;
 import com.disorder.looxlike.application.LeakDetector;
 import com.disorder.looxlike.application.LooxLikeApplication;
+import com.disorder.looxlike.application.di.components.PresentationComponent;
 
 
 public abstract class BaseFragment extends Fragment {
@@ -13,5 +15,9 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
         LeakDetector leakDetector = LooxLikeApplication.getLeakDetector(getActivity());
         leakDetector.watch(this);
+    }
+
+    protected PresentationComponent getPresentationComponent() {
+        return ((BaseActivity) getActivity()).getPresentationComponent();
     }
 }
