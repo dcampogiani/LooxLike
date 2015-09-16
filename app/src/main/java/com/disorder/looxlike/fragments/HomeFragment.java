@@ -24,6 +24,8 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @BindString(R.string.app_name)
     String mToolbarTitle;
 
+    int fragment_main_content = R.id.fragment_main_content;
+
     @Inject
     HomePresenter mHomePresenter;
 
@@ -48,6 +50,8 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
         mToolbar.setOnMenuItemClickListener(new MenuItemClickListener());
+
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_main_content, NewsFragment.newInstance()).commit();
         return root;
     }
 
