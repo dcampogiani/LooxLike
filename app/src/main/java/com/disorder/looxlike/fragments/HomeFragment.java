@@ -3,11 +3,15 @@ package com.disorder.looxlike.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.disorder.looxlike.R;
+import com.disorder.presentation.presenter.HomePresenter;
 import com.disorder.presentation.view.HomeView;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.BindString;
@@ -20,11 +24,20 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @BindString(R.string.app_name)
     String mToolbarTitle;
 
+    @Inject
+    HomePresenter mHomePresenter;
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
 
     public HomeFragment() {
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getPresentationComponent().inject(this);
     }
 
     @Override
@@ -34,6 +47,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         ButterKnife.bind(this, root);
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
+        mToolbar.setOnMenuItemClickListener(new MenuItemClickListener());
         return root;
     }
 
@@ -41,5 +55,29 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void showPage(@Page int page) {
         //TODO load right fragment
         throw new UnsupportedOperationException();
+    }
+
+    private class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+
+            boolean handled = false;
+
+            if (item.getItemId() == R.id.action_home) {
+                handled = true;
+                mHomePresenter.onNewsButtonClick();
+
+            } else if (item.getItemId() == R.id.action_user) {
+                handled = true;
+                mHomePresenter.onUserButtonClick();
+
+            } else if (item.getItemId() == R.id.action_wanted) {
+                handled = true;
+                mHomePresenter.onFavouriteButtonClick();
+            }
+
+            return handled;
+        }
     }
 }

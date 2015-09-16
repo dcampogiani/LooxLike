@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.disorder.looxlike.BuildConfig;
 import com.disorder.looxlike.R;
+import com.disorder.looxlike.activities.MainActivity;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class HomeFragmentTest {
     @Before
     public void setUp() throws Exception {
         subjectUnderTest = HomeFragment.newInstance();
-        SupportFragmentTestUtil.startFragment(subjectUnderTest);
+        SupportFragmentTestUtil.startVisibleFragment(subjectUnderTest, MainActivity.class, R.id.fragment_container);
     }
 
     @Test

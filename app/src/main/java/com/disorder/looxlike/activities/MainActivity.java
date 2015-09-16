@@ -2,13 +2,12 @@ package com.disorder.looxlike.activities;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
 import com.disorder.looxlike.R;
 import com.disorder.looxlike.fragments.HomeFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @IdRes
     private final int containerId = R.id.fragment_container;
