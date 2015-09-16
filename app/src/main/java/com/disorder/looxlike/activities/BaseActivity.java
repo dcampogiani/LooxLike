@@ -8,7 +8,7 @@ import com.disorder.looxlike.application.di.components.PresentationComponent;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    PresentationComponent mPresentationComponent;
+    private PresentationComponent mPresentationComponent;
 
     public PresentationComponent getPresentationComponent() {
         if (mPresentationComponent == null)

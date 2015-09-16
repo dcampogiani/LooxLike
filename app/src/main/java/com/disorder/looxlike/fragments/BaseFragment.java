@@ -17,7 +17,7 @@ public abstract class BaseFragment extends Fragment {
         leakDetector.watch(this);
     }
 
-    protected PresentationComponent getPresentationComponent() {
+    PresentationComponent getPresentationComponent() {
         return ((BaseActivity) getActivity()).getPresentationComponent();
     }
 }

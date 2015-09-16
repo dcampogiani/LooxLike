@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(RobolectricGradleTestRunner.class)
 public class HomeFragmentTest {
 
-    HomeFragment subjectUnderTest;
+    private HomeFragment subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
@@ -76,7 +76,7 @@ public class HomeFragmentTest {
         return (Toolbar) subjectUnderTest.getView().findViewById(R.id.toolbar);
     }
 
-    String getString(@StringRes int stringId) {
+    private String getString(@StringRes int stringId) {
         return RuntimeEnvironment.application.getString(stringId);
     }
 }

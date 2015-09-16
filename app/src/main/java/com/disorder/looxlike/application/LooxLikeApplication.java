@@ -19,7 +19,7 @@ public class LooxLikeApplication extends Application {
         initLeakDetector();
     }
 
-    protected void initLeakDetector() {
+    void initLeakDetector() {
         mLeakDetector = new LeakCanaryDetector(this);
     }
 }
