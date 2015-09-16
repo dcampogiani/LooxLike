@@ -43,20 +43,33 @@ public class HomeFragmentTest {
 
     @Test
     public void newsIconIsShown() {
-        MenuItem home = getToolbar().getMenu().findItem(R.id.action_news);
-        assertTrue(home.isVisible());
+        MenuItem news = getNewsButton();
+        assertTrue(news.isVisible());
     }
 
     @Test
     public void userIconIsShown() {
-        MenuItem home = getToolbar().getMenu().findItem(R.id.action_user);
-        assertTrue(home.isVisible());
+        MenuItem user = getUserButton();
+        assertTrue(user.isVisible());
     }
 
     @Test
     public void favouritesIconIsShown() {
-        MenuItem home = getToolbar().getMenu().findItem(R.id.action_favourites);
-        assertTrue(home.isVisible());
+        MenuItem favourites = getFavouritesButton();
+        assertTrue(favourites.isVisible());
+    }
+
+
+    public MenuItem getNewsButton() {
+        return getToolbar().getMenu().findItem(R.id.action_news);
+    }
+
+    public MenuItem getUserButton() {
+        return getToolbar().getMenu().findItem(R.id.action_user);
+    }
+
+    public MenuItem getFavouritesButton() {
+        return getToolbar().getMenu().findItem(R.id.action_favourites);
     }
 
     public Toolbar getToolbar() {
