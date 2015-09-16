@@ -64,7 +64,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
             boolean handled = false;
 
-            if (item.getItemId() == R.id.action_home) {
+            if (item.getItemId() == R.id.action_news) {
                 handled = true;
                 mHomePresenter.onNewsButtonClick();
 
@@ -72,9 +72,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
                 handled = true;
                 mHomePresenter.onUserButtonClick();
 
-            } else if (item.getItemId() == R.id.action_wanted) {
+            } else if (item.getItemId() == R.id.action_favourites) {
                 handled = true;
-                mHomePresenter.onFavouriteButtonClick();
+                mHomePresenter.onFavouritesButtonClick();
             }
 
             return handled;

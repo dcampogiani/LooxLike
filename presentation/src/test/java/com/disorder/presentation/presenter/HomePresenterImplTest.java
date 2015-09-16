@@ -33,8 +33,8 @@ public class HomePresenterImplTest {
     }
 
     @Test
-    public void testOnFavouriteButtonClick() throws Exception {
-        subjectUnderTest.onFavouriteButtonClick();
+    public void testOnFavouritesButtonClick() throws Exception {
+        subjectUnderTest.onFavouritesButtonClick();
         verify(view).showPage(HomeView.FAVOURITES);
     }
 }

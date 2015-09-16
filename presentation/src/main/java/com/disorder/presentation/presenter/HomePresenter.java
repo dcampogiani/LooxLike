@@ -8,6 +8,6 @@ public interface HomePresenter extends Presenter<HomeView> {
 
     void onUserButtonClick();
 
-    void onFavouriteButtonClick();
+    void onFavouritesButtonClick();
 
 }

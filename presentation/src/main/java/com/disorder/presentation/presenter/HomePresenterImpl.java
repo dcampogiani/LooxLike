@@ -22,7 +22,7 @@ public class HomePresenterImpl extends BasePresenter<HomeView> implements HomePr
     }
 
     @Override
-    public void onFavouriteButtonClick() {
+    public void onFavouritesButtonClick() {
         getView().showPage(HomeView.FAVOURITES);
     }
 }

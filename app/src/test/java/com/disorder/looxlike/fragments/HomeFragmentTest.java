@@ -42,8 +42,8 @@ public class HomeFragmentTest {
     }
 
     @Test
-    public void homeIconIsShown() {
-        MenuItem home = getToolbar().getMenu().findItem(R.id.action_home);
+    public void newsIconIsShown() {
+        MenuItem home = getToolbar().getMenu().findItem(R.id.action_news);
         assertTrue(home.isVisible());
     }
 
@@ -54,11 +54,10 @@ public class HomeFragmentTest {
     }
 
     @Test
-    public void wantedIconIsShown() {
-        MenuItem home = getToolbar().getMenu().findItem(R.id.action_wanted);
+    public void favouritesIconIsShown() {
+        MenuItem home = getToolbar().getMenu().findItem(R.id.action_favourites);
         assertTrue(home.isVisible());
     }
-
 
     public Toolbar getToolbar() {
         return (Toolbar) subjectUnderTest.getView().findViewById(R.id.toolbar);
