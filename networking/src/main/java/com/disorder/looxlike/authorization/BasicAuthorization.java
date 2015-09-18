@@ -4,10 +4,10 @@ import com.disorder.looxlike.utils.Base64Encoder;
 
 public class BasicAuthorization implements Authorization {
 
-    private String username;
-    private String password;
-    private Base64Encoder encoder;
-    private String header;
+    private final String username;
+    private final String password;
+    private final Base64Encoder encoder;
+    private final String header;
 
     public BasicAuthorization(String username, String password, Base64Encoder encoder) {
         this.username = username;
