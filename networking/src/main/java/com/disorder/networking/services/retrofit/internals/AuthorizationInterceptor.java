@@ -1,4 +1,4 @@
-package com.disorder.looxlike.services.retrofit.internals;
+package com.disorder.networking.services.retrofit.internals;
 
 import retrofit.RequestInterceptor;
 

@@ -1,11 +1,11 @@
-package com.disorder.looxlike.services.retrofit;
+package com.disorder.networking.services.retrofit;
 
 
-import com.disorder.looxlike.authorization.Authorization;
-import com.disorder.looxlike.responses.NewsPost;
-import com.disorder.looxlike.services.LooxLikeAPI;
-import com.disorder.looxlike.services.retrofit.internals.AuthorizationInterceptor;
-import com.disorder.looxlike.services.retrofit.internals.RetrofitWrapperLooxLikeAPI;
+import com.disorder.networking.authorization.Authorization;
+import com.disorder.networking.responses.NewsPost;
+import com.disorder.networking.services.LooxLikeAPI;
+import com.disorder.networking.services.retrofit.internals.AuthorizationInterceptor;
+import com.disorder.networking.services.retrofit.internals.RetrofitWrapperLooxLikeAPI;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;

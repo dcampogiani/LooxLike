@@ -1,4 +1,4 @@
-package com.disorder.looxlike.utils;
+package com.disorder.networking.utils;
 
 
 public interface Base64Encoder {

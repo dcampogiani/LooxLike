@@ -1,7 +1,7 @@
-package com.disorder.looxlike.services;
+package com.disorder.networking.services;
 
 
-import com.disorder.looxlike.responses.NewsPost;
+import com.disorder.networking.responses.NewsPost;
 
 import rx.Observable;
 

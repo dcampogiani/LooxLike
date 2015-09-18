@@ -1,4 +1,4 @@
-package com.disorder.looxlike.authorization;
+package com.disorder.networking.authorization;
 
 public interface Authorization {
 

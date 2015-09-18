@@ -1,6 +1,7 @@
-package com.disorder.looxlike.services;
+package com.disorder.networking.services;
 
-import com.disorder.looxlike.responses.NewsPost;
+import com.disorder.networking.responses.NewsPost;
+import com.disorder.networking.services.LooxLikeAPI;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,17 +10,17 @@ import rx.observers.TestSubscriber;
 
 public class FakeLooxLikeAPITest {
 
-    FakeLooxLikeAPI subjectUnderTest;
+    com.disorder.networking.services.FakeLooxLikeAPI subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
-        subjectUnderTest = new FakeLooxLikeAPI();
+        subjectUnderTest = new com.disorder.networking.services.FakeLooxLikeAPI();
     }
 
     @Test
     public void testGetNewsPostsMale() throws Exception {
         TestSubscriber<NewsPost[]> testSubscriber = new TestSubscriber<>();
-        subjectUnderTest.getNewsPosts(LooxLikeAPI.Gender.MALE, 1).subscribe(testSubscriber);
+        subjectUnderTest.getNewsPosts(com.disorder.networking.services.LooxLikeAPI.Gender.MALE, 1).subscribe(testSubscriber);
         testSubscriber.assertValueCount(1);
     }
 

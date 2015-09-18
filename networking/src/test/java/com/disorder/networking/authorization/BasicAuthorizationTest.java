@@ -1,6 +1,7 @@
-package com.disorder.looxlike.authorization;
+package com.disorder.networking.authorization;
 
-import com.disorder.looxlike.utils.Base64Encoder;
+import com.disorder.networking.utils.Base64Encoder;
+import com.disorder.networking.authorization.BasicAuthorization;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertThat;
 
 public class BasicAuthorizationTest {
 
-    private BasicAuthorization subjectUnderTest;
+    private com.disorder.networking.authorization.BasicAuthorization subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {

@@ -1,4 +1,4 @@
-package com.disorder.looxlike.responses;
+package com.disorder.networking.responses;
 
 
 public class NewsPost {

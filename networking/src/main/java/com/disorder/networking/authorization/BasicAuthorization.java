@@ -1,6 +1,6 @@
-package com.disorder.looxlike.authorization;
+package com.disorder.networking.authorization;
 
-import com.disorder.looxlike.utils.Base64Encoder;
+import com.disorder.networking.utils.Base64Encoder;
 
 public class BasicAuthorization implements Authorization {
 

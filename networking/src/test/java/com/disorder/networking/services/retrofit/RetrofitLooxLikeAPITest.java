@@ -1,9 +1,10 @@
-package com.disorder.looxlike.services.retrofit;
+package com.disorder.networking.services.retrofit;
 
-import com.disorder.looxlike.authorization.Authorization;
-import com.disorder.looxlike.authorization.BasicAuthorization;
-import com.disorder.looxlike.utils.ApacheBase64Encoder;
-import com.disorder.looxlike.utils.Base64Encoder;
+import com.disorder.networking.authorization.Authorization;
+import com.disorder.networking.authorization.BasicAuthorization;
+import com.disorder.networking.utils.ApacheBase64Encoder;
+import com.disorder.networking.utils.Base64Encoder;
+import com.disorder.networking.services.retrofit.RetrofitLooxLikeAPI;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +13,14 @@ public class RetrofitLooxLikeAPITest {
 
     private static final String baseUrl = "http://54.93.89.176/LooxLikeAPI/api";
 
-    private com.disorder.looxlike.services.retrofit.RetrofitLooxLikeAPI subjectUnderTest;
+    private com.disorder.networking.services.retrofit.RetrofitLooxLikeAPI subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
         //TODO setup baseUrl and authorization
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("pippo", "pluto", encoder);
-        subjectUnderTest = new com.disorder.looxlike.services.retrofit.RetrofitLooxLikeAPI(baseUrl, authorization);
+        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, authorization);
     }
 
     @Test

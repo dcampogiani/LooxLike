@@ -1,4 +1,4 @@
-package com.disorder.looxlike.utils;
+package com.disorder.networking.utils;
 
 
 import org.apache.commons.codec.binary.Base64;

@@ -1,7 +1,7 @@
-package com.disorder.looxlike.services.retrofit.internals;
+package com.disorder.networking.services.retrofit.internals;
 
 
-import com.disorder.looxlike.responses.NewsPost;
+import com.disorder.networking.responses.NewsPost;
 
 import retrofit.http.GET;
 import retrofit.http.Path;
