@@ -1,6 +1,7 @@
 package com.disorder.looxlike.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @BindString(R.string.app_name)
     String mToolbarTitle;
 
+    @IdRes
     int fragment_main_content = R.id.fragment_main_content;
 
     @Inject
@@ -50,8 +52,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
         mToolbar.setOnMenuItemClickListener(new MenuItemClickListener());
-
-        getChildFragmentManager().beginTransaction().replace(R.id.fragment_main_content, NewsFragment.newInstance()).commit();
+        getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsFragment.newInstance()).commit();
         return root;
     }
 
