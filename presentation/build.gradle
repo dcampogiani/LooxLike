@@ -33,6 +33,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':networking')
     compile supportDependencies.supportAnnotation
 
     testCompile 'junit:junit:4.12'
