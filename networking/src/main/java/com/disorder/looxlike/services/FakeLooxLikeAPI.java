@@ -7,8 +7,8 @@ import rx.Observable;
 
 public class FakeLooxLikeAPI implements LooxLikeAPI {
 
-    NewsPost[] fakeMale;
-    NewsPost[] fakeFemale;
+    private final NewsPost[] fakeMale;
+    private final NewsPost[] fakeFemale;
 
     public FakeLooxLikeAPI() {
         fakeMale = new NewsPost[2];
