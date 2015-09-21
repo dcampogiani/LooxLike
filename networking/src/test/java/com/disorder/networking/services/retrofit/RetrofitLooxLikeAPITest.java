@@ -4,7 +4,6 @@ import com.disorder.networking.authorization.Authorization;
 import com.disorder.networking.authorization.BasicAuthorization;
 import com.disorder.networking.utils.ApacheBase64Encoder;
 import com.disorder.networking.utils.Base64Encoder;
-import com.disorder.networking.services.retrofit.RetrofitLooxLikeAPI;
 
 import org.junit.Before;
 import org.junit.Test;

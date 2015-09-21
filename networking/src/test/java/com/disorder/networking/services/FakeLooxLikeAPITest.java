@@ -1,7 +1,6 @@
 package com.disorder.networking.services;
 
 import com.disorder.networking.responses.NewsPost;
-import com.disorder.networking.services.LooxLikeAPI;
 
 import org.junit.Before;
 import org.junit.Test;

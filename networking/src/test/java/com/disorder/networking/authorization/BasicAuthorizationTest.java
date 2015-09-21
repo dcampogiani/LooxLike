@@ -1,7 +1,6 @@
 package com.disorder.networking.authorization;
 
 import com.disorder.networking.utils.Base64Encoder;
-import com.disorder.networking.authorization.BasicAuthorization;
 
 import org.junit.Before;
 import org.junit.Test;
