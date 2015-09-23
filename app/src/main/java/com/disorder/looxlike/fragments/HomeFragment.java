@@ -52,7 +52,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
         mToolbar.setOnMenuItemClickListener(new MenuItemClickListener());
-        getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsFragment.newInstance()).commit();
+        getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsTabsFragment.newInstance()).commit();
         return root;
     }
 

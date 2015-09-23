@@ -15,18 +15,18 @@ import com.disorder.looxlike.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NewsFragment extends BaseFragment {
+public class NewsTabsFragment extends BaseFragment {
 
     @Bind(R.id.tabs)
     TabLayout mTabLayout;
     @Bind(R.id.view_pager)
     ViewPager mViewPager;
 
-    public static NewsFragment newInstance() {
-        return new NewsFragment();
+    public static NewsTabsFragment newInstance() {
+        return new NewsTabsFragment();
     }
 
-    public NewsFragment() {
+    public NewsTabsFragment() {
     }
 
     @Override
