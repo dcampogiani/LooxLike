@@ -2,7 +2,7 @@ package com.disorder.presentation.presenter;
 
 import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
-import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
+import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
@@ -17,15 +17,15 @@ public class NewsPresenterImpl extends BasePresenter<NewsView> implements NewsPr
     private LooxLikeAPI.Gender gender;
     private LooxLikeAPI mLooxLikeAPI;
     private RxScheduler scheduler;
-    private NewsPostMapperImpl mNewsPostMapper;
+    private NewsPostMapper mNewsPostMapper;
 
 
     @Inject
-    public NewsPresenterImpl(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapperImpl newsPostMapper) {
+    public NewsPresenterImpl(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapper newsPostMapper) {
         this.mLooxLikeAPI = mLooxLikeAPI;
         this.scheduler = scheduler;
         this.mNewsPostMapper = newsPostMapper;
-        currentPage = 0;
+        this.currentPage = 0;
     }
 
     public void setGender(@NewsView.Gender int gender) {
@@ -34,6 +34,7 @@ public class NewsPresenterImpl extends BasePresenter<NewsView> implements NewsPr
 
     @Override
     public void loadMore() {
+        validateParameters();
         getView().showLoading();
         Observable<NewsPost[]> apiObservable = mLooxLikeAPI.getNewsPosts(gender, currentPage);
         Observable<NewsPost[]> scheduledObservable = scheduler.schedule(apiObservable);
@@ -57,7 +58,12 @@ public class NewsPresenterImpl extends BasePresenter<NewsView> implements NewsPr
 
     }
 
-    LooxLikeAPI.Gender mapGender(@NewsView.Gender int gender) {
+    private void validateParameters() {
+        if (gender == null)
+            throw new IllegalStateException();
+    }
+
+    private LooxLikeAPI.Gender mapGender(@NewsView.Gender int gender) {
         if (gender == NewsView.MALE)
             return LooxLikeAPI.Gender.MALE;
         if (gender == NewsView.FEMALE)
