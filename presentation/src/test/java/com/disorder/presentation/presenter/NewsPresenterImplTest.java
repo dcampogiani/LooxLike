@@ -55,7 +55,7 @@ public class NewsPresenterImplTest {
 
     }
 
-    private void testLoadMoreWithSex(@NewsView.Gender int gender) {
+    private void testLoadMoreWithSex(int gender) {
         subjectUnderTest.setGender(gender);
         subjectUnderTest.loadMore();
         verify(mNewsView, timeout(viewTimeOut)).showLoading();
