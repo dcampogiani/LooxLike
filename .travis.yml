@@ -14,8 +14,8 @@ before_script:
     - chmod +x gradlew
 
 script:
-    - ./gradlew testDebugUnitTest
     - ./gradlew build
+    - ./gradlew test
 
 deploy:
   provider: releases
