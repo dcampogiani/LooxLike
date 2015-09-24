@@ -24,7 +24,7 @@ public class RetrofitLooxLikeAPITest {
 
     @Test
     public void testGetNewsPosts() throws Exception {
-        //TODO
+        //TODO run this test
         /*
         This test is actually done and could be run,
         but until the server will respond with data,

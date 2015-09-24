@@ -7,6 +7,8 @@ import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
 import com.disorder.presentation.presenter.HomePresenter;
 import com.disorder.presentation.presenter.HomePresenterImpl;
+import com.disorder.presentation.presenter.NewsPresenter;
+import com.disorder.presentation.presenter.NewsPresenterImpl;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
 
@@ -42,5 +44,11 @@ public class PresentationModule {
     @PerActivity
     NewsPostMapper provideNewsPostMapper() {
         return new NewsPostMapperImpl();
+    }
+
+    @Provides
+    @PerActivity
+    NewsPresenter provideNewsPresenter(NewsPresenterImpl presenter) {
+        return presenter;
     }
 }
