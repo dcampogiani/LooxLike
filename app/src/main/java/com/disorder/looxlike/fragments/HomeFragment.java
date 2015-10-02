@@ -31,6 +31,8 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Inject
     HomePresenter mHomePresenter;
 
+    private MenuItemClickListener mMenuItemClickListener;
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
@@ -42,6 +44,12 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getPresentationComponent().inject(this);
+        mMenuItemClickListener = new MenuItemClickListener(mHomePresenter);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -51,8 +59,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
         ButterKnife.bind(this, root);
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
-        mToolbar.setOnMenuItemClickListener(new MenuItemClickListener());
-        getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsTabsFragment.newInstance()).commit();
+        mToolbar.setOnMenuItemClickListener(mMenuItemClickListener);
+        if (savedInstanceState == null)
+            getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsTabsFragment.newInstance()).commit();
         return root;
     }
 
@@ -62,7 +71,13 @@ public class HomeFragment extends BaseFragment implements HomeView {
         throw new UnsupportedOperationException();
     }
 
-    private class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
+    private static class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
+
+        private HomePresenter mHomePresenter;
+
+        public MenuItemClickListener(HomePresenter mHomePresenter) {
+            this.mHomePresenter = mHomePresenter;
+        }
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {

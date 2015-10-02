@@ -22,6 +22,8 @@ public class NewsTabsFragment extends BaseFragment {
     @Bind(R.id.view_pager)
     ViewPager mViewPager;
 
+    private PagerAdapter mPagerAdapter;
+
     public static NewsTabsFragment newInstance() {
         return new NewsTabsFragment();
     }
@@ -30,12 +32,17 @@ public class NewsTabsFragment extends BaseFragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPagerAdapter = new PagerAdapter(getChildFragmentManager());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, root);
-
-        mViewPager.setAdapter(new PagerAdapter(getChildFragmentManager()));
+        mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         return root;
     }
