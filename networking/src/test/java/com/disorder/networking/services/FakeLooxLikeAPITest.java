@@ -29,4 +29,18 @@ public class FakeLooxLikeAPITest {
         subjectUnderTest.getNewsPosts(LooxLikeAPI.Gender.FEMALE, 1).subscribe(testSubscriber);
         testSubscriber.assertValueCount(1);
     }
+
+    @Test
+    public void testGetNewsPostsNoGender() throws Exception {
+        TestSubscriber<NewsPost[]> testSubscriber = new TestSubscriber<>();
+        subjectUnderTest.getNewsPosts(LooxLikeAPI.Gender.NOGENDER, 1).subscribe(testSubscriber);
+        testSubscriber.assertValueCount(1);
+    }
+
+    @Test
+    public void testGetAllNewsPosts() throws Exception {
+        TestSubscriber<NewsPost[]> testSubscriber = new TestSubscriber<>();
+        subjectUnderTest.getNewsPosts(1).subscribe(testSubscriber);
+        testSubscriber.assertValueCount(1);
+    }
 }

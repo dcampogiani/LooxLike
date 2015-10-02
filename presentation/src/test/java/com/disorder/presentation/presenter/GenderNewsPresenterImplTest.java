@@ -17,9 +17,9 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-public class NewsPresenterImplTest {
+public class GenderNewsPresenterImplTest {
 
-    private NewsPresenterImpl subjectUnderTest;
+    private GenderNewsPresenterImpl subjectUnderTest;
     private LooxLikeAPI mLooxLikeAPI;
     private RxScheduler mRxScheduler;
     private NewsPostMapper mNewsPostMapper;
@@ -34,7 +34,7 @@ public class NewsPresenterImplTest {
         mLooxLikeAPI = new FakeLooxLikeAPI();
         mRxScheduler = new ImmediateRxScheduler();
         mNewsPostMapper = new NewsPostMapperImpl();
-        subjectUnderTest = new NewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper);
+        subjectUnderTest = new GenderNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper);
         subjectUnderTest.attachView(mNewsView);
     }
 

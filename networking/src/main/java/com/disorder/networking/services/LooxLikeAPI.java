@@ -8,7 +8,7 @@ import rx.Observable;
 public interface LooxLikeAPI {
 
     enum Gender {
-        MALE("male"), FEMALE("female");
+        MALE("male"), FEMALE("female"), NOGENDER("nogender");
 
         private final String text;
 
@@ -21,5 +21,8 @@ public interface LooxLikeAPI {
         }
     }
 
+    Observable<NewsPost[]> getNewsPosts(int page);
+
     Observable<NewsPost[]> getNewsPosts(Gender gender, int page);
+
 }
