@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.disorder.looxlike.R;
 import com.disorder.presentation.model.NewsPost;
@@ -49,9 +48,6 @@ public class NewsFragment extends BaseFragment implements NewsView {
         if (gender >= 0)
             mNewsPresenter = mNewsPresenterFactory.make(gender);
         else mNewsPresenter = mNewsPresenterFactory.make();
-        //TODO remove
-        TextView textView = (TextView) getView().findViewById(R.id.test);
-        textView.setText(mNewsPresenter.getClass().getName());
     }
 
     @Override
