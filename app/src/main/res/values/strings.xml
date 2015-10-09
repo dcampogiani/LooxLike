@@ -4,4 +4,10 @@
     <string name="action_news">News</string>
     <string name="action_user">User</string>
     <string name="action_favourites">Favourites</string>
+
+    <string name="news_all">All</string>
+    <string name="news_male">Man</string>
+    <string name="news_female">Woman</string>
+    <string name="news_no_gender">No Gender</string>
+
 </resources>

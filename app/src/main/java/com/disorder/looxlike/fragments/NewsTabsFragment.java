@@ -1,5 +1,6 @@
 package com.disorder.looxlike.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,7 @@ public class NewsTabsFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPagerAdapter = new PagerAdapter(getChildFragmentManager());
+        mPagerAdapter = new PagerAdapter(getChildFragmentManager(), getActivity());
     }
 
     @Override
@@ -49,12 +50,29 @@ public class NewsTabsFragment extends BaseFragment {
 
     private static class PagerAdapter extends FragmentStatePagerAdapter {
 
-        public PagerAdapter(FragmentManager fm) {
+        private static int pages = 4;
+
+        private Context mContext;
+
+        public PagerAdapter(FragmentManager fm, Context context) {
             super(fm);
+            this.mContext = context;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
+
+            switch (position) {
+                case 0:
+                    return mContext.getString(R.string.news_all);
+                case 1:
+                    return mContext.getString(R.string.news_female);
+                case 2:
+                    return mContext.getString(R.string.news_male);
+                case 3:
+                    return mContext.getString(R.string.news_no_gender);
+            }
+
             return Integer.toString(position);
         }
 
@@ -65,7 +83,7 @@ public class NewsTabsFragment extends BaseFragment {
 
         @Override
         public int getCount() {
-            return 2;
+            return pages;
         }
     }
 }
