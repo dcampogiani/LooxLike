@@ -2,6 +2,7 @@ package com.disorder.looxlike.fragments;
 
 import android.os.Build;
 import android.support.annotation.StringRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 
@@ -80,6 +81,12 @@ public class NewsTabsFragmentTest {
         String expectedText = getString(R.string.news_no_gender);
         String tabText = noGenderTab.getText().toString();
         assertThat(tabText, is(expectedText));
+    }
+
+    @Test
+    public void FABIsShown() {
+        FloatingActionButton fab = (FloatingActionButton) subjectUnderTest.getView().findViewById(R.id.fab);
+        assertThat(fab.getVisibility(), is(View.VISIBLE));
     }
 
     private TabLayout getTabLayout() {
