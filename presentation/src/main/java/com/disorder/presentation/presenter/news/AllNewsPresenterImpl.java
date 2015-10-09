@@ -1,17 +1,14 @@
-package com.disorder.presentation.presenter;
+package com.disorder.presentation.presenter.news;
 
 import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.utils.RxScheduler;
 
-import javax.inject.Inject;
-
 import rx.Observable;
 
-public class AllNewsPresenterImpl extends AbstractNewsPresenter {
+public class AllNewsPresenterImpl extends BaseNewsPresenter {
 
-    @Inject
     public AllNewsPresenterImpl(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapper newsPostMapper) {
         super(mLooxLikeAPI, scheduler, newsPostMapper);
     }

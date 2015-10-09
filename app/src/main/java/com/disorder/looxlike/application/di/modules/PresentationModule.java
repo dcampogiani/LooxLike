@@ -5,10 +5,10 @@ import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
-import com.disorder.presentation.presenter.GenderNewsPresenterImpl;
 import com.disorder.presentation.presenter.HomePresenter;
 import com.disorder.presentation.presenter.HomePresenterImpl;
-import com.disorder.presentation.presenter.NewsPresenter;
+import com.disorder.presentation.presenter.news.NewsPresenterFactory;
+import com.disorder.presentation.presenter.news.NewsPresenterFactoryImpl;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
 
@@ -48,7 +48,7 @@ public class PresentationModule {
 
     @Provides
     @PerActivity
-    NewsPresenter provideNewsPresenter(GenderNewsPresenterImpl presenter) {
-        return presenter;
+    NewsPresenterFactory provideNewsPresenterFactory(NewsPresenterFactoryImpl factory) {
+        return factory;
     }
 }

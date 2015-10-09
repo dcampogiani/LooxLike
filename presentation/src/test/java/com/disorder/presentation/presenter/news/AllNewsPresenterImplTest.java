@@ -1,4 +1,4 @@
-package com.disorder.presentation.presenter;
+package com.disorder.presentation.presenter.news;
 
 import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;

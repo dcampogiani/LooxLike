@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.disorder.looxlike.R;
+import com.disorder.presentation.view.NewsView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -78,12 +79,33 @@ public class NewsTabsFragment extends BaseFragment {
 
         @Override
         public Fragment getItem(int position) {
-            return new DummyFragment();
+
+            switch (position) {
+                case 0:
+                    return NewsFragment.newInstance();
+                default:
+                    return NewsFragment.newInstance(getGenderForPosition(position));
+            }
         }
 
         @Override
         public int getCount() {
             return pages;
+        }
+
+        private
+        @NewsView.Gender
+        int getGenderForPosition(int position) {
+            switch (position) {
+                case 1:
+                    return NewsView.FEMALE;
+                case 2:
+                    return NewsView.MALE;
+                case 3:
+                    return NewsView.NO_GENDER;
+            }
+
+            throw new IllegalArgumentException(Integer.toString(position));
         }
     }
 }

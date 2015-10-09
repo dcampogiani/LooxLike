@@ -9,13 +9,14 @@ import java.lang.annotation.RetentionPolicy;
 
 public interface NewsView {
 
-    @IntDef({MALE, FEMALE})
+    @IntDef({MALE, FEMALE, NO_GENDER})
     @Retention(RetentionPolicy.SOURCE)
-    @interface Gender {
+    public @interface Gender {
     }
 
     public static final int MALE = 0;
     public static final int FEMALE = 1;
+    public static final int NO_GENDER = 2;
 
     void updateModel(NewsPost[] model);
 

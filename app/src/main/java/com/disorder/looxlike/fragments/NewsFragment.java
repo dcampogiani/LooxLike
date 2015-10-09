@@ -2,22 +2,62 @@ package com.disorder.looxlike.fragments;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.disorder.looxlike.R;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.presenter.NewsPresenter;
+import com.disorder.presentation.presenter.news.NewsPresenterFactory;
 import com.disorder.presentation.view.NewsView;
 
 import javax.inject.Inject;
 
 public class NewsFragment extends BaseFragment implements NewsView {
 
+    private static String GENDER_KEY = "GENDER_KEY";
+
+
     @Inject
+    NewsPresenterFactory mNewsPresenterFactory;
+
     NewsPresenter mNewsPresenter;
+
+    public static NewsFragment newInstance() {
+        NewsFragment newsFragment = new NewsFragment();
+        Bundle args = new Bundle();
+        newsFragment.setArguments(args);
+        return newsFragment;
+    }
+
+    public static NewsFragment newInstance(@NewsView.Gender int gender) {
+        NewsFragment newsFragment = new NewsFragment();
+        Bundle args = new Bundle();
+        args.putInt(GENDER_KEY, gender);
+        newsFragment.setArguments(args);
+        return newsFragment;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getPresentationComponent().inject(this);
+        Bundle arguments = getArguments();
+        @NewsView.Gender int gender = arguments.getInt(GENDER_KEY, -1);
+        if (gender >= 0)
+            mNewsPresenter = mNewsPresenterFactory.make(gender);
+        else mNewsPresenter = mNewsPresenterFactory.make();
+        //TODO remove
+        TextView textView = (TextView) getView().findViewById(R.id.test);
+        textView.setText(mNewsPresenter.getClass().getName());
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_news, container, false);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.disorder.presentation.presenter;
+package com.disorder.presentation.presenter.news;
 
 import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;
@@ -34,32 +34,31 @@ public class GenderNewsPresenterImplTest {
         mLooxLikeAPI = new FakeLooxLikeAPI();
         mRxScheduler = new ImmediateRxScheduler();
         mNewsPostMapper = new NewsPostMapperImpl();
-        subjectUnderTest = new GenderNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper);
+    }
+
+
+    @Test
+    public void testLoadMoreMale() {
+        testLoadMoreWithGender(NewsView.MALE);
+    }
+
+    @Test
+    public void testLoadMoreFemale() {
+        testLoadMoreWithGender(NewsView.FEMALE);
+    }
+
+    @Test
+    public void testLoadMoreNoGender() {
+        testLoadMoreWithGender(NewsView.NO_GENDER);
+    }
+
+    private void testLoadMoreWithGender(int gender) {
+        subjectUnderTest = new GenderNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper, gender);
         subjectUnderTest.attachView(mNewsView);
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void shouldThrowExceptionWhenGenderNotSet() {
-        subjectUnderTest.loadMore();
-    }
-
-    @Test
-    public void testLoadMoreMale() throws Exception {
-        testLoadMoreWithSex(NewsView.MALE);
-
-    }
-
-    @Test
-    public void testLoadMoreFemale() throws Exception {
-        testLoadMoreWithSex(NewsView.FEMALE);
-
-    }
-
-    private void testLoadMoreWithSex(int gender) {
-        subjectUnderTest.setGender(gender);
         subjectUnderTest.loadMore();
         verify(mNewsView, timeout(viewTimeOut)).showLoading();
         verify(mNewsView, timeout(viewTimeOut)).hideLoading();
         verify(mNewsView, timeout(viewTimeOut)).updateModel(any(NewsPost[].class));
     }
+
 }

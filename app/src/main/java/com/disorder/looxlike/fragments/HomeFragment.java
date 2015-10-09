@@ -37,8 +37,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
         return new HomeFragment();
     }
 
-    public HomeFragment() {
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
