@@ -16,13 +16,13 @@ import javax.inject.Inject;
 
 public class NewsFragment extends BaseFragment implements NewsView {
 
-    private static String GENDER_KEY = "GENDER_KEY";
+    private static final String GENDER_KEY = "GENDER_KEY";
 
 
     @Inject
     NewsPresenterFactory mNewsPresenterFactory;
 
-    NewsPresenter mNewsPresenter;
+    private NewsPresenter mNewsPresenter;
 
     public static NewsFragment newInstance() {
         NewsFragment newsFragment = new NewsFragment();

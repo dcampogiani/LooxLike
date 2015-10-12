@@ -26,6 +26,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     String mToolbarTitle;
 
     @IdRes
+    private final
     int fragment_main_content = R.id.fragment_main_content;
 
     @Inject
@@ -45,10 +46,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mMenuItemClickListener = new MenuItemClickListener(mHomePresenter);
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +68,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
     private static class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
 
-        private HomePresenter mHomePresenter;
+        private final HomePresenter mHomePresenter;
 
         public MenuItemClickListener(HomePresenter mHomePresenter) {
             this.mHomePresenter = mHomePresenter;

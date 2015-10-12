@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">LooxLike</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_news">News</string>
     <string name="action_user">User</string>
     <string name="action_favourites">Favourites</string>

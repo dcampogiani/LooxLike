@@ -51,9 +51,9 @@ public class NewsTabsFragment extends BaseFragment {
 
     private static class PagerAdapter extends FragmentStatePagerAdapter {
 
-        private static int pages = 4;
+        private static final int pages = 4;
 
-        private Context mContext;
+        private final Context mContext;
 
         public PagerAdapter(FragmentManager fm, Context context) {
             super(fm);
