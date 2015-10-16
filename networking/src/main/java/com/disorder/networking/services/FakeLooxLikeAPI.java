@@ -18,15 +18,14 @@ public class FakeLooxLikeAPI implements LooxLikeAPI {
         fakeNoGender = new NewsPost[2];
         fakeAll = new NewsPost[6];
 
+        fakeMale[0] = new NewsPost(1, "descrizione1", "http://images2.gazzettaobjects.it/methode_image/2014/07/12/Calcio/Foto%20Gallery%20-%20Trattate/Nargi%209-kVQC--458x458@Gazzetta-Web_mediagallery-fullscreen.jpg", "item1", "2015-10-08T20:44:55", "dcampogiani", 1, true);
+        fakeMale[1] = new NewsPost(2, "descrizione2", "http://www.dailynews24.it/wp-content/uploads/2015/05/Nargi.jpg", "item2", "2015-10-08T20:44:55", "azanin", 2, false);
 
-        fakeMale[0] = new NewsPost(1, "http://images2.gazzettaobjects.it/methode_image/2014/07/12/Calcio/Foto%20Gallery%20-%20Trattate/Nargi%209-kVQC--458x458@Gazzetta-Web_mediagallery-fullscreen.jpg", "descrizione1", "item1", 1, "dcampogiani", true);
-        fakeMale[1] = new NewsPost(2, "http://www.dailynews24.it/wp-content/uploads/2015/05/Nargi.jpg", "descrizione2", "item2", 2, "azanin", true);
+        fakeFemale[0] = new NewsPost(3, "descrizione3", "http://static.panorama.it/wp-content/uploads/2014/05/0apreMS719-MS718-1000x600.jpg?63b36c", "item3", "2015-10-08T20:44:55", "rlovino", 3, true);
+        fakeFemale[1] = new NewsPost(4, "descrizione4", "http://www.dailynews24.it/wp-content/uploads/2015/05/Nargi.jpg", "item4", "2015-10-08T20:44:55", "ccorapi", 4, false);
 
-        fakeFemale[0] = new NewsPost(3, "http://static.panorama.it/wp-content/uploads/2014/05/0apreMS719-MS718-1000x600.jpg?63b36c", "descrizione3", "item3", 3, "rlovino", true);
-        fakeFemale[1] = new NewsPost(4, "jpg", "descrizione4", "item5", 4, "azanin", true);
-
-        fakeNoGender[0] = new NewsPost(5, "http://static.panorama.it/wp-content/uploads/2014/05/0apreMS719-MS718-1000x600.jpg?63b36c", "descrizione5", "item5", 5, "rlovino", true);
-        fakeNoGender[1] = new NewsPost(6, "jpg", "descrizione6", "item6", 6, "azanin", true);
+        fakeNoGender[0] = new NewsPost(5, "descrizione5", "http://images2.gazzettaobjects.it/methode_image/2014/07/12/Calcio/Foto%20Gallery%20-%20Trattate/Nargi%209-kVQC--458x458@Gazzetta-Web_mediagallery-fullscreen.jpg", "item5", "2015-10-08T20:44:55", "smorettin", 9, true);
+        fakeNoGender[1] = new NewsPost(5, "descrizione6", "http://static.panorama.it/wp-content/uploads/2014/05/0apreMS719-MS718-1000x600.jpg?63b36c", "item6", "2015-10-08T20:44:55", "idominici", 2, false);
 
         fakeAll[0] = fakeMale[0];
         fakeAll[1] = fakeFemale[0];

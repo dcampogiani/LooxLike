@@ -20,7 +20,7 @@ public class NewsPostMapperImplTest {
 
     @Test
     public void testSingleMap() throws Exception {
-        NewsPost networkResponse = new NewsPost(1, "photo", "description", "itemID", 2, "rlovino", true);
+        NewsPost networkResponse = new NewsPost(1, "description", "photo", "itemID", "2015-10-11T20:44:55", "rlovino", 2, true);
         com.disorder.presentation.model.NewsPost expected = com.disorder.presentation.model.NewsPost.create(1, "photo", "description", "itemID", 2, "rlovino", true);
         com.disorder.presentation.model.NewsPost result = subjectUnderTest.map(networkResponse);
         assertThat(result.id(), is(expected.id()));
@@ -36,8 +36,8 @@ public class NewsPostMapperImplTest {
     @Test
     public void testArrayMap() throws Exception {
         NewsPost[] networkResponse = new NewsPost[2];
-        networkResponse[0] = new NewsPost(1, "photo", "description", "itemID", 2, "rlovino", true);
-        networkResponse[1] = new NewsPost(2, "phot2", "descriptio2", "itemID2", 3, "rlovino", false);
+        networkResponse[0] = new NewsPost(1, "description", "photo", "itemID", "2015-10-11T20:44:55", "rlovino", 2, true);
+        networkResponse[1] = new NewsPost(2, "descriptio2", "phot2", "itemID2", "2015-10-11T20:44:55", "rlovino", 3, false);
         int expectedLenght = 2;
         com.disorder.presentation.model.NewsPost[] result = subjectUnderTest.map(networkResponse);
         assertThat(result.length, is(expectedLenght));

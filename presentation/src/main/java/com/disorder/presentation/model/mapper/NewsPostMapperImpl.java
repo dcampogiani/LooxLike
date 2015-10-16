@@ -7,7 +7,7 @@ public class NewsPostMapperImpl implements NewsPostMapper {
 
     @Override
     public NewsPost map(com.disorder.networking.responses.NewsPost origin) {
-        return NewsPost.create(origin.getId(), origin.getPhotoUrl(), origin.getDescription(), origin.getItemId(), origin.getLikes(), origin.getUsername(), origin.isLiked());
+        return NewsPost.create(origin.getIdPost(), origin.getPhotoUrl(), origin.getDescription(), origin.getC10(), origin.getnLikes(), origin.getUsername(), origin.isLiked());
     }
 
     public NewsPost[] map(com.disorder.networking.responses.NewsPost[] origin) {
