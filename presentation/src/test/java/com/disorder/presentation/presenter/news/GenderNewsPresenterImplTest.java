@@ -4,7 +4,6 @@ import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
-import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
 import com.disorder.presentation.utils.ImmediateRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
@@ -33,7 +32,7 @@ public class GenderNewsPresenterImplTest {
         mNewsView = Mockito.mock(NewsView.class);
         mLooxLikeAPI = new FakeLooxLikeAPI();
         mRxScheduler = new ImmediateRxScheduler();
-        mNewsPostMapper = new NewsPostMapperImpl();
+        mNewsPostMapper = Mockito.mock(NewsPostMapper.class);
     }
 
 

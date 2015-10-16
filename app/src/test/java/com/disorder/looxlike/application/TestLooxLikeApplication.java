@@ -5,4 +5,8 @@ public class TestLooxLikeApplication extends LooxLikeApplication {
     @Override
     protected void initLeakDetector() {
     }
+
+    @Override
+    void initTimeZone() {
+    }
 }

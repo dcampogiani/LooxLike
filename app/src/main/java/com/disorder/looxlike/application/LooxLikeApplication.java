@@ -3,6 +3,8 @@ package com.disorder.looxlike.application;
 import android.app.Application;
 import android.content.Context;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
 
 public class LooxLikeApplication extends Application {
 
@@ -16,10 +18,15 @@ public class LooxLikeApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initTimeZone();
         initLeakDetector();
     }
 
     void initLeakDetector() {
         mLeakDetector = new LeakCanaryDetector(this);
+    }
+
+    void initTimeZone() {
+        AndroidThreeTen.init(this);
     }
 }

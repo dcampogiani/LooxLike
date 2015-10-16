@@ -1,32 +1,42 @@
 package com.disorder.presentation.model.mapper;
 
 import com.disorder.networking.responses.NewsPost;
+import com.disorder.presentation.utils.DateIntervalCalculator;
+import com.disorder.presentation.utils.DaysRangeProvider;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-
 public class NewsPostMapperImplTest {
 
     NewsPostMapperImpl subjectUnderTest;
+    DaysRangeProvider daysRangeProvider;
 
     @Before
     public void setUp() throws Exception {
-        subjectUnderTest = new NewsPostMapperImpl();
+        DateIntervalCalculator dateIntervalCalculator = Mockito.mock(DateIntervalCalculator.class);
+        daysRangeProvider = new DaysRangeProvider() {
+            @Override
+            public String getString(int days) {
+                return "howShouldITestIt";
+            }
+        };
+        subjectUnderTest = new NewsPostMapperImpl(dateIntervalCalculator, daysRangeProvider);
     }
 
     @Test
     public void testSingleMap() throws Exception {
         NewsPost networkResponse = new NewsPost(1, "description", "photo", "itemID", "2015-10-11T20:44:55", "rlovino", 2, true);
-        com.disorder.presentation.model.NewsPost expected = com.disorder.presentation.model.NewsPost.create(1, "photo", "description", "itemID", 2, "rlovino", true);
+        com.disorder.presentation.model.NewsPost expected = com.disorder.presentation.model.NewsPost.create(1, "description", "photo", "itemID", "howShouldITestIt", "rlovino", 2, true);
         com.disorder.presentation.model.NewsPost result = subjectUnderTest.map(networkResponse);
         assertThat(result.id(), is(expected.id()));
         assertThat(result.photoUrl(), is(expected.photoUrl()));
         assertThat(result.description(), is(expected.description()));
-        assertThat(result.itemId(), is(expected.itemId()));
+        assertThat(result.c10(), is(expected.c10()));
         assertThat(result.likes(), is(expected.likes()));
         assertThat(result.username(), is(expected.username()));
         assertThat(result.liked(), is(expected.liked()));

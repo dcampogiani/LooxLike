@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Presentation</string>
+
+    <plurals name="days">
+        <item quantity="zero">Today</item>
+        <item quantity="one">Yesterday</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
 </resources>

@@ -1,5 +1,7 @@
 package com.disorder.looxlike.application.di.modules;
 
+import android.content.Context;
+
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;
@@ -9,6 +11,10 @@ import com.disorder.presentation.presenter.HomePresenter;
 import com.disorder.presentation.presenter.HomePresenterImpl;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
 import com.disorder.presentation.presenter.news.NewsPresenterFactoryImpl;
+import com.disorder.presentation.utils.DateIntervalCalculator;
+import com.disorder.presentation.utils.DateIntervalCalculatorImpl;
+import com.disorder.presentation.utils.DaysRangeProvider;
+import com.disorder.presentation.utils.DaysRangeProviderImpl;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
 
@@ -19,6 +25,18 @@ import rx.schedulers.Schedulers;
 
 @Module
 public class PresentationModule {
+
+    private final Context context;
+
+    public PresentationModule(Context context) {
+        this.context = context;
+    }
+
+    @Provides
+    @PerActivity
+    Context provideContext() {
+        return context;
+    }
 
     @Provides
     @PerActivity
@@ -42,8 +60,20 @@ public class PresentationModule {
 
     @Provides
     @PerActivity
-    NewsPostMapper provideNewsPostMapper() {
-        return new NewsPostMapperImpl();
+    DateIntervalCalculator provideDateIntervalCalculator(DateIntervalCalculatorImpl dateIntervalCalculator) {
+        return dateIntervalCalculator;
+    }
+
+    @Provides
+    @PerActivity
+    DaysRangeProvider provideDaysRangeProvider(DaysRangeProviderImpl daysRangeProvider) {
+        return daysRangeProvider;
+    }
+
+    @Provides
+    @PerActivity
+    NewsPostMapper provideNewsPostMapper(NewsPostMapperImpl mapper) {
+        return mapper;
     }
 
     @Provides

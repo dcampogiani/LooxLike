@@ -1,5 +1,7 @@
 package com.disorder.looxlike.application.di.components;
 
+import android.content.Context;
+
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.looxlike.application.di.modules.PresentationModule;
 import com.disorder.looxlike.fragments.HomeFragment;
@@ -18,6 +20,8 @@ public interface PresentationComponent {
     void inject(HomeFragment homeFragment);
 
     void inject(NewsFragment newsFragment);
+
+    Context context();
 
     HomePresenter homePresenter();
 

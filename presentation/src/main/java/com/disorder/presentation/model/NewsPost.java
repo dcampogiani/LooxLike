@@ -9,19 +9,22 @@ public abstract class NewsPost implements Parcelable {
 
     public abstract long id();
 
-    public abstract String photoUrl();
-
     public abstract String description();
 
-    public abstract String itemId();
+    public abstract String photoUrl();
 
-    public abstract int likes();
+    public abstract String c10();
+
+    public abstract String creation();
 
     public abstract String username();
 
+    public abstract int likes();
+
     public abstract boolean liked();
 
-    public static NewsPost create(long id, String photoUrl, String description, String itemId, int likes, String username, boolean liked) {
-        return new AutoParcel_NewsPost(id, photoUrl, description, itemId, likes, username, liked);
+
+    public static NewsPost create(long id, String description, String photoUrl, String c10, String creation, String username, int likes, boolean liked) {
+        return new AutoParcel_NewsPost(id, description, photoUrl, c10, creation, username, likes, liked);
     }
 }
