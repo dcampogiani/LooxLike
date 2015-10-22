@@ -45,51 +45,53 @@ public class NewsTabsFragmentTest {
         assertThat(tabs.getTabCount(), is(4));
     }
 
+
     @Test
     public void allTabIsShownAsFirst() {
-        TabLayout tabs = getTabLayout();
-        TabLayout.Tab allTab = tabs.getTabAt(0);
         String expectedText = getString(R.string.news_all);
-        String tabText = allTab.getText().toString();
-        assertThat(tabText, is(expectedText));
+        testTabText(0, expectedText);
+    }
+
+    private void testTabText(int index, String expected) {
+        TabLayout tabs = getTabLayout();
+        TabLayout.Tab tabUnderTest = tabs.getTabAt(index);
+        String actual = getTabText(tabUnderTest);
+        assertThat(actual, is(expected));
+    }
+
+    private String getTabText(TabLayout.Tab tab) {
+        //noinspection ConstantConditions
+        return tab.getText().toString();
     }
 
 
     @Test
     public void womanTabIsShownAsSecond() {
-        TabLayout tabs = getTabLayout();
-        TabLayout.Tab womanTab = tabs.getTabAt(1);
         String expectedText = getString(R.string.news_female);
-        String tabText = womanTab.getText().toString();
-        assertThat(tabText, is(expectedText));
+        testTabText(1, expectedText);
     }
 
     @Test
     public void manTabIsShownAsThird() {
-        TabLayout tabs = getTabLayout();
-        TabLayout.Tab manTab = tabs.getTabAt(2);
         String expectedText = getString(R.string.news_male);
-        String tabText = manTab.getText().toString();
-        assertThat(tabText, is(expectedText));
+        testTabText(2, expectedText);
     }
 
 
     @Test
     public void noGenderTabIsShownAsFourth() {
-        TabLayout tabs = getTabLayout();
-        TabLayout.Tab noGenderTab = tabs.getTabAt(3);
         String expectedText = getString(R.string.news_no_gender);
-        String tabText = noGenderTab.getText().toString();
-        assertThat(tabText, is(expectedText));
+        testTabText(3, expectedText);
     }
 
     @Test
     public void FABIsShown() {
-        FloatingActionButton fab = (FloatingActionButton) subjectUnderTest.getView().findViewById(R.id.fab);
+        @SuppressWarnings("ConstantConditions") FloatingActionButton fab = (FloatingActionButton) subjectUnderTest.getView().findViewById(R.id.fab);
         assertThat(fab.getVisibility(), is(View.VISIBLE));
     }
 
     private TabLayout getTabLayout() {
+        //noinspection ConstantConditions
         return (TabLayout) subjectUnderTest.getView().findViewById(R.id.tabs);
     }
 
