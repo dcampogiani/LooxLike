@@ -7,17 +7,17 @@
         android:title="@string/action_news"
         android:icon="@drawable/ic_home_white_24dp"
         android:orderInCategory="100"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_user"
         android:title="@string/action_user"
         android:icon="@drawable/ic_person_white_24dp"
         android:orderInCategory="100"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_favourites"
         android:title="@string/action_favourites"
         android:icon="@drawable/ic_favorite_white_24dp"
         android:orderInCategory="100"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

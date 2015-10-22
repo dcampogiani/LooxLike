@@ -1,7 +1,6 @@
 package com.disorder.looxlike.activities;
 
 import android.os.Build;
-import android.support.annotation.IdRes;
 
 import com.disorder.looxlike.BuildConfig;
 import com.disorder.looxlike.R;
@@ -22,9 +21,6 @@ public class MainActivityTest {
 
     private MainActivity subjectUnderTest;
 
-    @IdRes
-    private final int idMainFragment = R.id.fragment_container;
-
     @Before
     public void setUp() throws Exception {
         subjectUnderTest = Robolectric.setupActivity(MainActivity.class);
@@ -32,6 +28,7 @@ public class MainActivityTest {
 
     @Test
     public void mainFragmentIsLoaded() {
+        int idMainFragment = R.id.fragment_container;
         HomeFragment homeFragment = (HomeFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
         assertNotNull(homeFragment);
     }

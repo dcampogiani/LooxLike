@@ -73,6 +73,7 @@ public class HomeFragmentTest {
     }
 
     public Toolbar getToolbar() {
+        //noinspection ConstantConditions
         return (Toolbar) subjectUnderTest.getView().findViewById(R.id.toolbar);
     }
 

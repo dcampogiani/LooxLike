@@ -32,7 +32,7 @@ public class NewsFragmentTest {
 
     @Test
     public void recyclerViewIsShown() {
-        RecyclerView recyclerView = (RecyclerView) subjectUnderTest.getView().findViewById(R.id.recycler_view);
+        @SuppressWarnings("ConstantConditions") RecyclerView recyclerView = (RecyclerView) subjectUnderTest.getView().findViewById(R.id.recycler_view);
         assertThat(recyclerView.getVisibility(), is(View.VISIBLE));
     }
 }
