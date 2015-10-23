@@ -4,7 +4,6 @@ import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.presenter.BasePresenter;
-import com.disorder.presentation.presenter.NewsPresenter;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
@@ -38,6 +37,7 @@ public abstract class BaseNewsPresenter extends BasePresenter<NewsView> implemen
                 getView().hideLoading();
                 getView().hideError();
                 getView().updateModel(presentationModel);
+                currentPage++;
 
             }
         }, new Action1<Throwable>() {
