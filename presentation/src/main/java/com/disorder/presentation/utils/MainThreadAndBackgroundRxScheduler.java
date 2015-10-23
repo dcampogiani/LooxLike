@@ -15,6 +15,6 @@ public class MainThreadAndBackgroundRxScheduler implements RxScheduler {
 
     @Override
     public <T> Observable<T> schedule(Observable<T> observable) {
-        return observable.subscribeOn(background).observeOn(mainThread);
+        return observable.observeOn(mainThread).subscribeOn(background);
     }
 }
