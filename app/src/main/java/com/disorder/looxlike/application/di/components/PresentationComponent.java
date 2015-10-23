@@ -14,7 +14,7 @@ import com.disorder.presentation.utils.RxScheduler;
 import dagger.Component;
 
 @PerActivity
-@Component(modules = PresentationModule.class)
+@Component(dependencies = ApplicationComponent.class, modules = PresentationModule.class)
 public interface PresentationComponent {
 
     void inject(HomeFragment homeFragment);

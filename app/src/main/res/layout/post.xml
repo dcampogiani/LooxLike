@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/avatar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:civ_border_color="@color/accent"
+            app:civ_border_width="2dp"
+            tools:src="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            tools:text="Federica Nargi" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/post_image_height"
+        android:layout_weight="3"
+        android:contentDescription="@string/post_image"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/post" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="64dp"
+            android:paddingLeft="64dp"
+            android:paddingRight="64dp"
+            android:paddingStart="64dp">
+
+            <TextView
+                android:id="@+id/likes"
+                style="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:drawableLeft="@drawable/ic_favorite_accent_empty_36dp"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_favorite_accent_empty_36dp"
+                android:gravity="center_vertical"
+                tools:text="100" />
+
+            <ImageButton
+                android:id="@+id/buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/buy"
+                android:src="@drawable/ic_shopping_basket_accent_36dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
+            tools:text="Sono figa?" />
+
+        <TextView
+            android:id="@+id/creation"
+            style="@style/Base.TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp"
+            tools:text="Yesterday" />
+
+    </LinearLayout>
+
+</LinearLayout>

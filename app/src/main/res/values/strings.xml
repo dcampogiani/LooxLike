@@ -9,4 +9,8 @@
     <string name="news_female">Woman</string>
     <string name="news_no_gender">No Gender</string>
 
+
+    <string name="buy">Buy</string>
+    <string name="post_image">Post Image</string>
+
 </resources>

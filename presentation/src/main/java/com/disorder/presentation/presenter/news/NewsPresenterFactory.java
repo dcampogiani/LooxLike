@@ -1,7 +1,6 @@
 package com.disorder.presentation.presenter.news;
 
 
-import com.disorder.presentation.presenter.NewsPresenter;
 import com.disorder.presentation.view.NewsView;
 
 public interface NewsPresenterFactory {

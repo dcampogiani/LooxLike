@@ -2,7 +2,6 @@ package com.disorder.presentation.presenter.news;
 
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
-import com.disorder.presentation.presenter.NewsPresenter;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
