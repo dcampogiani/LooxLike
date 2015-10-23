@@ -98,6 +98,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
             mLayoutManager = new StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
+        //TODO GlideImageDownloader must be injected
         newsPostAdapter = new NewsPostAdapter(this, new GlideImageDownloader(getContext()), this);
         mRecyclerView.setAdapter(newsPostAdapter);
         super.onViewCreated(view, savedInstanceState);
