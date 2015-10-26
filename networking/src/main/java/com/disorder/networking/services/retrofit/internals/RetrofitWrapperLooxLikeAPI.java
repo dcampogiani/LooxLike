@@ -11,5 +11,5 @@ import rx.Observable;
 public interface RetrofitWrapperLooxLikeAPI {
 
     @GET("/post/page/{pageNum}")
-    Observable<NewsPost[]> getNewsPosts(@Query("gender") String gender, @Path("pageNum") int page);
+    Observable<NewsPost[]> getNewsPosts(@Query("gender") Character gender, @Path("pageNum") int page);
 }

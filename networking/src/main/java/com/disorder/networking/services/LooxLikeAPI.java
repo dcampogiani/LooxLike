@@ -8,16 +8,18 @@ import rx.Observable;
 public interface LooxLikeAPI {
 
     enum Gender {
-        MALE("male"), FEMALE("female"), NOGENDER("nogender");
+        MALE("male", 'm'), FEMALE("female", 'f'), NOGENDER("nogender", 'n');
 
         private final String text;
+        private final char queryParameter;
 
-        Gender(String text) {
+        Gender(String text, char queryParameter) {
             this.text = text;
+            this.queryParameter = queryParameter;
         }
 
-        public String asText() {
-            return text;
+        public char queryParameter() {
+            return this.queryParameter;
         }
     }
 

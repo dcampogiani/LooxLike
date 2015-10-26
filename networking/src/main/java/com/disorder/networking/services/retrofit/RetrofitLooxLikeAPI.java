@@ -62,7 +62,7 @@ public class RetrofitLooxLikeAPI implements LooxLikeAPI {
 
     @Override
     public Observable<NewsPost[]> getNewsPosts(Gender gender, int page) {
-        return mRetrofitWrapperLooxLikeAPI.getNewsPosts(gender.asText(), page);
+        return mRetrofitWrapperLooxLikeAPI.getNewsPosts(gender.queryParameter(), page);
     }
 
 }
