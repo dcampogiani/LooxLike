@@ -17,7 +17,6 @@ import com.disorder.looxlike.adapters.NewsPostAdapter;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.presenter.news.NewsPresenter;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
-import com.disorder.presentation.utils.GlideImageDownloader;
 import com.disorder.presentation.utils.ImageDownloader;
 import com.disorder.presentation.view.NewsView;
 
@@ -74,6 +73,10 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
         if (gender >= 0)
             mNewsPresenter = mNewsPresenterFactory.make(gender);
         else mNewsPresenter = mNewsPresenterFactory.make();
+
+        newsPostAdapter = new NewsPostAdapter(this, mImageDownloader, this);
+        mRecyclerView.setAdapter(newsPostAdapter);
+
         mNewsPresenter.attachView(this);
         mNewsPresenter.loadMore();
     }
@@ -98,9 +101,6 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
             mLayoutManager = new StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //TODO GlideImageDownloader must be injected
-        newsPostAdapter = new NewsPostAdapter(this, new GlideImageDownloader(getContext()), this);
-        mRecyclerView.setAdapter(newsPostAdapter);
         super.onViewCreated(view, savedInstanceState);
     }
 
