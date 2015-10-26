@@ -1,6 +1,7 @@
 package com.disorder.looxlike.adapters;
 
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.disorder.looxlike.R;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.utils.ImageDownloader;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,16 +34,16 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         void almostAtTheEnd();
     }
 
-    private List<NewsPost> mData;
-    private PostListener mPostListener;
+    private final List<NewsPost> mData;
+    private WeakReference<PostListener> mPostListenerReference;
+    private WeakReference<ScrollListener> mScrollListenerReference;
     private ImageDownloader mImageDownloader;
-    private ScrollListener mScrollListener;
 
     public NewsPostAdapter(PostListener postListener, ImageDownloader imageDownloader, ScrollListener scrollListener) {
         this.mData = new ArrayList<>(0);
-        this.mPostListener = postListener;
+        this.mPostListenerReference = new WeakReference<>(postListener);
+        this.mScrollListenerReference = new WeakReference<>(scrollListener);
         this.mImageDownloader = imageDownloader;
-        this.mScrollListener = scrollListener;
     }
 
     public void addData(List<NewsPost> newData) {
@@ -55,11 +57,15 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         return new ViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(NewsPostAdapter.ViewHolder holder, int position) {
 
-        if (almostAtTheEnd(position))
-            mScrollListener.almostAtTheEnd();
+        if (almostAtTheEnd(position)) {
+            ScrollListener scrollListener = mScrollListenerReference.get();
+            if (scrollListener != null)
+                scrollListener.almostAtTheEnd();
+        }
 
         final NewsPost item = mData.get(position);
         ImageView avatar = holder.avatar;
@@ -81,7 +87,9 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         View.OnClickListener userClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPostListener.onUser(item);
+                PostListener postListener = mPostListenerReference.get();
+                if (postListener != null)
+                    postListener.onUser(item);
             }
         };
 
@@ -90,13 +98,17 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPostListener.onLike(item);
+                PostListener postListener = mPostListenerReference.get();
+                if (postListener != null)
+                    postListener.onLike(item);
             }
         });
         holder.buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPostListener.onBuy(item);
+                PostListener postListener = mPostListenerReference.get();
+                if (postListener != null)
+                    postListener.onBuy(item);
             }
         });
     }
@@ -112,13 +124,13 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView avatar;
-        public TextView userName;
-        public ImageView photo;
-        public TextView likes;
-        public ImageButton buy;
-        public TextView description;
-        public TextView creation;
+        public final ImageView avatar;
+        public final TextView userName;
+        public final ImageView photo;
+        public final TextView likes;
+        public final ImageButton buy;
+        public final TextView description;
+        public final TextView creation;
 
         public ViewHolder(View itemView) {
             super(itemView);
