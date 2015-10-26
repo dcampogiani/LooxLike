@@ -9,7 +9,7 @@ import rx.observers.TestSubscriber;
 
 public class FakeLooxLikeAPITest {
 
-    com.disorder.networking.services.FakeLooxLikeAPI subjectUnderTest;
+    private com.disorder.networking.services.FakeLooxLikeAPI subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
