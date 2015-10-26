@@ -3,14 +3,14 @@ package com.disorder.networking.responses;
 
 public class NewsPost {
 
-    private long idPost;
-    private String description;
-    private String photoUrl;
-    private String c10;
-    private String creationDate;
-    private String username;
-    private int nLikes;
-    private boolean liked;
+    private final long idPost;
+    private final String description;
+    private final String photoUrl;
+    private final String c10;
+    private final String creationDate;
+    private final String username;
+    private final int nLikes;
+    private final boolean liked;
 
     public NewsPost(long idPost, String description, String photoUrl, String c10, String creationDate, String username, int nLikes, boolean liked) {
         this.idPost = idPost;
@@ -68,6 +68,7 @@ public class NewsPost {
         if (!description.equals(newsPost.description)) return false;
         if (!photoUrl.equals(newsPost.photoUrl)) return false;
         if (!c10.equals(newsPost.c10)) return false;
+        //noinspection SimplifiableIfStatement
         if (!creationDate.equals(newsPost.creationDate)) return false;
         return username.equals(newsPost.username);
 
