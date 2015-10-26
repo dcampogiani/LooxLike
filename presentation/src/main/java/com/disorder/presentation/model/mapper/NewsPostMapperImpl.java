@@ -24,10 +24,10 @@ public class NewsPostMapperImpl implements NewsPostMapper {
     @Override
     public NewsPost map(com.disorder.networking.responses.NewsPost origin) {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime postTime = LocalDateTime.parse(origin.getCreationDate());
+        LocalDateTime postTime = LocalDateTime.parse(origin.getCreationTime());
         int days = mDateIntervalCalculator.getDays(postTime, now);
         String presentationCreation = mDaysRangeProvider.getString(days);
-        return NewsPost.create(origin.getIdPost(), origin.getDescription(), origin.getPhotoUrl(), origin.getC10(), presentationCreation, origin.getUsername(), origin.getnLikes(), origin.isLiked());
+        return NewsPost.create(origin.getPostId(), origin.getDescription(), origin.getPhotoUrl(), origin.getC10(), presentationCreation, origin.getUserName(), origin.getNumLikes(), origin.isLiked());
     }
 
     public NewsPost[] map(com.disorder.networking.responses.NewsPost[] origin) {

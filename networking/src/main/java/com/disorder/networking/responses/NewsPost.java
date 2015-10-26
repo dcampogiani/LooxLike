@@ -3,28 +3,28 @@ package com.disorder.networking.responses;
 
 public class NewsPost {
 
-    private final long idPost;
+    private final long postId;
     private final String description;
     private final String photoUrl;
     private final String c10;
-    private final String creationDate;
-    private final String username;
-    private final int nLikes;
+    private final String creationTime;
+    private final String userName;
+    private final int numLikes;
     private final boolean liked;
 
-    public NewsPost(long idPost, String description, String photoUrl, String c10, String creationDate, String username, int nLikes, boolean liked) {
-        this.idPost = idPost;
+    public NewsPost(long postId, String description, String photoUrl, String c10, String creationTime, String userName, int numLikes, boolean liked) {
+        this.postId = postId;
         this.description = description;
         this.photoUrl = photoUrl;
         this.c10 = c10;
-        this.creationDate = creationDate;
-        this.username = username;
-        this.nLikes = nLikes;
+        this.creationTime = creationTime;
+        this.userName = userName;
+        this.numLikes = numLikes;
         this.liked = liked;
     }
 
-    public long getIdPost() {
-        return idPost;
+    public long getPostId() {
+        return postId;
     }
 
     public String getDescription() {
@@ -39,16 +39,16 @@ public class NewsPost {
         return c10;
     }
 
-    public String getCreationDate() {
-        return creationDate;
+    public String getCreationTime() {
+        return creationTime;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public int getnLikes() {
-        return nLikes;
+    public int getNumLikes() {
+        return numLikes;
     }
 
     public boolean isLiked() {
@@ -62,27 +62,27 @@ public class NewsPost {
 
         NewsPost newsPost = (NewsPost) o;
 
-        if (idPost != newsPost.idPost) return false;
-        if (nLikes != newsPost.nLikes) return false;
+        if (postId != newsPost.postId) return false;
+        if (numLikes != newsPost.numLikes) return false;
         if (liked != newsPost.liked) return false;
         if (!description.equals(newsPost.description)) return false;
         if (!photoUrl.equals(newsPost.photoUrl)) return false;
         if (!c10.equals(newsPost.c10)) return false;
         //noinspection SimplifiableIfStatement
-        if (!creationDate.equals(newsPost.creationDate)) return false;
-        return username.equals(newsPost.username);
+        if (!creationTime.equals(newsPost.creationTime)) return false;
+        return userName.equals(newsPost.userName);
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (idPost ^ (idPost >>> 32));
+        int result = (int) (postId ^ (postId >>> 32));
         result = 31 * result + description.hashCode();
         result = 31 * result + photoUrl.hashCode();
         result = 31 * result + c10.hashCode();
-        result = 31 * result + creationDate.hashCode();
-        result = 31 * result + username.hashCode();
-        result = 31 * result + nLikes;
+        result = 31 * result + creationTime.hashCode();
+        result = 31 * result + userName.hashCode();
+        result = 31 * result + numLikes;
         result = 31 * result + (liked ? 1 : 0);
         return result;
     }
@@ -90,13 +90,13 @@ public class NewsPost {
     @Override
     public String toString() {
         return "NewsPost{" +
-                "idPost=" + idPost +
+                "postId=" + postId +
                 ", description='" + description + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", c10='" + c10 + '\'' +
-                ", creationDate='" + creationDate + '\'' +
-                ", username='" + username + '\'' +
-                ", nLikes=" + nLikes +
+                ", creationTime='" + creationTime + '\'' +
+                ", userName='" + userName + '\'' +
+                ", numLikes=" + numLikes +
                 ", liked=" + liked +
                 '}';
     }

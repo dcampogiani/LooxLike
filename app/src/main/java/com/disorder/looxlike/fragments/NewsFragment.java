@@ -2,6 +2,7 @@ package com.disorder.looxlike.fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,8 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     private static final String GENDER_KEY = "GENDER_KEY";
 
+    @Bind(R.id.coordinator)
+    CoordinatorLayout mCoordinatorLayout;
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindInt(R.integer.news_posts_columns)
@@ -121,7 +124,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void showError(String errorMessage) {
-        currentSnackbar = Snackbar.make(mRecyclerView, errorMessage, Snackbar.LENGTH_INDEFINITE);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, errorMessage, Snackbar.LENGTH_INDEFINITE);
     }
 
     @Override
@@ -132,17 +135,17 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void onUser(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mRecyclerView, "USER", Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, "USER", Snackbar.LENGTH_SHORT);
     }
 
     @Override
     public void onLike(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mRecyclerView, "LIKE", Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, "LIKE", Snackbar.LENGTH_SHORT);
     }
 
     @Override
     public void onBuy(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mRecyclerView, "BUY", Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, "BUY", Snackbar.LENGTH_SHORT);
     }
 
     @Override

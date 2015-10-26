@@ -2,9 +2,14 @@ package com.disorder.looxlike.application.di.modules;
 
 import android.content.Context;
 
+import com.disorder.looxlike.BuildConfig;
 import com.disorder.looxlike.application.di.PerActivity;
-import com.disorder.networking.services.FakeLooxLikeAPI;
+import com.disorder.networking.authorization.Authorization;
+import com.disorder.networking.authorization.BasicAuthorization;
 import com.disorder.networking.services.LooxLikeAPI;
+import com.disorder.networking.services.retrofit.RetrofitLooxLikeAPI;
+import com.disorder.networking.utils.ApacheBase64Encoder;
+import com.disorder.networking.utils.Base64Encoder;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
 import com.disorder.presentation.presenter.HomePresenter;
@@ -47,8 +52,9 @@ public class PresentationModule {
     @Provides
     @PerActivity
     LooxLikeAPI provideLooxLikeAPI() {
-        //TODO switch to real implementation when the communication with server is ready
-        return new FakeLooxLikeAPI();
+        Base64Encoder encoder = new ApacheBase64Encoder();
+        Authorization authorization = new BasicAuthorization("daniele", "password", encoder);
+        return new RetrofitLooxLikeAPI(BuildConfig.API_BASE_URL, authorization);
     }
 
 
