@@ -7,29 +7,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/avatar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="@dimen/avatar_diameter"
+            android:layout_height="@dimen/avatar_diameter"
+            android:layout_marginStart="@dimen/default_side_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginEnd="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
             app:civ_border_color="@color/accent"
             app:civ_border_width="2dp"
-            tools:src="@drawable/avatar" />
+            tools:src="@drawable/avatar"
+            android:layout_gravity="center_vertical" />
 
         <TextView
             android:id="@+id/username"
             style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:gravity="center_vertical"
-            tools:text="Federica Nargi" />
+            tools:text="Federica Nargi"
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
@@ -38,7 +41,6 @@
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_image_height"
-        android:layout_weight="3"
         android:contentDescription="@string/post_image"
         android:scaleType="centerCrop"
         tools:src="@drawable/post" />
@@ -54,24 +56,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingEnd="64dp"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp"
-            android:paddingStart="64dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/likes"
-                style="@style/Base.TextAppearance.AppCompat.Large"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/default_side_margin"
+                android:layout_marginLeft="@dimen/default_side_margin"
                 android:drawableLeft="@drawable/ic_favorite_accent_empty_36dp"
-                android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_favorite_accent_empty_36dp"
                 android:gravity="center_vertical"
-                tools:text="100" />
+                tools:text="25 people want to LooxLike fnargi" />
 
             <ImageButton
                 android:id="@+id/buy"
@@ -79,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginEnd="@dimen/default_side_margin"
+                android:layout_marginRight="@dimen/default_side_margin"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buy"
                 android:src="@drawable/ic_shopping_basket_accent_36dp" />

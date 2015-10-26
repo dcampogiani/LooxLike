@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="post_image_height">250dp</dimen>
+    <dimen name="default_side_margin">8dp</dimen>
+    <dimen name="avatar_diameter">40dp</dimen>
 </resources>

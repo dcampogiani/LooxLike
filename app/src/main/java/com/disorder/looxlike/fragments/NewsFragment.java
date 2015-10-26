@@ -1,7 +1,6 @@
 package com.disorder.looxlike.fragments;
 
 
-import android.animation.Animator;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +9,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ProgressBar;
 
 import com.disorder.looxlike.R;
@@ -111,58 +111,12 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void showLoading() {
-        if (mProgressBar.getVisibility() == View.VISIBLE)
-            return;
-        mProgressBar.setVisibility(View.VISIBLE);
-        mProgressBar.animate().alpha(1).setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
+        mProgressBar.animate().alpha(1).setInterpolator(new AccelerateDecelerateInterpolator());
     }
 
     @Override
     public void hideLoading() {
-
-        if (!(mProgressBar.getVisibility() == View.VISIBLE))
-            return;
-        mProgressBar.animate().alpha(0).setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
+        mProgressBar.animate().alpha(0).setInterpolator(new AccelerateDecelerateInterpolator());
     }
 
     @Override

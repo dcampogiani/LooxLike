@@ -95,7 +95,12 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         mImageDownloader.request(item.photoUrl(), photo);
 
         username.setText(item.username());
-        likes.setText(Integer.toString(item.likes()));
+        int likesCount = item.likes();
+        if (likesCount > 0) {
+            StringBuilder textBuilder = new StringBuilder(likes.getContext().getResources().getQuantityString(R.plurals.likes, item.likes(), item.likes()));
+            String likesText = textBuilder.append(" ").append(item.username()).toString();
+            likes.setText(likesText);
+        }
         if (item.liked())
             likes.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_favorite_accent_full_36dp, 0, 0, 0);
         holder.description.setText(item.description());

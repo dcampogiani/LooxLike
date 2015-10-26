@@ -13,4 +13,10 @@
     <string name="buy">Buy</string>
     <string name="post_image">Post Image</string>
 
+    <plurals name="likes">
+        <item quantity="zero"> </item>
+        <item quantity="one">1 wants to LooxLike</item>
+        <item quantity="other">%d want to LooxLike</item>
+    </plurals>
+
 </resources>
