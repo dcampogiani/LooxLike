@@ -20,7 +20,7 @@ import java.util.List;
 
 public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHolder> {
 
-    private static final float loadMoreThreshold = 0.7f;
+    private static final float loadMorePercentageThreshold = 0.7f;
 
     public interface PostListener {
         void onUser(NewsPost newsPost);
@@ -44,7 +44,24 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         this.mPostListenerReference = new WeakReference<>(postListener);
         this.mScrollListenerReference = new WeakReference<>(scrollListener);
         this.mImageDownloader = imageDownloader;
+
+        //setHasStableIds(true);
+        /*
+        In a real environment each post will have a different id
+        Right now we are receiving the same posts for different pages
+        So we can't use hasStableId optimization
+        */
     }
+
+    /*
+    I know future Daniele is gonna hate me
+    But to date we don't have stable ids
+    */
+    /*
+    @Override
+    public long getItemId(int position) {
+        return mData.get(position).id();
+    }*/
 
     public void addData(List<NewsPost> newData) {
         this.mData.addAll(newData);
@@ -119,7 +136,9 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
     }
 
     private boolean almostAtTheEnd(int position) {
-        return position >= mData.size() * loadMoreThreshold;
+        final int currentItem = position + 1;
+        final float threshold = mData.size() * loadMorePercentageThreshold;
+        return currentItem > threshold;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
