@@ -66,8 +66,8 @@
                 style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_favorite_accent_empty_36dp"
-                android:drawableStart="@drawable/ic_favorite_accent_empty_36dp"
+                tools:drawableLeft="@drawable/ic_favorite_accent_empty_36dp"
+                tools:drawableStart="@drawable/ic_favorite_accent_empty_36dp"
                 android:gravity="center_vertical"
                 tools:text="25 people want to LooxLike fnargi" />
 

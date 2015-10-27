@@ -2,6 +2,9 @@ package com.disorder.looxlike.adapters;
 
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,8 +104,11 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
             String likesText = textBuilder.append(" ").append(item.username()).toString();
             likes.setText(likesText);
         }
+        @DrawableRes int favourite_icon = R.drawable.ic_favorite_accent_empty_36dp;
         if (item.liked())
-            likes.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_favorite_accent_full_36dp, 0, 0, 0);
+            favourite_icon = R.drawable.ic_favorite_accent_full_36dp;
+        Drawable fullFavourite = ContextCompat.getDrawable(likes.getContext(), favourite_icon);
+        likes.setCompoundDrawablesWithIntrinsicBounds(fullFavourite, null, null, null);
         holder.description.setText(item.description());
         holder.creation.setText(item.creation());
 
