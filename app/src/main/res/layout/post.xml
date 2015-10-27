@@ -16,23 +16,23 @@
             android:id="@+id/avatar"
             android:layout_width="@dimen/avatar_diameter"
             android:layout_height="@dimen/avatar_diameter"
-            android:layout_marginStart="@dimen/default_side_margin"
-            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/default_side_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
             android:layout_marginRight="@dimen/default_side_margin"
+            android:layout_marginStart="@dimen/default_side_margin"
             app:civ_border_color="@color/accent"
             app:civ_border_width="2dp"
-            tools:src="@drawable/avatar"
-            android:layout_gravity="center_vertical" />
+            tools:src="@drawable/avatar" />
 
         <TextView
             android:id="@+id/username"
             style="@style/Base.TextAppearance.AppCompat.Headline"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            tools:text="Federica Nargi"
-            android:layout_gravity="center_vertical" />
+            tools:text="Federica Nargi" />
 
     </LinearLayout>
 
@@ -48,10 +48,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/default_side_margin"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:layout_marginStart="@dimen/default_side_margin"
+        android:layout_marginBottom="8dp"
         android:layout_weight="2"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -63,8 +66,6 @@
                 style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_side_margin"
-                android:layout_marginLeft="@dimen/default_side_margin"
                 android:drawableLeft="@drawable/ic_favorite_accent_empty_36dp"
                 android:drawableStart="@drawable/ic_favorite_accent_empty_36dp"
                 android:gravity="center_vertical"
@@ -76,8 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="@dimen/default_side_margin"
-                android:layout_marginRight="@dimen/default_side_margin"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buy"
                 android:src="@drawable/ic_shopping_basket_accent_36dp" />
@@ -86,11 +85,10 @@
 
         <TextView
             android:id="@+id/description"
-            style="@style/Base.TextAppearance.AppCompat.Title"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingTop="16dp"
             tools:text="Sono figa?" />
 
         <TextView
@@ -99,7 +97,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingTop="8dp"
             tools:text="Yesterday" />
 
     </LinearLayout>
