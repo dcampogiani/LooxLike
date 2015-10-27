@@ -1,6 +1,7 @@
 package com.disorder.networking.services;
 
 
+import com.disorder.networking.requests.CreatePostRequest;
 import com.disorder.networking.responses.NewsPost;
 
 import rx.Observable;
@@ -48,5 +49,10 @@ public class FakeLooxLikeAPI implements LooxLikeAPI {
             return Observable.just(fakeFemale);
         else
             return Observable.just(fakeNoGender);
+    }
+
+    @Override
+    public Observable<NewsPost> createPost(CreatePostRequest request) {
+        return Observable.just(fakeAll[0]);
     }
 }

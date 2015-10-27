@@ -1,6 +1,7 @@
 package com.disorder.networking.services;
 
 
+import com.disorder.networking.requests.CreatePostRequest;
 import com.disorder.networking.responses.NewsPost;
 
 import rx.Observable;
@@ -26,5 +27,7 @@ public interface LooxLikeAPI {
     Observable<NewsPost[]> getNewsPosts(int page);
 
     Observable<NewsPost[]> getNewsPosts(Gender gender, int page);
+
+    Observable<NewsPost> createPost(CreatePostRequest request);
 
 }

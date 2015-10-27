@@ -2,12 +2,15 @@ package com.disorder.networking.services.retrofit;
 
 import com.disorder.networking.authorization.Authorization;
 import com.disorder.networking.authorization.BasicAuthorization;
+import com.disorder.networking.requests.CreatePostRequest;
 import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.networking.utils.ApacheBase64Encoder;
 import com.disorder.networking.utils.Base64Encoder;
 
 import org.junit.Test;
+
+import java.io.File;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -32,19 +35,21 @@ public class RetrofitLooxLikeAPITest {
         subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
     }
 
-    @Test
-    public void testGetAllNews() throws Exception {
+    private RetrofitLooxLikeAPI getAuthApi() {
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("daniele", "password", encoder);
-        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, authorization);
+        return new RetrofitLooxLikeAPI(baseUrl, authorization);
+    }
+
+    @Test
+    public void testGetAllNews() throws Exception {
+        subjectUnderTest = getAuthApi();
         NewsPost[] allPosts = subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
         assertNotNull(allPosts);
     }
 
     private void testGetNewsByGender(LooxLikeAPI.Gender gender) {
-        Base64Encoder encoder = new ApacheBase64Encoder();
-        Authorization authorization = new BasicAuthorization("daniele", "password", encoder);
-        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, authorization);
+        subjectUnderTest = getAuthApi();
         NewsPost[] allPosts = subjectUnderTest.getNewsPosts(gender, pageToTest).toBlocking().first();
         assertNotNull(allPosts);
     }
@@ -62,5 +67,14 @@ public class RetrofitLooxLikeAPITest {
     @Test
     public void testGeNoGenderNews() throws Exception {
         testGetNewsByGender(LooxLikeAPI.Gender.NOGENDER);
+    }
+
+    @Test(expected = RetrofitLooxLikeAPI.NotFound.class)
+    public void testCreatePost() throws Exception {
+        subjectUnderTest = getAuthApi();
+        File file = new File("testUpload.txt");
+        CreatePostRequest request = new CreatePostRequest("description", "c10", file);
+        NewsPost created = subjectUnderTest.createPost(request).toBlocking().first();
+        assertNotNull(created);
     }
 }
