@@ -3,6 +3,8 @@ package com.disorder.presentation.presenter.news;
 import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
+import com.disorder.presentation.utils.Browser;
+import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
@@ -10,10 +12,10 @@ import rx.Observable;
 
 public class GenderNewsPresenterImpl extends BaseNewsPresenter {
 
-    private LooxLikeAPI.Gender gender;
+    private final LooxLikeAPI.Gender gender;
 
-    public GenderNewsPresenterImpl(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapper newsPostMapper, @NewsView.Gender int gender) {
-        super(mLooxLikeAPI, scheduler, newsPostMapper);
+    public GenderNewsPresenterImpl(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapper newsPostMapper, @NewsView.Gender int gender, ItemPageUrlEvaluator itemPageUrlEvaluator, Browser browser) {
+        super(mLooxLikeAPI, scheduler, newsPostMapper, itemPageUrlEvaluator, browser);
         this.gender = mapGender(gender);
     }
 

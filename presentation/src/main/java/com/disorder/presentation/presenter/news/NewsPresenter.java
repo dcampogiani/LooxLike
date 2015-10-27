@@ -6,4 +6,6 @@ import com.disorder.presentation.view.NewsView;
 public interface NewsPresenter extends Presenter<NewsView> {
 
     void loadMore();
+
+    void showItemInBrowser(String c10);
 }

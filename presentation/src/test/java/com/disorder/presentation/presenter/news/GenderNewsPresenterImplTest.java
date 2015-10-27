@@ -4,7 +4,9 @@ import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
+import com.disorder.presentation.utils.Browser;
 import com.disorder.presentation.utils.ImmediateRxScheduler;
+import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
@@ -18,11 +20,12 @@ import static org.mockito.Mockito.verify;
 
 public class GenderNewsPresenterImplTest {
 
-    private GenderNewsPresenterImpl subjectUnderTest;
     private LooxLikeAPI mLooxLikeAPI;
     private RxScheduler mRxScheduler;
     private NewsPostMapper mNewsPostMapper;
+    private Browser mBrowser;
     private NewsView mNewsView;
+    private ItemPageUrlEvaluator mItemPageUrlEvaluator;
 
     private static final int viewTimeOut = 100;
 
@@ -33,6 +36,8 @@ public class GenderNewsPresenterImplTest {
         mLooxLikeAPI = new FakeLooxLikeAPI();
         mRxScheduler = new ImmediateRxScheduler();
         mNewsPostMapper = Mockito.mock(NewsPostMapper.class);
+        mItemPageUrlEvaluator = Mockito.mock(ItemPageUrlEvaluator.class);
+        mBrowser = Mockito.mock(Browser.class);
     }
 
 
@@ -52,7 +57,7 @@ public class GenderNewsPresenterImplTest {
     }
 
     private void testLoadMoreWithGender(int gender) {
-        subjectUnderTest = new GenderNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper, gender);
+        GenderNewsPresenterImpl subjectUnderTest = new GenderNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper, gender, mItemPageUrlEvaluator, mBrowser);
         subjectUnderTest.attachView(mNewsView);
         subjectUnderTest.loadMore();
         verify(mNewsView, timeout(viewTimeOut)).showLoading();

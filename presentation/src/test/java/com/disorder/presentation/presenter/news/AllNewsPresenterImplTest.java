@@ -4,7 +4,9 @@ import com.disorder.networking.services.FakeLooxLikeAPI;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
+import com.disorder.presentation.utils.Browser;
 import com.disorder.presentation.utils.ImmediateRxScheduler;
+import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
@@ -21,18 +23,17 @@ public class AllNewsPresenterImplTest {
     private static final int viewTimeOut = 100;
 
     private AllNewsPresenterImpl subjectUnderTest;
-    private LooxLikeAPI mLooxLikeAPI;
-    private RxScheduler mRxScheduler;
-    private NewsPostMapper mNewsPostMapper;
     private NewsView mNewsView;
 
     @Before
     public void setUp() throws Exception {
         mNewsView = Mockito.mock(NewsView.class);
-        mLooxLikeAPI = new FakeLooxLikeAPI();
-        mRxScheduler = new ImmediateRxScheduler();
-        mNewsPostMapper = Mockito.mock(NewsPostMapper.class);
-        subjectUnderTest = new AllNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper);
+        LooxLikeAPI mLooxLikeAPI = new FakeLooxLikeAPI();
+        RxScheduler mRxScheduler = new ImmediateRxScheduler();
+        NewsPostMapper mNewsPostMapper = Mockito.mock(NewsPostMapper.class);
+        ItemPageUrlEvaluator mItemPageUrlEvaluator = Mockito.mock(ItemPageUrlEvaluator.class);
+        Browser mBrowser = Mockito.mock(Browser.class);
+        subjectUnderTest = new AllNewsPresenterImpl(mLooxLikeAPI, mRxScheduler, mNewsPostMapper, mItemPageUrlEvaluator, mBrowser);
         subjectUnderTest.attachView(mNewsView);
     }
 

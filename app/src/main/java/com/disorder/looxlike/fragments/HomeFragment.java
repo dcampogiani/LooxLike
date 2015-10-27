@@ -63,6 +63,12 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mHomePresenter.attachView(this);
+    }
+
+    @Override
     public void onDestroy() {
         mHomePresenter.detachView();
         super.onDestroy();

@@ -4,6 +4,8 @@ import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.presenter.BasePresenter;
+import com.disorder.presentation.utils.Browser;
+import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.RxScheduler;
 import com.disorder.presentation.view.NewsView;
 
@@ -12,15 +14,19 @@ import rx.functions.Action1;
 
 public abstract class BaseNewsPresenter extends BasePresenter<NewsView> implements NewsPresenter {
 
-    protected int currentPage;
-    protected LooxLikeAPI mLooxLikeAPI;
-    private RxScheduler scheduler;
-    private NewsPostMapper mNewsPostMapper;
+    int currentPage;
+    final LooxLikeAPI mLooxLikeAPI;
+    private final RxScheduler scheduler;
+    private final NewsPostMapper mNewsPostMapper;
+    private final ItemPageUrlEvaluator mItemPageUrlEvaluator;
+    private final Browser mBrowser;
 
-    public BaseNewsPresenter(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapper newsPostMapper) {
+    BaseNewsPresenter(LooxLikeAPI mLooxLikeAPI, RxScheduler scheduler, NewsPostMapper newsPostMapper, ItemPageUrlEvaluator itemPageUrlEvaluator, Browser browser) {
         this.mLooxLikeAPI = mLooxLikeAPI;
         this.scheduler = scheduler;
         this.mNewsPostMapper = newsPostMapper;
+        this.mBrowser = browser;
+        this.mItemPageUrlEvaluator = itemPageUrlEvaluator;
         this.currentPage = 0;
     }
 
@@ -49,6 +55,12 @@ public abstract class BaseNewsPresenter extends BasePresenter<NewsView> implemen
             }
         });
 
+    }
+
+    @Override
+    public void showItemInBrowser(String c10) {
+        //TODO compute c10 url
+        mBrowser.navigateTo(mItemPageUrlEvaluator.evaluate(c10));
     }
 
     protected abstract void validateParameters();

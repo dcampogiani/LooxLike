@@ -16,10 +16,14 @@ import com.disorder.presentation.presenter.HomePresenter;
 import com.disorder.presentation.presenter.HomePresenterImpl;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
 import com.disorder.presentation.presenter.news.NewsPresenterFactoryImpl;
+import com.disorder.presentation.utils.AndroidExternalBrowser;
+import com.disorder.presentation.utils.Browser;
+import com.disorder.presentation.utils.CountryItemPageEvaluatorImpl;
 import com.disorder.presentation.utils.DateIntervalCalculator;
 import com.disorder.presentation.utils.DateIntervalCalculatorImpl;
 import com.disorder.presentation.utils.DaysRangeProvider;
 import com.disorder.presentation.utils.DaysRangeProviderImpl;
+import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
 
@@ -86,5 +90,17 @@ public class PresentationModule {
     @PerActivity
     NewsPresenterFactory provideNewsPresenterFactory(NewsPresenterFactoryImpl factory) {
         return factory;
+    }
+
+    @Provides
+    @PerActivity
+    ItemPageUrlEvaluator provideItemPageUrlEvaluator() {
+        return new CountryItemPageEvaluatorImpl(BuildConfig.Default_Country_Code);
+    }
+
+    @Provides
+    @PerActivity
+    Browser provideBrowser(AndroidExternalBrowser browser) {
+        return browser;
     }
 }
