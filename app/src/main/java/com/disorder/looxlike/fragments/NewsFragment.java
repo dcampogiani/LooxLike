@@ -33,8 +33,6 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     private static final String GENDER_KEY = "GENDER_KEY";
 
-    @Bind(R.id.coordinator)
-    CoordinatorLayout mCoordinatorLayout;
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindInt(R.integer.news_posts_columns)
@@ -46,6 +44,8 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     NewsPresenterFactory mNewsPresenterFactory;
     @Inject
     ImageDownloader mImageDownloader;
+
+    private CoordinatorLayout mCoordinatorLayout;
 
     private NewsPresenter mNewsPresenter;
 
@@ -104,7 +104,14 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
             mLayoutManager = new StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mCoordinatorLayout = (CoordinatorLayout) getParentFragment().getView();
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        mNewsPresenter.detachView();
+        super.onDestroy();
     }
 
     @Override
@@ -125,6 +132,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     @Override
     public void showError(String errorMessage) {
         currentSnackbar = Snackbar.make(mCoordinatorLayout, errorMessage, Snackbar.LENGTH_INDEFINITE);
+        currentSnackbar.show();
     }
 
     @Override
@@ -136,16 +144,19 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     @Override
     public void onUser(NewsPost newsPost) {
         currentSnackbar = Snackbar.make(mCoordinatorLayout, "USER", Snackbar.LENGTH_SHORT);
+        currentSnackbar.show();
     }
 
     @Override
     public void onLike(NewsPost newsPost) {
         currentSnackbar = Snackbar.make(mCoordinatorLayout, "LIKE", Snackbar.LENGTH_SHORT);
+        currentSnackbar.show();
     }
 
     @Override
     public void onBuy(NewsPost newsPost) {
         currentSnackbar = Snackbar.make(mCoordinatorLayout, "BUY", Snackbar.LENGTH_SHORT);
+        currentSnackbar.show();
     }
 
     @Override
