@@ -38,9 +38,9 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
     }
 
     private final List<NewsPost> mData;
-    private WeakReference<PostListener> mPostListenerReference;
-    private WeakReference<ScrollListener> mScrollListenerReference;
-    private ImageDownloader mImageDownloader;
+    private final WeakReference<PostListener> mPostListenerReference;
+    private final WeakReference<ScrollListener> mScrollListenerReference;
+    private final ImageDownloader mImageDownloader;
 
     public NewsPostAdapter(PostListener postListener, ImageDownloader imageDownloader, ScrollListener scrollListener) {
         this.mData = new ArrayList<>(0);
@@ -100,8 +100,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         username.setText(item.username());
         int likesCount = item.likes();
         if (likesCount > 0) {
-            StringBuilder textBuilder = new StringBuilder(likes.getContext().getResources().getQuantityString(R.plurals.likes, item.likes(), item.likes()));
-            String likesText = textBuilder.append(" ").append(item.username()).toString();
+            String likesText = likes.getContext().getResources().getQuantityString(R.plurals.likes, item.likes(), item.likes()) + " " + item.username();
             likes.setText(likesText);
         }
         @DrawableRes int favourite_icon = R.drawable.ic_favorite_accent_empty_36dp;
