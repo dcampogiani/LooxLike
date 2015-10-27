@@ -62,6 +62,12 @@ public class HomeFragment extends BaseFragment implements HomeView {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void onDestroy() {
+        mHomePresenter.detachView();
+        super.onDestroy();
+    }
+
     private static class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
 
         private final HomePresenter mHomePresenter;
