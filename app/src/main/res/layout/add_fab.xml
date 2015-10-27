@@ -10,4 +10,5 @@
     app:backgroundTint="@color/accent"
     android:src="@drawable/ic_add_white_24dp"
     app:layout_anchorGravity="bottom|right|end"
-    tools:showIn="@layout/fragment_news" />
+    tools:showIn="@layout/fragment_news"
+    app:layout_behavior="com.disorder.looxlike.utils.ScrollAwareFABBehavior" />
