@@ -15,7 +15,7 @@ public class GlideImageDownloader implements ImageDownloader {
     private static final Drawable placeholder = new ColorDrawable(Color.TRANSPARENT);
 
     public GlideImageDownloader(Context mContext) {
-        this.mContext = mContext;
+        this.mContext = mContext.getApplicationContext();
     }
 
     @Override

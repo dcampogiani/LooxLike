@@ -12,7 +12,7 @@ public class DaysRangeProviderImpl implements DaysRangeProvider {
 
     @Inject
     public DaysRangeProviderImpl(Context mContex) {
-        this.mContex = mContex;
+        this.mContex = mContex.getApplicationContext();
     }
 
     @Override
