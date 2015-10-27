@@ -12,8 +12,8 @@ import javax.inject.Inject;
 public class NewsPostMapperImpl implements NewsPostMapper {
 
 
-    private DateIntervalCalculator mDateIntervalCalculator;
-    private DaysRangeProvider mDaysRangeProvider;
+    private final DateIntervalCalculator mDateIntervalCalculator;
+    private final DaysRangeProvider mDaysRangeProvider;
 
     @Inject
     public NewsPostMapperImpl(DateIntervalCalculator dateIntervalCalculator, DaysRangeProvider daysRangeProvider) {

@@ -13,6 +13,8 @@
     <string name="buy">Buy</string>
     <string name="post_image">Post Image</string>
 
+    <string name="coming_soon">Coming soon</string>
+
     <plurals name="likes">
         <item quantity="zero"> </item>
         <item quantity="one">1 wants to LooxLike</item>

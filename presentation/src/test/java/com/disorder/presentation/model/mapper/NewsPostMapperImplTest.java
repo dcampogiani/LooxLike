@@ -13,8 +13,8 @@ import static org.junit.Assert.assertThat;
 
 public class NewsPostMapperImplTest {
 
-    NewsPostMapperImpl subjectUnderTest;
-    DaysRangeProvider daysRangeProvider;
+    private NewsPostMapperImpl subjectUnderTest;
+    private DaysRangeProvider daysRangeProvider;
 
     @Before
     public void setUp() throws Exception {

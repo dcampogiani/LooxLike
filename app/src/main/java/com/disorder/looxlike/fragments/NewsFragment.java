@@ -79,7 +79,6 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
         newsPostAdapter = new NewsPostAdapter(this, mImageDownloader, this);
         mRecyclerView.setAdapter(newsPostAdapter);
-
         mNewsPresenter.attachView(this);
         mNewsPresenter.loadMore();
     }
@@ -106,6 +105,12 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
         mRecyclerView.setLayoutManager(mLayoutManager);
         mCoordinatorLayout = (CoordinatorLayout) getParentFragment().getView();
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mNewsPresenter.attachView(this);
     }
 
     @Override
@@ -143,20 +148,19 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void onUser(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mCoordinatorLayout, "USER", Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon), Snackbar.LENGTH_SHORT);
         currentSnackbar.show();
     }
 
     @Override
     public void onLike(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mCoordinatorLayout, "LIKE", Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon), Snackbar.LENGTH_SHORT);
         currentSnackbar.show();
     }
 
     @Override
     public void onBuy(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mCoordinatorLayout, "BUY", Snackbar.LENGTH_SHORT);
-        currentSnackbar.show();
+        mNewsPresenter.showItemInBrowser(newsPost.c10());
     }
 
     @Override

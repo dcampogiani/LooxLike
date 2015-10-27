@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 public class DaysRangeProviderImpl implements DaysRangeProvider {
 
-    private Context mContex;
+    private final Context mContex;
 
     @Inject
     public DaysRangeProviderImpl(Context mContex) {
