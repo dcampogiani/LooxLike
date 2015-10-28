@@ -2,6 +2,7 @@ package com.disorder.looxlike.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.disorder.looxlike.R;
+import com.disorder.looxlike.activities.CreatePostActivity;
 import com.disorder.presentation.view.NewsView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NewsTabsFragment extends BaseFragment {
 
@@ -23,6 +26,8 @@ public class NewsTabsFragment extends BaseFragment {
     TabLayout mTabLayout;
     @Bind(R.id.view_pager)
     ViewPager mViewPager;
+    @Bind(R.id.fab)
+    FloatingActionButton mFloatingActionButton;
 
     private PagerAdapter mPagerAdapter;
 
@@ -47,6 +52,12 @@ public class NewsTabsFragment extends BaseFragment {
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         return root;
+    }
+
+    @OnClick(R.id.fab)
+    public void onCreatePostClick() {
+        Context context = getContext();
+        context.startActivity(CreatePostActivity.getCallingIntent(context));
     }
 
     private static class PagerAdapter extends FragmentStatePagerAdapter {

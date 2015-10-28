@@ -14,6 +14,8 @@ import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
 import com.disorder.presentation.presenter.HomePresenter;
 import com.disorder.presentation.presenter.HomePresenterImpl;
+import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
+import com.disorder.presentation.presenter.creation.OrderCheckPresenterImpl;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
 import com.disorder.presentation.presenter.news.NewsPresenterFactoryImpl;
 import com.disorder.presentation.utils.AndroidExternalBrowser;
@@ -102,5 +104,11 @@ public class PresentationModule {
     @PerActivity
     Browser provideBrowser(AndroidExternalBrowser browser) {
         return browser;
+    }
+
+    @Provides
+    @PerActivity
+    OrderCheckPresenter provideOrderCheckPresenter(OrderCheckPresenterImpl orderCheckPresenter) {
+        return orderCheckPresenter;
     }
 }

@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.looxlike.application.di.modules.PresentationModule;
+import com.disorder.looxlike.fragments.CheckOrderFragment;
 import com.disorder.looxlike.fragments.HomeFragment;
 import com.disorder.looxlike.fragments.NewsFragment;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.presenter.HomePresenter;
+import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
 import com.disorder.presentation.utils.Browser;
 import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.RxScheduler;
@@ -23,6 +25,8 @@ public interface PresentationComponent {
 
     void inject(NewsFragment newsFragment);
 
+    void inject(CheckOrderFragment checkOrderFragment);
+
     Context context();
 
     HomePresenter homePresenter();
@@ -36,4 +40,6 @@ public interface PresentationComponent {
     ItemPageUrlEvaluator itemPageUrlEvaluator();
 
     Browser browser();
+
+    OrderCheckPresenter orderCheckPresenter();
 }

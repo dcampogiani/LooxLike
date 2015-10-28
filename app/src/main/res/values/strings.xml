@@ -17,6 +17,8 @@
 
     <string name="no_likes">Be the first Loox lover</string>
 
+    <string name="insert_order_hint">Insert you order</string>
+
     <plurals name="likes">
         <item quantity="one">1 wants to LooxLike</item>
         <item quantity="other">%d want to LooxLike</item>
