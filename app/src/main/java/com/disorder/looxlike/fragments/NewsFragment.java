@@ -148,13 +148,13 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void onUser(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon), Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon) + " " + newsPost.username() + " profile", Snackbar.LENGTH_SHORT);
         currentSnackbar.show();
     }
 
     @Override
     public void onLike(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon), Snackbar.LENGTH_SHORT);
+        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon) + " like post " + newsPost.id(), Snackbar.LENGTH_SHORT);
         currentSnackbar.show();
     }
 
