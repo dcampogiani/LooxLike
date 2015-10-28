@@ -47,7 +47,7 @@ public interface LooxLikeAPI {
         BASIC,
         HEADERS,
         HEADERS_AND_ARGS,
-        FULL;
+        FULL
     }
 
     Observable<NewsPost[]> getNewsPosts(int page);
