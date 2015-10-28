@@ -12,6 +12,7 @@ public class FakeLooxLikeAPI implements LooxLikeAPI {
     private final NewsPost[] fakeFemale;
     private final NewsPost[] fakeNoGender;
     private final NewsPost[] fakeAll;
+    private final String fakeItems[];
 
     public FakeLooxLikeAPI() {
         fakeMale = new NewsPost[2];
@@ -34,6 +35,12 @@ public class FakeLooxLikeAPI implements LooxLikeAPI {
         fakeAll[3] = fakeFemale[1];
         fakeAll[4] = fakeNoGender[0];
         fakeAll[5] = fakeNoGender[1];
+
+        fakeItems = new String[3];
+        fakeItems[0] = "35271183DJ";
+        fakeItems[1] = "41603276FQ";
+        fakeItems[2] = "41603299WN";
+
     }
 
     @Override
@@ -54,5 +61,15 @@ public class FakeLooxLikeAPI implements LooxLikeAPI {
     @Override
     public Observable<NewsPost> createPost(CreatePostRequest request) {
         return Observable.just(fakeAll[0]);
+    }
+
+    @Override
+    public Observable<Boolean> orderHasItems(String orderId) {
+        return Observable.just(true);
+    }
+
+    @Override
+    public Observable<String[]> getItemsOfOrder(String orderId) {
+        return Observable.just(fakeItems);
     }
 }

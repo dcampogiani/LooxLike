@@ -56,4 +56,8 @@ public interface LooxLikeAPI {
 
     Observable<NewsPost> createPost(CreatePostRequest request);
 
+    Observable<Boolean> orderHasItems(String orderId);
+
+    Observable<String[]> getItemsOfOrder(String orderId);
+
 }

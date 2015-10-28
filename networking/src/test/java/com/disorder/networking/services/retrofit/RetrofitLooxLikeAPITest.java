@@ -8,10 +8,13 @@ import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.networking.utils.ApacheBase64Encoder;
 import com.disorder.networking.utils.Base64Encoder;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 
 public class RetrofitLooxLikeAPITest {
@@ -70,13 +73,60 @@ public class RetrofitLooxLikeAPITest {
         testGetNewsByGender(LooxLikeAPI.Gender.NOGENDER);
     }
 
-    //TODO write real asserts when server is ready
-    @Test(expected = LooxLikeAPI.NotFound.class)
+
+    @Test
+    @Ignore
     public void testCreatePost() throws Exception {
         subjectUnderTest = getAuthApi();
+        String description = "description";
+        String c10 = "c10";
         File file = new File("cleanCode.png");
-        CreatePostRequest request = new CreatePostRequest("description", "c10", file);
+        CreatePostRequest request = new CreatePostRequest(description, c10, file);
         NewsPost created = subjectUnderTest.createPost(request).toBlocking().first();
-        assertNotNull(created);
+        assertThat(created.getDescription(), is(description));
+        assertThat(created.getC10(), is(c10));
+        assertThat(created.getNumLikes(), is(0));
+        assertThat(created.isLiked(), is(false));
+    }
+
+    @Test
+    public void testGetItemsFromNotExistingOrder() throws Exception {
+        subjectUnderTest = getAuthApi();
+        String[] items = subjectUnderTest.getItemsOfOrder("pippo").toBlocking().first();
+        assertThat(items.length, is(0));
+    }
+
+    @Test
+    public void testGetOneItemFromOrder() throws Exception {
+        subjectUnderTest = getAuthApi();
+        String[] items = subjectUnderTest.getItemsOfOrder("2810Y2C321502A").toBlocking().first();
+        String result = items[0];
+        assertThat(items.length, is(1));
+        assertThat(result, is("36731894KJ"));
+    }
+
+    @Test
+    public void testGetTwoItemsFromOrder() throws Exception {
+        subjectUnderTest = getAuthApi();
+        String[] items = subjectUnderTest.getItemsOfOrder("2310Y5AC115029").toBlocking().first();
+        String firstResult = items[0];
+        String secondResult = items[1];
+        assertThat(items.length, is(2));
+        assertThat(firstResult, is("37647512DD"));
+        assertThat(secondResult, is("37647512TK"));
+    }
+
+    @Test
+    public void testOrderHasItems() throws Exception {
+        subjectUnderTest = getAuthApi();
+        boolean result = subjectUnderTest.orderHasItems("2310Y5AC115029").toBlocking().first();
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void testOrderDoesNotHaveItems() throws Exception {
+        subjectUnderTest = getAuthApi();
+        boolean result = subjectUnderTest.orderHasItems("pippo").toBlocking().first();
+        assertThat(result, is(false));
     }
 }
