@@ -102,7 +102,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         if (likesCount > 0) {
             String likesText = likes.getContext().getResources().getQuantityString(R.plurals.likes, item.likes(), item.likes()) + " " + item.username();
             likes.setText(likesText);
-        } else likes.setText("");
+        } else likes.setText(likes.getContext().getString(R.string.no_likes));
         @DrawableRes int favourite_icon = R.drawable.ic_favorite_accent_empty_36dp;
         if (item.liked())
             favourite_icon = R.drawable.ic_favorite_accent_full_36dp;

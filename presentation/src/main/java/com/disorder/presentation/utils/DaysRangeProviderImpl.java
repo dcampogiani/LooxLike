@@ -17,6 +17,10 @@ public class DaysRangeProviderImpl implements DaysRangeProvider {
 
     @Override
     public String getString(int days) {
+
+        if (days == 0)
+            return mContex.getString(R.string.today);
+
         return mContex.getResources().getQuantityString(R.plurals.days, days, days);
     }
 }
