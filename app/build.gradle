@@ -44,8 +44,8 @@ android {
         release {
             buildConfigField "String", "API_BASE_URL", "\"http://54.93.89.176/LooxLikeAPI\""
             buildConfigField "String", "Default_Country_Code", "\"us\""
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
