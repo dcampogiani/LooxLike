@@ -2,6 +2,7 @@ package com.disorder.networking.services.retrofit;
 
 
 import com.disorder.networking.authorization.Authorization;
+import com.disorder.networking.requests.CreatePostRequest;
 import com.disorder.networking.responses.NewsPost;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.networking.services.retrofit.internals.AuthorizationInterceptor;
@@ -11,21 +12,12 @@ import com.disorder.networking.services.retrofit.internals.RetrofitWrapperLooxLi
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
+import retrofit.mime.TypedFile;
 import rx.Observable;
 
 public class RetrofitLooxLikeAPI implements LooxLikeAPI {
 
-    public static class Unauthorized extends RuntimeException {
-        public Unauthorized(Throwable cause) {
-            super(cause);
-        }
-    }
-
-    public static class ServerError extends RuntimeException {
-        public ServerError(Throwable cause) {
-            super(cause);
-        }
-    }
+    private static final String CONTENT_TYPE_IMAGE_PNG = "image/png";
 
     private final RetrofitWrapperLooxLikeAPI mRetrofitWrapperLooxLikeAPI;
 
@@ -34,15 +26,24 @@ public class RetrofitLooxLikeAPI implements LooxLikeAPI {
     }
 
     public RetrofitLooxLikeAPI(String baseUrl, Authorization authorization) {
-        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, authorization);
+        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, authorization, LogLevel.NONE);
+    }
+
+    public RetrofitLooxLikeAPI(String baseUrl, LogLevel logLevel) {
+        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, null, logLevel);
+    }
+
+    public RetrofitLooxLikeAPI(String baseUrl, Authorization authorization, LogLevel logLevel) {
+        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, authorization, logLevel);
     }
 
     private RetrofitWrapperLooxLikeAPI buildRetrofitWrapper(String baseUrl) {
-        return buildRetrofitWrapper(baseUrl, null);
+        return buildRetrofitWrapper(baseUrl, null, LogLevel.NONE);
     }
 
-    private RetrofitWrapperLooxLikeAPI buildRetrofitWrapper(String baseUrl, Authorization authorization) {
+    private RetrofitWrapperLooxLikeAPI buildRetrofitWrapper(String baseUrl, Authorization authorization, LogLevel logLevel) {
         RestAdapter.Builder builder = new RestAdapter.Builder()
+                .setLogLevel(getRetrofitLogLevel(logLevel))
                 .setEndpoint(baseUrl)
                 .setClient(new OkClient())
                 .setErrorHandler(new ErrorHandler());
@@ -65,4 +66,22 @@ public class RetrofitLooxLikeAPI implements LooxLikeAPI {
         return mRetrofitWrapperLooxLikeAPI.getNewsPosts(gender.queryParameter(), page);
     }
 
+    @Override
+    public Observable<NewsPost> createPost(CreatePostRequest request) {
+        TypedFile typedFile = new TypedFile(CONTENT_TYPE_IMAGE_PNG, request.getFile());
+        return mRetrofitWrapperLooxLikeAPI.createPost(request.getDescription(), request.getC10(), typedFile);
+    }
+
+    private RestAdapter.LogLevel getRetrofitLogLevel(LooxLikeAPI.LogLevel logLevel) {
+
+        if (logLevel == LooxLikeAPI.LogLevel.FULL)
+            return RestAdapter.LogLevel.FULL;
+        else if (logLevel == LooxLikeAPI.LogLevel.BASIC)
+            return RestAdapter.LogLevel.BASIC;
+        else if (logLevel == LogLevel.HEADERS)
+            return RestAdapter.LogLevel.HEADERS;
+        else if (logLevel == LogLevel.HEADERS_AND_ARGS)
+            return RestAdapter.LogLevel.HEADERS_AND_ARGS;
+        return RestAdapter.LogLevel.NONE;
+    }
 }
