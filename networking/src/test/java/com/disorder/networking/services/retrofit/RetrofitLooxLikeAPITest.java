@@ -90,6 +90,7 @@ public class RetrofitLooxLikeAPITest {
     }
 
     @Test
+    @Ignore
     public void testGetItemsFromNotExistingOrder() throws Exception {
         subjectUnderTest = getAuthApi();
         String[] items = subjectUnderTest.getItemsOfOrder("pippo").toBlocking().first();
@@ -97,6 +98,7 @@ public class RetrofitLooxLikeAPITest {
     }
 
     @Test
+    @Ignore
     public void testGetOneItemFromOrder() throws Exception {
         subjectUnderTest = getAuthApi();
         String[] items = subjectUnderTest.getItemsOfOrder("2810Y2C321502A").toBlocking().first();
@@ -106,6 +108,7 @@ public class RetrofitLooxLikeAPITest {
     }
 
     @Test
+    @Ignore
     public void testGetTwoItemsFromOrder() throws Exception {
         subjectUnderTest = getAuthApi();
         String[] items = subjectUnderTest.getItemsOfOrder("2310Y5AC115029").toBlocking().first();
@@ -117,6 +120,7 @@ public class RetrofitLooxLikeAPITest {
     }
 
     @Test
+    @Ignore
     public void testOrderHasItems() throws Exception {
         subjectUnderTest = getAuthApi();
         boolean result = subjectUnderTest.orderHasItems("2310Y5AC115029").toBlocking().first();
@@ -124,6 +128,7 @@ public class RetrofitLooxLikeAPITest {
     }
 
     @Test
+    @Ignore
     public void testOrderDoesNotHaveItems() throws Exception {
         subjectUnderTest = getAuthApi();
         boolean result = subjectUnderTest.orderHasItems("pippo").toBlocking().first();
