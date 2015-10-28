@@ -17,6 +17,11 @@ android {
     compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
+    packagingOptions {
+        exclude "META-INF/LICENSE.txt"
+        exclude ".readme"
+    }
+
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 23
@@ -33,11 +38,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-        exclude '.readme'
     }
 }
 
