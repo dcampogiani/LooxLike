@@ -19,6 +19,6 @@ public class ErrorHandler implements retrofit.ErrorHandler {
             else if (status >= 500 && status <= 599)
                 return new LooxLikeAPI.ServerError(cause);
         }
-        return cause;
+        return new Throwable(cause.getCause());
     }
 }
