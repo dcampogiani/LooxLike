@@ -18,27 +18,28 @@ public class RetrofitLooxLikeAPITest {
 
     private static final String baseUrl = "http://54.93.89.176/LooxLikeAPI";
     private static final int pageToTest = 1;
+    private static final LooxLikeAPI.LogLevel logLevel = LooxLikeAPI.LogLevel.FULL;
 
     private com.disorder.networking.services.retrofit.RetrofitLooxLikeAPI subjectUnderTest;
 
-    @Test(expected = RetrofitLooxLikeAPI.Unauthorized.class)
+    @Test(expected = LooxLikeAPI.Unauthorized.class)
     public void shouldReturnNotAuthorized() throws Exception {
-        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl);
+        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, logLevel);
         subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
     }
 
-    @Test(expected = RetrofitLooxLikeAPI.Unauthorized.class)
+    @Test(expected = LooxLikeAPI.Unauthorized.class)
     public void shouldReturnBadRequest() throws Exception {
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("username", "wrongPassword", encoder);
-        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, authorization);
+        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, authorization, logLevel);
         subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
     }
 
     private RetrofitLooxLikeAPI getAuthApi() {
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("daniele", "password", encoder);
-        return new RetrofitLooxLikeAPI(baseUrl, authorization);
+        return new RetrofitLooxLikeAPI(baseUrl, authorization, logLevel);
     }
 
     @Test
@@ -69,10 +70,11 @@ public class RetrofitLooxLikeAPITest {
         testGetNewsByGender(LooxLikeAPI.Gender.NOGENDER);
     }
 
-    @Test(expected = RetrofitLooxLikeAPI.NotFound.class)
+    //TODO write real asserts when server is ready
+    @Test(expected = LooxLikeAPI.NotFound.class)
     public void testCreatePost() throws Exception {
         subjectUnderTest = getAuthApi();
-        File file = new File("testUpload.txt");
+        File file = new File("cleanCode.png");
         CreatePostRequest request = new CreatePostRequest("description", "c10", file);
         NewsPost created = subjectUnderTest.createPost(request).toBlocking().first();
         assertNotNull(created);
