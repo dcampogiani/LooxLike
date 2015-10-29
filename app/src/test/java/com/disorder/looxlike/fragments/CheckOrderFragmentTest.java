@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import com.disorder.looxlike.BuildConfig;
 import com.disorder.looxlike.R;
-import com.disorder.looxlike.activities.CreatePostActivity;
+import com.disorder.looxlike.activities.MainActivity;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class CheckOrderFragmentTest {
     @Before
     public void setUp() throws Exception {
         subjectUnderTest = CheckOrderFragment.newInstance();
-        SupportFragmentTestUtil.startVisibleFragment(subjectUnderTest, CreatePostActivity.class, R.id.fragment_container);
+        SupportFragmentTestUtil.startVisibleFragment(subjectUnderTest, MainActivity.class, R.id.fragment_container);
     }
 
     @Test
