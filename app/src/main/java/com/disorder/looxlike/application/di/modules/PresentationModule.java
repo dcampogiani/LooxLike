@@ -30,8 +30,10 @@ import com.disorder.presentation.utils.DaysRangeProvider;
 import com.disorder.presentation.utils.DaysRangeProviderImpl;
 import com.disorder.presentation.utils.ImageUrlGenerator;
 import com.disorder.presentation.utils.ItemPageUrlEvaluator;
+import com.disorder.presentation.utils.LooxLikeAPIUserAvatarGenerator;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
+import com.disorder.presentation.utils.UserAvatartUrlGenerator;
 
 import dagger.Module;
 import dagger.Provides;
@@ -126,5 +128,11 @@ public class PresentationModule {
     @PerActivity
     ItemSelectionPresenter providesItemSelectionPresenter(ItemSelectionPresenterImpl presenter) {
         return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    UserAvatartUrlGenerator providesUserAvatartUrlGenerator() {
+        return new LooxLikeAPIUserAvatarGenerator(BuildConfig.API_BASE_URL);
     }
 }

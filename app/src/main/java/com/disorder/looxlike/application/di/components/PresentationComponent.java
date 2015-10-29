@@ -17,6 +17,7 @@ import com.disorder.presentation.utils.Browser;
 import com.disorder.presentation.utils.ImageUrlGenerator;
 import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.RxScheduler;
+import com.disorder.presentation.utils.UserAvatartUrlGenerator;
 
 import dagger.Component;
 
@@ -51,4 +52,6 @@ public interface PresentationComponent {
     ImageUrlGenerator imageUrlGenerator();
 
     ItemSelectionPresenter itemSelectionPresenter();
+
+    UserAvatartUrlGenerator userAvatartUrlGenerator();
 }

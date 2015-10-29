@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.disorder.looxlike.R;
 import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.utils.ImageDownloader;
+import com.disorder.presentation.utils.UserAvatartUrlGenerator;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -41,12 +42,14 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
     private final WeakReference<PostListener> mPostListenerReference;
     private final WeakReference<ScrollListener> mScrollListenerReference;
     private final ImageDownloader mImageDownloader;
+    private final UserAvatartUrlGenerator mUserAvatartUrlGenerator;
 
-    public NewsPostAdapter(PostListener postListener, ImageDownloader imageDownloader, ScrollListener scrollListener) {
+    public NewsPostAdapter(PostListener postListener, ImageDownloader imageDownloader, ScrollListener scrollListener, UserAvatartUrlGenerator userAvatartUrlGenerator) {
         this.mData = new ArrayList<>(0);
         this.mPostListenerReference = new WeakReference<>(postListener);
         this.mScrollListenerReference = new WeakReference<>(scrollListener);
         this.mImageDownloader = imageDownloader;
+        this.mUserAvatartUrlGenerator = userAvatartUrlGenerator;
 
         //setHasStableIds(true);
         /*
@@ -93,8 +96,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         TextView likes = holder.likes;
         ImageView photo = holder.photo;
 
-        //TODO load avatar
-        mImageDownloader.request(item.photoUrl(), avatar);
+        mImageDownloader.request(mUserAvatartUrlGenerator.getUrl(item.username()), avatar);
         mImageDownloader.request(item.photoUrl(), photo);
 
         username.setText(item.username());

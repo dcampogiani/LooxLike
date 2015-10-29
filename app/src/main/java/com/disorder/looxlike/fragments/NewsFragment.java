@@ -19,6 +19,7 @@ import com.disorder.presentation.model.NewsPost;
 import com.disorder.presentation.presenter.news.NewsPresenter;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
 import com.disorder.presentation.utils.ImageDownloader;
+import com.disorder.presentation.utils.UserAvatartUrlGenerator;
 import com.disorder.presentation.view.NewsView;
 
 import java.util.Arrays;
@@ -44,6 +45,8 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     NewsPresenterFactory mNewsPresenterFactory;
     @Inject
     ImageDownloader mImageDownloader;
+    @Inject
+    UserAvatartUrlGenerator mUserAvatartUrlGenerator;
 
     private CoordinatorLayout mCoordinatorLayout;
 
@@ -102,7 +105,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
             mNewsPresenter = mNewsPresenterFactory.make(gender);
         else mNewsPresenter = mNewsPresenterFactory.make();
 
-        newsPostAdapter = new NewsPostAdapter(this, mImageDownloader, this);
+        newsPostAdapter = new NewsPostAdapter(this, mImageDownloader, this, mUserAvatartUrlGenerator);
         mRecyclerView.setAdapter(newsPostAdapter);
         mNewsPresenter.attachView(this);
         mNewsPresenter.loadMore();
