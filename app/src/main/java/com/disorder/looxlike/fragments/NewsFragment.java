@@ -78,7 +78,8 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        mRecyclerView.setHasFixedSize(true);
+        //TODO check
+        //mRecyclerView.setHasFixedSize(true);
         final RecyclerView.LayoutManager mLayoutManager;
 
         if (columns == 1)

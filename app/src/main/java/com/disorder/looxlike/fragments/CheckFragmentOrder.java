@@ -84,12 +84,6 @@ public class CheckFragmentOrder extends BaseFragment implements CheckOrderView {
     }
 
     @Override
-    public void onDestroy() {
-        mEditText.removeTextChangedListener(mTextWatcher);
-        super.onDestroy();
-    }
-
-    @Override
     public void orderIsValid() {
         mTextInputLayout.setErrorEnabled(false);
 

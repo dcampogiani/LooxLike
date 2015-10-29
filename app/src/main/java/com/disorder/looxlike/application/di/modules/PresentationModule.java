@@ -14,17 +14,21 @@ import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
 import com.disorder.presentation.presenter.ToolbarPresenter;
 import com.disorder.presentation.presenter.ToolbarPresenterImpl;
+import com.disorder.presentation.presenter.creation.ItemSelectionPresenter;
+import com.disorder.presentation.presenter.creation.ItemSelectionPresenterImpl;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenterImpl;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
 import com.disorder.presentation.presenter.news.NewsPresenterFactoryImpl;
 import com.disorder.presentation.utils.AndroidExternalBrowser;
 import com.disorder.presentation.utils.Browser;
+import com.disorder.presentation.utils.CDNImageUrlGenerator;
 import com.disorder.presentation.utils.CountryItemPageEvaluatorImpl;
 import com.disorder.presentation.utils.DateIntervalCalculator;
 import com.disorder.presentation.utils.DateIntervalCalculatorImpl;
 import com.disorder.presentation.utils.DaysRangeProvider;
 import com.disorder.presentation.utils.DaysRangeProviderImpl;
+import com.disorder.presentation.utils.ImageUrlGenerator;
 import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
@@ -110,5 +114,17 @@ public class PresentationModule {
     @PerActivity
     OrderCheckPresenter provideOrderCheckPresenter(OrderCheckPresenterImpl orderCheckPresenter) {
         return orderCheckPresenter;
+    }
+
+    @Provides
+    @PerActivity
+    ImageUrlGenerator providesImageUrlGenerator() {
+        return new CDNImageUrlGenerator();
+    }
+
+    @Provides
+    @PerActivity
+    ItemSelectionPresenter providesItemSelectionPresenter(ItemSelectionPresenterImpl presenter) {
+        return presenter;
     }
 }

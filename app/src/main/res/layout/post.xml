@@ -38,7 +38,6 @@
 
     <ImageView
         android:id="@+id/image"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_image_height"
         android:contentDescription="@string/post_image"

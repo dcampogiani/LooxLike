@@ -12,6 +12,7 @@
 
     <string name="buy">Buy</string>
     <string name="post_image">Post Image</string>
+    <string name="item_image">Item Image</string>
 
     <string name="coming_soon">Coming soon</string>
 
@@ -20,6 +21,8 @@
     <string name="insert_order_hint">Insert your order</string>
 
     <string name="generic_error">ops...something went wrong!</string>
+
+    <string name="select_item">Which item do you want to post?</string>
 
     <plurals name="likes">
         <item quantity="one">1 wants to LooxLike</item>

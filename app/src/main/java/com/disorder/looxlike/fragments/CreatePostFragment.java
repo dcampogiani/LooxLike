@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.disorder.looxlike.R;
 
@@ -32,6 +31,6 @@ public class CreatePostFragment extends BaseFragment implements CheckFragmentOrd
 
     @Override
     public void onOrderValid(String orderId) {
-        Toast.makeText(getContext(), orderId, Toast.LENGTH_LONG).show();
+        getChildFragmentManager().beginTransaction().replace(fragment_create_container, ItemSelectionFragment.newInstance(orderId)).addToBackStack(null).commit();
     }
 }
