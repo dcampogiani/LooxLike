@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.disorder.looxlike.R;
 import com.disorder.looxlike.adapters.ItemAdapter;
@@ -26,6 +25,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ItemSelectionFragment extends BaseFragment implements ItemSelectionView, ItemAdapter.OnItemSelectedListener {
+
+
+    public interface OnItemSelectedListener {
+        void onItemSelected(String item);
+    }
 
     private static final String ORDER_ID_KEY = "ORDER_ID_KEY";
     private static final int columns = 2;
@@ -102,6 +106,15 @@ public class ItemSelectionFragment extends BaseFragment implements ItemSelection
 
     @Override
     public void onItemSelected(String item) {
-        Toast.makeText(getContext(), item, Toast.LENGTH_SHORT).show();
+
+        OnItemSelectedListener onItemSelected;
+        try {
+            onItemSelected = (OnItemSelectedListener) getParentFragment();
+            onItemSelected.onItemSelected(item);
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getParentFragment().toString()
+                    + " must implement OnItemSelectedListener");
+        }
+
     }
 }
