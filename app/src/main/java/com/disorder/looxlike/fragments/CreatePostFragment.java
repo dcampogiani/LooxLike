@@ -15,9 +15,21 @@ public class CreatePostFragment extends BaseFragment implements CheckFragmentOrd
 
     private static final int fragment_create_container = R.id.fragment_create_container;
 
+    private String c10;
+    private String photoFilePath;
+
+    public interface OnTakePictureRequestListener {
+        void onTakePictureRequest();
+    }
+
 
     public static CreatePostFragment newInstance() {
         return new CreatePostFragment();
+    }
+
+    public void setPhotoFilePath(String photoFilePath) {
+        this.photoFilePath = photoFilePath;
+        Toast.makeText(getContext(), photoFilePath, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -37,6 +49,18 @@ public class CreatePostFragment extends BaseFragment implements CheckFragmentOrd
 
     @Override
     public void onItemSelected(String item) {
-        Toast.makeText(getContext(), item, Toast.LENGTH_SHORT).show();
+        c10 = item;
+
+        OnTakePictureRequestListener onTakePictureRequestListener;
+
+        try {
+            onTakePictureRequestListener = (OnTakePictureRequestListener) getActivity();
+            onTakePictureRequestListener.onTakePictureRequest();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement OnTakePictureRequestListener");
+        }
+
     }
+
 }

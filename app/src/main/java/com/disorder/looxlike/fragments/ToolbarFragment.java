@@ -27,7 +27,7 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
     @Inject
     ToolbarPresenter mToolbarPresenter;
 
-    private static final int fragment_main_content = R.id.fragment_main_content;
+    public static final int fragment_main_content = R.id.fragment_main_content;
 
 
     private MenuItemClickListener mMenuItemClickListener;
