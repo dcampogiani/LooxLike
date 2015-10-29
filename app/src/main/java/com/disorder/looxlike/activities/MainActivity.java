@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
             File photoFile = null;
             try {
                 photoFile = createImageFile();
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
 
             }
             if (photoFile != null) {
