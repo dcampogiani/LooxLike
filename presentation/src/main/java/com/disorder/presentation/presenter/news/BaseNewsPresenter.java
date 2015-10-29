@@ -49,9 +49,12 @@ public abstract class BaseNewsPresenter extends BasePresenter<NewsView> implemen
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                getView().hideLoading();
-                getView().hideError();
-                getView().showError(throwable.toString());
+                NewsView view = getView();
+                if (view != null) {
+                    view.hideLoading();
+                    view.hideError();
+                    view.showError(throwable.toString());
+                }
             }
         });
 
