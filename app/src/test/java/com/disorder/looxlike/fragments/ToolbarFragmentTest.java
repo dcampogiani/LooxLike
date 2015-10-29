@@ -23,13 +23,13 @@ import static org.junit.Assert.assertTrue;
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricGradleTestRunner.class)
-public class HomeFragmentTest {
+public class ToolbarFragmentTest {
 
-    private HomeFragment subjectUnderTest;
+    private ToolbarFragment subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
-        subjectUnderTest = HomeFragment.newInstance();
+        subjectUnderTest = ToolbarFragment.newInstance();
         SupportFragmentTestUtil.startVisibleFragment(subjectUnderTest, MainActivity.class, R.id.fragment_container);
     }
 

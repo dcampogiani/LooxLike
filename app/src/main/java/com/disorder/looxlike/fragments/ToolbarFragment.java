@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.disorder.looxlike.R;
-import com.disorder.presentation.presenter.HomePresenter;
-import com.disorder.presentation.view.HomeView;
+import com.disorder.presentation.presenter.ToolbarPresenter;
+import com.disorder.presentation.view.ToolbarView;
 
 import javax.inject.Inject;
 
@@ -17,7 +17,7 @@ import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
-public class HomeFragment extends BaseFragment implements HomeView {
+public class ToolbarFragment extends BaseFragment implements ToolbarView {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -25,12 +25,15 @@ public class HomeFragment extends BaseFragment implements HomeView {
     String mToolbarTitle;
 
     @Inject
-    HomePresenter mHomePresenter;
+    ToolbarPresenter mToolbarPresenter;
+
+    private static final int fragment_main_content = R.id.fragment_main_content;
+
 
     private MenuItemClickListener mMenuItemClickListener;
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static ToolbarFragment newInstance() {
+        return new ToolbarFragment();
     }
 
 
@@ -38,19 +41,18 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getPresentationComponent().inject(this);
-        mMenuItemClickListener = new MenuItemClickListener(mHomePresenter);
+        mMenuItemClickListener = new MenuItemClickListener(mToolbarPresenter);
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_toolbar, container, false);
         ButterKnife.bind(this, root);
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
         mToolbar.setOnMenuItemClickListener(mMenuItemClickListener);
-        int fragment_main_content = R.id.fragment_main_content;
         if (savedInstanceState == null)
             getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsTabsFragment.newInstance()).commit();
         return root;
@@ -59,27 +61,30 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void showPage(@Page int page) {
         //TODO load right fragment
-        throw new UnsupportedOperationException();
+        if (page == CREATE)
+            getChildFragmentManager().beginTransaction().replace(fragment_main_content, CheckOrderFragment.newInstance()).addToBackStack(null).commit();
+        else
+            throw new UnsupportedOperationException();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mHomePresenter.attachView(this);
+        mToolbarPresenter.attachView(this);
     }
 
     @Override
     public void onDestroy() {
-        mHomePresenter.detachView();
+        mToolbarPresenter.detachView();
         super.onDestroy();
     }
 
     private static class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
 
-        private final HomePresenter mHomePresenter;
+        private final ToolbarPresenter mToolbarPresenter;
 
-        public MenuItemClickListener(HomePresenter mHomePresenter) {
-            this.mHomePresenter = mHomePresenter;
+        public MenuItemClickListener(ToolbarPresenter mToolbarPresenter) {
+            this.mToolbarPresenter = mToolbarPresenter;
         }
 
         @Override
@@ -89,15 +94,15 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
             if (item.getItemId() == R.id.action_news) {
                 handled = true;
-                mHomePresenter.onNewsButtonClick();
+                mToolbarPresenter.onNewsButtonClick();
 
             } else if (item.getItemId() == R.id.action_user) {
                 handled = true;
-                mHomePresenter.onUserButtonClick();
+                mToolbarPresenter.onUserButtonClick();
 
             } else if (item.getItemId() == R.id.action_favourites) {
                 handled = true;
-                mHomePresenter.onFavouritesButtonClick();
+                mToolbarPresenter.onFavouritesButtonClick();
             }
 
             return handled;

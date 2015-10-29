@@ -4,7 +4,7 @@ import android.os.Build;
 
 import com.disorder.looxlike.BuildConfig;
 import com.disorder.looxlike.R;
-import com.disorder.looxlike.fragments.HomeFragment;
+import com.disorder.looxlike.fragments.ToolbarFragment;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,9 +27,9 @@ public class MainActivityTest {
     }
 
     @Test
-    public void mainFragmentIsLoaded() {
+    public void toolbarFragmentIsLoaded() {
         int idMainFragment = R.id.fragment_container;
-        HomeFragment homeFragment = (HomeFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
-        assertNotNull(homeFragment);
+        ToolbarFragment toolbarFragment = (ToolbarFragment) subjectUnderTest.getSupportFragmentManager().findFragmentById(idMainFragment);
+        assertNotNull(toolbarFragment);
     }
 }

@@ -70,17 +70,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getPresentationComponent().inject(this);
-        Bundle arguments = getArguments();
-        @NewsView.Gender int gender = arguments.getInt(GENDER_KEY, -1);
-        if (gender >= 0)
-            mNewsPresenter = mNewsPresenterFactory.make(gender);
-        else mNewsPresenter = mNewsPresenterFactory.make();
 
-        newsPostAdapter = new NewsPostAdapter(this, mImageDownloader, this);
-        mRecyclerView.setAdapter(newsPostAdapter);
-        mNewsPresenter.attachView(this);
-        mNewsPresenter.loadMore();
     }
 
     @Override
@@ -110,7 +100,17 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
     @Override
     public void onResume() {
         super.onResume();
+        getPresentationComponent().inject(this);
+        Bundle arguments = getArguments();
+        @NewsView.Gender int gender = arguments.getInt(GENDER_KEY, -1);
+        if (gender >= 0)
+            mNewsPresenter = mNewsPresenterFactory.make(gender);
+        else mNewsPresenter = mNewsPresenterFactory.make();
+
+        newsPostAdapter = new NewsPostAdapter(this, mImageDownloader, this);
+        mRecyclerView.setAdapter(newsPostAdapter);
         mNewsPresenter.attachView(this);
+        mNewsPresenter.loadMore();
     }
 
     @Override

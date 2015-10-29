@@ -12,8 +12,8 @@ import com.disorder.networking.utils.ApacheBase64Encoder;
 import com.disorder.networking.utils.Base64Encoder;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
-import com.disorder.presentation.presenter.HomePresenter;
-import com.disorder.presentation.presenter.HomePresenterImpl;
+import com.disorder.presentation.presenter.ToolbarPresenter;
+import com.disorder.presentation.presenter.ToolbarPresenterImpl;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenterImpl;
 import com.disorder.presentation.presenter.news.NewsPresenterFactory;
@@ -51,7 +51,7 @@ public class PresentationModule {
 
     @Provides
     @PerActivity
-    HomePresenter provideHomePresenter(HomePresenterImpl homePresenter) {
+    ToolbarPresenter provideHomePresenter(ToolbarPresenterImpl homePresenter) {
         return homePresenter;
     }
 

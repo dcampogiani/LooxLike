@@ -1,8 +1,8 @@
 package com.disorder.presentation.presenter;
 
-import com.disorder.presentation.view.HomeView;
+import com.disorder.presentation.view.ToolbarView;
 
-public interface HomePresenter extends Presenter<HomeView> {
+public interface ToolbarPresenter extends Presenter<ToolbarView> {
 
     void onNewsButtonClick();
 

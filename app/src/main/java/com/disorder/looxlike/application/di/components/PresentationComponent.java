@@ -5,11 +5,11 @@ import android.content.Context;
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.looxlike.application.di.modules.PresentationModule;
 import com.disorder.looxlike.fragments.CheckOrderFragment;
-import com.disorder.looxlike.fragments.HomeFragment;
 import com.disorder.looxlike.fragments.NewsFragment;
+import com.disorder.looxlike.fragments.ToolbarFragment;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
-import com.disorder.presentation.presenter.HomePresenter;
+import com.disorder.presentation.presenter.ToolbarPresenter;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
 import com.disorder.presentation.utils.Browser;
 import com.disorder.presentation.utils.ItemPageUrlEvaluator;
@@ -21,7 +21,7 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = PresentationModule.class)
 public interface PresentationComponent {
 
-    void inject(HomeFragment homeFragment);
+    void inject(ToolbarFragment toolbarFragment);
 
     void inject(NewsFragment newsFragment);
 
@@ -29,7 +29,7 @@ public interface PresentationComponent {
 
     Context context();
 
-    HomePresenter homePresenter();
+    ToolbarPresenter homePresenter();
 
     LooxLikeAPI looxLikeAPI();
 

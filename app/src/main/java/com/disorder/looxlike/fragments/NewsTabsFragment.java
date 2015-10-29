@@ -1,5 +1,6 @@
 package com.disorder.looxlike.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.disorder.looxlike.R;
-import com.disorder.looxlike.activities.CreatePostActivity;
 import com.disorder.presentation.view.NewsView;
 
 import butterknife.Bind;
@@ -21,6 +21,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NewsTabsFragment extends BaseFragment {
+
+    public interface OnCreatePostListener {
+        void onCreatePost();
+    }
 
     @Bind(R.id.tabs)
     TabLayout mTabLayout;
@@ -30,12 +34,25 @@ public class NewsTabsFragment extends BaseFragment {
     FloatingActionButton mFloatingActionButton;
 
     private PagerAdapter mPagerAdapter;
+    private OnCreatePostListener mOnCreatePostListener;
 
     public static NewsTabsFragment newInstance() {
         return new NewsTabsFragment();
     }
 
     public NewsTabsFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mOnCreatePostListener = (OnCreatePostListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnCreatePostListener");
+        }
     }
 
     @Override
@@ -56,8 +73,7 @@ public class NewsTabsFragment extends BaseFragment {
 
     @OnClick(R.id.fab)
     public void onCreatePostClick() {
-        Context context = getContext();
-        context.startActivity(CreatePostActivity.getCallingIntent(context));
+        mOnCreatePostListener.onCreatePost();
     }
 
     private static class PagerAdapter extends FragmentStatePagerAdapter {
