@@ -22,8 +22,7 @@
             android:layout_marginRight="@dimen/default_side_margin"
             android:layout_marginStart="@dimen/default_side_margin"
             app:civ_border_color="@color/accent"
-            app:civ_border_width="2dp"
-            tools:src="@drawable/avatar" />
+            app:civ_border_width="2dp" />
 
         <TextView
             android:id="@+id/username"
@@ -41,8 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_image_height"
         android:contentDescription="@string/post_image"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/post" />
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"

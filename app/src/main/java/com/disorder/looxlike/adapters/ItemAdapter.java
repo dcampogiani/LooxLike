@@ -22,12 +22,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
 
-    private List<String> mData;
-    private ImageDownloader mImageDownloader;
-    private ImageUrlGenerator mImageUrlGenerator;
-    private WeakReference<OnItemSelectedListener> mOnItemSelectedListener;
+    private final List<String> mData;
+    private final ImageDownloader mImageDownloader;
+    private final ImageUrlGenerator mImageUrlGenerator;
+    private final WeakReference<OnItemSelectedListener> mOnItemSelectedListener;
 
-    private static ImageUrlGenerator.ZOOM_LEVEL zoom_level = ImageUrlGenerator.ZOOM_LEVEL.MEDIUM;
+    private static final ImageUrlGenerator.ZOOM_LEVEL zoom_level = ImageUrlGenerator.ZOOM_LEVEL.MEDIUM;
 
     public ItemAdapter(OnItemSelectedListener onItemSelectedListener, ImageDownloader mImageDownloader, ImageUrlGenerator mImageUrlGenerator) {
         this.mOnItemSelectedListener = new WeakReference<>(onItemSelectedListener);

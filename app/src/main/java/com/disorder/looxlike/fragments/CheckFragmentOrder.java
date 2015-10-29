@@ -41,8 +41,6 @@ public class CheckFragmentOrder extends BaseFragment implements CheckOrderView {
     @Inject
     OrderCheckPresenter mOrderCheckPresenter;
 
-    private TextWatcher mTextWatcher;
-
     public static CheckFragmentOrder newInstance() {
         return new CheckFragmentOrder();
     }
@@ -60,7 +58,7 @@ public class CheckFragmentOrder extends BaseFragment implements CheckOrderView {
         super.onResume();
         getPresentationComponent().inject(this);
         mOrderCheckPresenter.attachView(this);
-        mTextWatcher = new TextWatcher() {
+        TextWatcher mTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
