@@ -3,14 +3,14 @@ package com.disorder.presentation.presenter.creation;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.presenter.BasePresenter;
 import com.disorder.presentation.utils.RxScheduler;
-import com.disorder.presentation.view.creation.OrderCheckView;
+import com.disorder.presentation.view.creation.CheckOrderView;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 import rx.functions.Action1;
 
-public class OrderCheckPresenterImpl extends BasePresenter<OrderCheckView> implements OrderCheckPresenter {
+public class OrderCheckPresenterImpl extends BasePresenter<CheckOrderView> implements OrderCheckPresenter {
 
     private final LooxLikeAPI mLooxLikeAPI;
     private final RxScheduler scheduler;
@@ -34,13 +34,13 @@ public class OrderCheckPresenterImpl extends BasePresenter<OrderCheckView> imple
                 if (apiResponse)
                     getView().orderIsValid();
                 else
-                    getView().orderIsNotvalid();
+                    getView().orderIsNotValid();
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
                 getView().hideLoading();
-                getView().orderIsNotvalid();
+                getView().orderIsNotValid();
             }
         });
     }

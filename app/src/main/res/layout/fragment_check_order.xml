@@ -9,19 +9,26 @@
         android:id="@+id/orderIdWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/insert_order_side_margin"
-        android:layout_marginLeft="@dimen/insert_order_side_margin"
+        android:layout_gravity="center"
         android:layout_marginEnd="@dimen/insert_order_side_margin"
+        android:layout_marginLeft="@dimen/insert_order_side_margin"
         android:layout_marginRight="@dimen/insert_order_side_margin"
-        android:layout_gravity="center">
+        android:layout_marginStart="@dimen/insert_order_side_margin">
 
         <EditText
             android:id="@+id/orderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/insert_order_hint" />
+            android:hint="@string/insert_order_hint"
+            android:inputType="textEmailAddress" />
 
     </android.support.design.widget.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:alpha="0" />
 
 </FrameLayout>

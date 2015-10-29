@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.looxlike.application.di.modules.PresentationModule;
-import com.disorder.looxlike.fragments.CheckOrderFragment;
+import com.disorder.looxlike.fragments.CheckFragmentOrder;
 import com.disorder.looxlike.fragments.NewsFragment;
 import com.disorder.looxlike.fragments.ToolbarFragment;
 import com.disorder.networking.services.LooxLikeAPI;
@@ -25,7 +25,7 @@ public interface PresentationComponent {
 
     void inject(NewsFragment newsFragment);
 
-    void inject(CheckOrderFragment checkOrderFragment);
+    void inject(CheckFragmentOrder checkOrderFragment);
 
     Context context();
 

@@ -1,10 +1,10 @@
 package com.disorder.presentation.view.creation;
 
-public interface OrderCheckView {
+public interface CheckOrderView {
 
     void orderIsValid();
 
-    void orderIsNotvalid();
+    void orderIsNotValid();
 
     void showLoading();
 

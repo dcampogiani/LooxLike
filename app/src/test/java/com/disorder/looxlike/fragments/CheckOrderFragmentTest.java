@@ -23,11 +23,11 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricGradleTestRunner.class)
 public class CheckOrderFragmentTest {
 
-    private CheckOrderFragment subjectUnderTest;
+    private CheckFragmentOrder subjectUnderTest;
 
     @Before
     public void setUp() throws Exception {
-        subjectUnderTest = CheckOrderFragment.newInstance();
+        subjectUnderTest = CheckFragmentOrder.newInstance();
         SupportFragmentTestUtil.startVisibleFragment(subjectUnderTest, MainActivity.class, R.id.fragment_container);
     }
 

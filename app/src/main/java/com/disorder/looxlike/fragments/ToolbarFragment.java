@@ -62,7 +62,7 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
     public void showPage(@Page int page) {
         //TODO load right fragment
         if (page == CREATE)
-            getChildFragmentManager().beginTransaction().replace(fragment_main_content, CheckOrderFragment.newInstance()).addToBackStack(null).commit();
+            getChildFragmentManager().beginTransaction().replace(fragment_main_content, CreatePostFragment.newInstance()).addToBackStack(null).commit();
         else
             throw new UnsupportedOperationException();
     }
