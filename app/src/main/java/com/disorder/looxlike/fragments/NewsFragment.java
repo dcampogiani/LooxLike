@@ -115,7 +115,8 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void onDestroy() {
-        mNewsPresenter.detachView();
+        if (mNewsPresenter != null)
+            mNewsPresenter.detachView();
         super.onDestroy();
     }
 

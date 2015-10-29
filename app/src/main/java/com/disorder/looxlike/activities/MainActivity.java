@@ -1,6 +1,7 @@
 package com.disorder.looxlike.activities;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 
 import com.disorder.looxlike.R;
@@ -33,4 +34,15 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
             toolbarFragment.showPage(ToolbarView.CREATE);
     }
 
+    @Override
+    public void onBackPressed() {
+        ToolbarFragment toolbarFragment = (ToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (toolbarFragment != null) {
+            FragmentManager childFragmentManager = toolbarFragment.getChildFragmentManager();
+            int count = childFragmentManager.getBackStackEntryCount();
+            if (count > 0)
+                childFragmentManager.popBackStack();
+            else super.onBackPressed();
+        } else super.onBackPressed();
+    }
 }

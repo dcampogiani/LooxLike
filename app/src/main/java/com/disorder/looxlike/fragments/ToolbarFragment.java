@@ -79,6 +79,7 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
         super.onDestroy();
     }
 
+
     private static class MenuItemClickListener implements Toolbar.OnMenuItemClickListener {
 
         private final ToolbarPresenter mToolbarPresenter;
