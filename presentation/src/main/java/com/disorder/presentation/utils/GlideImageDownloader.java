@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 
 public class GlideImageDownloader implements ImageDownloader {
@@ -20,11 +21,16 @@ public class GlideImageDownloader implements ImageDownloader {
 
     @Override
     public void request(String url, ImageView target) {
-        Glide.with(mContext)
-                .load(url)
-                .centerCrop()
-                .placeholder(placeholder)
-                .crossFade()
-                .into(target);
+        request(url, target, null);
+    }
+
+    @Override
+    public void request(String url, ImageView target, Animation animation) {
+        DrawableRequestBuilder<String> builder = Glide.with(mContext).load(url).placeholder(GlideImageDownloader.placeholder);
+        if (animation == Animation.NONE)
+            builder.dontAnimate();
+        else
+            builder.crossFade();
+        builder.into(target);
     }
 }
