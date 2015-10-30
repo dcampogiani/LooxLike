@@ -5,6 +5,7 @@ import android.content.Context;
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.looxlike.application.di.modules.PresentationModule;
 import com.disorder.looxlike.fragments.CheckFragmentOrder;
+import com.disorder.looxlike.fragments.CreatePostFragment;
 import com.disorder.looxlike.fragments.ItemSelectionFragment;
 import com.disorder.looxlike.fragments.NewsFragment;
 import com.disorder.looxlike.fragments.ToolbarFragment;
@@ -33,6 +34,8 @@ public interface PresentationComponent {
     void inject(CheckFragmentOrder checkOrderFragment);
 
     void inject(ItemSelectionFragment itemSelectionFragment);
+
+    void inject(CreatePostFragment createPostFragment);
 
     Context context();
 

@@ -9,23 +9,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.disorder.looxlike.R;
+import com.disorder.presentation.presenter.creation.CreatePostPresenter;
 import com.disorder.presentation.view.creation.CreatePostView;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class CreatePostFragment extends BaseFragment implements CreatePostView, CheckFragmentOrder.OnOrderValidListener, ItemSelectionFragment.OnItemSelectedListener, CreatePostConfirmationFragment.OnConfirmationListener {
 
-    private static final int fragment_create_container = R.id.fragment_create_container;
+    public static final int fragment_create_container = R.id.fragment_create_container;
+
+    private static final String C10_KEY = "C10_KEY";
+    private static final String PHOTO_FILE_PATH_KEY = "PHOTO_FILE_PATH_KEY";
 
     @Bind(fragment_create_container)
     CoordinatorLayout mCoordinatorLayout;
 
     @Bind(R.id.progressBar)
     ProgressBar mProgressBar;
+
+    @Inject
+    CreatePostPresenter mCreatePostPresenter;
 
     private String c10;
     private String photoFilePath;
@@ -35,9 +43,23 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
         void onTakePictureRequest();
     }
 
+    public interface Onc10SelectedListener {
+        void onc10Selected(String c10);
+    }
+
+    public static CreatePostFragment newInstance(String c10, String photoFilePath) {
+        CreatePostFragment result = new CreatePostFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(C10_KEY, c10);
+        bundle.putString(PHOTO_FILE_PATH_KEY, photoFilePath);
+        result.setArguments(bundle);
+        return result;
+    }
 
     public static CreatePostFragment newInstance() {
-        return new CreatePostFragment();
+        CreatePostFragment result = new CreatePostFragment();
+        result.setArguments(new Bundle());
+        return result;
     }
 
     @Override
@@ -45,9 +67,22 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_create, container, false);
         ButterKnife.bind(this, root);
-        if (savedInstanceState == null)
+        Bundle args = getArguments();
+        photoFilePath = args.getString(PHOTO_FILE_PATH_KEY);
+        c10 = args.getString(C10_KEY);
+        if (photoFilePath != null) {
+            getChildFragmentManager().beginTransaction().replace(fragment_create_container, CreatePostConfirmationFragment.newInstance(photoFilePath)).commit();
+        } else if (savedInstanceState == null) {
             getChildFragmentManager().beginTransaction().replace(fragment_create_container, CheckFragmentOrder.newInstance()).commit();
+        }
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getPresentationComponent().inject(this);
+        mCreatePostPresenter.attachView(this);
     }
 
     @Override
@@ -60,6 +95,7 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
         c10 = item;
 
         OnTakePictureRequestListener onTakePictureRequestListener;
+        Onc10SelectedListener onc10SelectedListener;
 
         try {
             onTakePictureRequestListener = (OnTakePictureRequestListener) getActivity();
@@ -69,18 +105,20 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
                     + " must implement OnTakePictureRequestListener");
         }
 
+        try {
+            onc10SelectedListener = (Onc10SelectedListener) getActivity();
+            onc10SelectedListener.onc10Selected(item);
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement Onc10SelectedListener");
+        }
+
     }
 
     @Override
     public void onConfirmation(String description) {
-        Snackbar.make(mCoordinatorLayout, description, Snackbar.LENGTH_INDEFINITE).show();
+        mCreatePostPresenter.createPost(c10, description, photoFilePath);
     }
-
-    public void setPhotoFilePath(String photoFilePath) {
-        this.photoFilePath = photoFilePath;
-        Toast.makeText(getContext(), photoFilePath, Toast.LENGTH_LONG).show();
-    }
-
 
     @Override
     public void showLoading() {
