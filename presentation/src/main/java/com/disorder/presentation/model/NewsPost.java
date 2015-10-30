@@ -29,6 +29,10 @@ public abstract class NewsPost implements Parcelable {
     }
 
     public static NewsPost updateLike(NewsPost newsPost, boolean liked) {
-        return new AutoParcel_NewsPost(newsPost.id(), newsPost.description(), newsPost.photoUrl(), newsPost.c10(), newsPost.creation(), newsPost.username(), newsPost.likes(), liked);
+        int likes = newsPost.likes();
+        if (liked)
+            likes++;
+        else likes--;
+        return new AutoParcel_NewsPost(newsPost.id(), newsPost.description(), newsPost.photoUrl(), newsPost.c10(), newsPost.creation(), newsPost.username(), likes, liked);
     }
 }

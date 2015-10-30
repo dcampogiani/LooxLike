@@ -100,11 +100,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
 
         username.setText(item.username());
         int likesCount = item.likes();
-        if (likesCount > 0) {
-            String likesText = likes.getContext().getResources().getQuantityString(R.plurals.likes, item.likes(), item.likes()) + " " + item.username();
-            likes.setText(likesText);
-        } else likes.setText(likes.getContext().getString(R.string.no_likes));
-
+        setLikedText(likes, likesCount, item.username());
         setLikedIcon(likes, item.liked());
 
         holder.description.setText(item.description());
@@ -152,7 +148,13 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         PostListener postListener = mPostListenerReference.get();
         if (postListener != null) {
             NewsPost updatedItem = mData.get(position);
+            boolean wannaLike = !updatedItem.liked();
+            int likes = updatedItem.likes();
+            if (wannaLike)
+                likes++;
+            else likes--;
             setLikedIcon(textView, !updatedItem.liked());
+            setLikedText(textView, likes, updatedItem.username());
             toggleLikePostStatus(updatedItem.id());
             postListener.onLike(updatedItem);
         }
@@ -182,6 +184,13 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         if (value)
             return R.drawable.ic_favorite_accent_full_36dp;
         else return R.drawable.ic_favorite_accent_empty_36dp;
+    }
+
+    private void setLikedText(TextView textView, int numLikes, String username) {
+        if (numLikes > 0) {
+            String likesText = textView.getContext().getResources().getQuantityString(R.plurals.likes, numLikes, numLikes) + " " + username;
+            textView.setText(likesText);
+        } else textView.setText(textView.getContext().getString(R.string.no_likes));
     }
 
 
