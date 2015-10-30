@@ -11,6 +11,7 @@ import com.disorder.looxlike.fragments.ToolbarFragment;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.presenter.ToolbarPresenter;
+import com.disorder.presentation.presenter.creation.CreatePostPresenter;
 import com.disorder.presentation.presenter.creation.ItemSelectionPresenter;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
 import com.disorder.presentation.utils.Browser;
@@ -54,4 +55,6 @@ public interface PresentationComponent {
     ItemSelectionPresenter itemSelectionPresenter();
 
     UserAvatartUrlGenerator userAvatartUrlGenerator();
+
+    CreatePostPresenter createPostPresenter();
 }

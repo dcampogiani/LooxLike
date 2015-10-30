@@ -14,6 +14,8 @@ import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.model.mapper.NewsPostMapperImpl;
 import com.disorder.presentation.presenter.ToolbarPresenter;
 import com.disorder.presentation.presenter.ToolbarPresenterImpl;
+import com.disorder.presentation.presenter.creation.CreatePostPresenter;
+import com.disorder.presentation.presenter.creation.CreatePostPresenterImpl;
 import com.disorder.presentation.presenter.creation.ItemSelectionPresenter;
 import com.disorder.presentation.presenter.creation.ItemSelectionPresenterImpl;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
@@ -134,5 +136,11 @@ public class PresentationModule {
     @PerActivity
     UserAvatartUrlGenerator providesUserAvatartUrlGenerator() {
         return new LooxLikeAPIUserAvatarGenerator(BuildConfig.API_BASE_URL);
+    }
+
+    @Provides
+    @PerActivity
+    CreatePostPresenter providesCreatePostPresenter(CreatePostPresenterImpl presenter) {
+        return presenter;
     }
 }

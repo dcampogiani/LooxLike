@@ -2,21 +2,34 @@ package com.disorder.looxlike.fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.disorder.looxlike.R;
+import com.disorder.presentation.view.creation.CreatePostView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CreatePostFragment extends BaseFragment implements CheckFragmentOrder.OnOrderValidListener, ItemSelectionFragment.OnItemSelectedListener {
+public class CreatePostFragment extends BaseFragment implements CreatePostView, CheckFragmentOrder.OnOrderValidListener, ItemSelectionFragment.OnItemSelectedListener, CreatePostConfirmationFragment.OnConfirmationListener {
 
     private static final int fragment_create_container = R.id.fragment_create_container;
 
+    @Bind(fragment_create_container)
+    CoordinatorLayout mCoordinatorLayout;
+
+    @Bind(R.id.progressBar)
+    ProgressBar mProgressBar;
+
     private String c10;
     private String photoFilePath;
+
 
     public interface OnTakePictureRequestListener {
         void onTakePictureRequest();
@@ -25,11 +38,6 @@ public class CreatePostFragment extends BaseFragment implements CheckFragmentOrd
 
     public static CreatePostFragment newInstance() {
         return new CreatePostFragment();
-    }
-
-    public void setPhotoFilePath(String photoFilePath) {
-        this.photoFilePath = photoFilePath;
-        Toast.makeText(getContext(), photoFilePath, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -63,4 +71,36 @@ public class CreatePostFragment extends BaseFragment implements CheckFragmentOrd
 
     }
 
+    @Override
+    public void onConfirmation(String description) {
+        Snackbar.make(mCoordinatorLayout, description, Snackbar.LENGTH_INDEFINITE).show();
+    }
+
+    public void setPhotoFilePath(String photoFilePath) {
+        this.photoFilePath = photoFilePath;
+        Toast.makeText(getContext(), photoFilePath, Toast.LENGTH_LONG).show();
+    }
+
+
+    @Override
+    public void showLoading() {
+        mProgressBar.animate().alpha(1).setInterpolator(new AccelerateDecelerateInterpolator());
+        mCoordinatorLayout.animate().alpha(0.3f).setInterpolator(new AccelerateDecelerateInterpolator());
+    }
+
+    @Override
+    public void hideLoading() {
+        mProgressBar.animate().alpha(0).setInterpolator(new AccelerateDecelerateInterpolator());
+        mCoordinatorLayout.animate().alpha(1).setInterpolator(new AccelerateDecelerateInterpolator());
+    }
+
+    @Override
+    public void postCreated() {
+        Snackbar.make(mCoordinatorLayout, "Uploaded", Snackbar.LENGTH_INDEFINITE).show();
+    }
+
+    @Override
+    public void showError() {
+        Snackbar.make(mCoordinatorLayout, getString(R.string.generic_error), Snackbar.LENGTH_INDEFINITE).show();
+    }
 }

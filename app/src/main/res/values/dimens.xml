@@ -9,4 +9,5 @@
     <dimen name="avatar_diameter">40dp</dimen>
 
     <dimen name="insert_order_side_margin">64dp</dimen>
+    <dimen name="insert_description_side_margin">64dp</dimen>
 </resources>
