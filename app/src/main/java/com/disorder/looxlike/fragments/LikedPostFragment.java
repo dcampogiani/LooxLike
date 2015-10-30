@@ -34,10 +34,6 @@ import butterknife.OnClick;
 public class LikedPostFragment extends BaseFragment implements NewsView, LikedPostAdapter.PhotoListener, LikedPostAdapter.ScrollListener {
 
 
-    public interface OnCreatePostListener {
-        void onCreatePost();
-    }
-
     @BindInt(R.integer.liked_posts_columns)
     int columns;
     @Bind(R.id.recycler_view)
@@ -57,7 +53,7 @@ public class LikedPostFragment extends BaseFragment implements NewsView, LikedPo
 
 
     private LikedPostAdapter mLikedPostAdapter;
-    private OnCreatePostListener mOnCreatePostListener;
+    private NewsTabsFragment.OnCreatePostListener mOnCreatePostListener;
 
 
     public static LikedPostFragment newInstance() {
@@ -70,7 +66,7 @@ public class LikedPostFragment extends BaseFragment implements NewsView, LikedPo
         super.onAttach(activity);
 
         try {
-            mOnCreatePostListener = (OnCreatePostListener) activity;
+            mOnCreatePostListener = (NewsTabsFragment.OnCreatePostListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnCreatePostListener");
