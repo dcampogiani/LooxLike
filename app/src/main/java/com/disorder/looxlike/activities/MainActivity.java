@@ -69,6 +69,10 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
     @Override
     public void onBackPressed() {
         Fragment nestedFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (nestedFragment instanceof CreatePostFragment) {
+            getSupportFragmentManager().beginTransaction().replace(containerId, ToolbarFragment.newInstance()).commit();
+            return;
+        }
         if (nestedFragment != null) {
             FragmentManager childFragmentManager = nestedFragment.getChildFragmentManager();
             int count = childFragmentManager.getBackStackEntryCount();
