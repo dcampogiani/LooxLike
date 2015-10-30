@@ -106,6 +106,11 @@ public class RetrofitLooxLikeAPI implements LooxLikeAPI {
         });
     }
 
+    @Override
+    public Observable<NewsPost[]> getLikedPosts(int page) {
+        return mRetrofitWrapperLooxLikeAPI.getLikedPosts(page);
+    }
+
     private RestAdapter.LogLevel getRetrofitLogLevel(LooxLikeAPI.LogLevel logLevel) {
 
         if (logLevel == LooxLikeAPI.LogLevel.FULL)

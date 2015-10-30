@@ -72,4 +72,9 @@ public class FakeLooxLikeAPI implements LooxLikeAPI {
     public Observable<String[]> getItemsOfOrder(String orderId) {
         return Observable.just(fakeItems);
     }
+
+    @Override
+    public Observable<NewsPost[]> getLikedPosts(int page) {
+        return Observable.just(fakeAll);
+    }
 }

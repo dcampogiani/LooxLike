@@ -9,13 +9,11 @@ import rx.Observable;
 public interface LooxLikeAPI {
 
     enum Gender {
-        MALE("male", 'm'), FEMALE("female", 'f'), NOGENDER("nogender", 'n');
+        MALE('m'), FEMALE('f'), NOGENDER('n');
 
-        private final String text;
         private final char queryParameter;
 
-        Gender(String text, char queryParameter) {
-            this.text = text;
+        Gender(char queryParameter) {
             this.queryParameter = queryParameter;
         }
 
@@ -59,5 +57,7 @@ public interface LooxLikeAPI {
     Observable<Boolean> orderHasItems(String orderId);
 
     Observable<String[]> getItemsOfOrder(String orderId);
+
+    Observable<NewsPost[]> getLikedPosts(int page);
 
 }

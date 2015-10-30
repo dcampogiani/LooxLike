@@ -16,7 +16,6 @@ public class RegExC10Extractor implements C10Extractor {
 
     @Override
     public String[] extract(String rawData) {
-        //TODO implement
         Matcher matcher = pattern.matcher(rawData);
         List<String> matches = new ArrayList<>();
         while (matcher.find())

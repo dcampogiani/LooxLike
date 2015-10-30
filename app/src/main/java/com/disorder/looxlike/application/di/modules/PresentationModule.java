@@ -33,7 +33,7 @@ import com.disorder.presentation.utils.ItemPageUrlEvaluator;
 import com.disorder.presentation.utils.LooxLikeAPIUserAvatarGenerator;
 import com.disorder.presentation.utils.MainThreadAndBackgroundRxScheduler;
 import com.disorder.presentation.utils.RxScheduler;
-import com.disorder.presentation.utils.UserAvatartUrlGenerator;
+import com.disorder.presentation.utils.UserAvatarUrlGenerator;
 
 import dagger.Module;
 import dagger.Provides;
@@ -132,7 +132,7 @@ public class PresentationModule {
 
     @Provides
     @PerActivity
-    UserAvatartUrlGenerator providesUserAvatartUrlGenerator() {
+    UserAvatarUrlGenerator providesUserAvatartUrlGenerator() {
         return new LooxLikeAPIUserAvatarGenerator(BuildConfig.API_BASE_URL);
     }
 }

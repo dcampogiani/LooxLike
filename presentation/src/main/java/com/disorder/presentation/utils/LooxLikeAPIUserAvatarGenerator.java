@@ -1,6 +1,6 @@
 package com.disorder.presentation.utils;
 
-public class LooxLikeAPIUserAvatarGenerator implements UserAvatartUrlGenerator {
+public class LooxLikeAPIUserAvatarGenerator implements UserAvatarUrlGenerator {
 
     private final String baseUrl;
 

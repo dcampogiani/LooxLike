@@ -134,4 +134,12 @@ public class RetrofitLooxLikeAPITest {
         boolean result = subjectUnderTest.orderHasItems("pippo").toBlocking().first();
         assertThat(result, is(false));
     }
+
+    @Test
+    @Ignore
+    public void testGetLikedPost() throws Exception {
+        subjectUnderTest = getAuthApi();
+        NewsPost[] result = subjectUnderTest.getLikedPosts(pageToTest).toBlocking().single();
+        assertNotNull(result);
+    }
 }

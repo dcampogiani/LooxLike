@@ -1,6 +1,6 @@
 package com.disorder.presentation.utils;
 
-public interface UserAvatartUrlGenerator {
+public interface UserAvatarUrlGenerator {
 
     String getUrl(String username);
 }

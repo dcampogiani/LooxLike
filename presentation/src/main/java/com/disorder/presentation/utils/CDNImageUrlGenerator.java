@@ -14,7 +14,7 @@ public class CDNImageUrlGenerator implements ImageUrlGenerator {
     }
 
     private String getZoomString(ZOOM_LEVEL zoom_level) {
-        if (zoom_level == ZOOM_LEVEL.HIGHT)
+        if (zoom_level == ZOOM_LEVEL.HIGH)
             return zoom_hight_string;
         else if (zoom_level == ZOOM_LEVEL.MEDIUM)
             return zoom_medium_string;

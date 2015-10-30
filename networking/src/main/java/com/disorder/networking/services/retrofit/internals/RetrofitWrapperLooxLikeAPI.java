@@ -20,4 +20,7 @@ public interface RetrofitWrapperLooxLikeAPI {
     @Multipart
     @POST("/post")
     Observable<NewsPost> createPost(@Part("description") String description, @Part("c10") String c10, @Part("photo") TypedFile file);
+
+    @GET("/post/likedpost/{pageNum}")
+    Observable<NewsPost[]> getLikedPosts(@Path("pageNum") int page);
 }
