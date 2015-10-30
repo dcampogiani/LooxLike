@@ -153,8 +153,9 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsPostAdap
 
     @Override
     public void onLike(NewsPost newsPost) {
-        currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon) + " like post " + newsPost.id(), Snackbar.LENGTH_SHORT);
-        currentSnackbar.show();
+        //TODO call server
+        //currentSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.coming_soon) + " like post " + newsPost.id(), Snackbar.LENGTH_SHORT);
+        //currentSnackbar.show();
     }
 
     @Override
