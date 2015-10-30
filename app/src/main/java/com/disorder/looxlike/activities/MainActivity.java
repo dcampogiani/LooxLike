@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCreatePostListener, CreatePostFragment.OnTakePictureRequestListener, CreatePostFragment.Onc10SelectedListener {
+public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCreatePostListener, CreatePostFragment.OnTakePictureRequestListener, CreatePostFragment.Onc10SelectedListener, CreatePostFragment.OnPostUploadedListener {
 
     private static final int REQUEST_TAKE_PHOTO = 1;
 
@@ -82,9 +82,7 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             CreatePostFragment createPostFragment = CreatePostFragment.newInstance(mCurrent10, mCurrentPhotoPath);
-            //CreatePostConfirmationFragment createPostConfirmationFragment = CreatePostConfirmationFragment.newInstance(mCurrentPhotoPath);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, createPostFragment).commitAllowingStateLoss();
-            //createPostFragment.getChildFragmentManager().beginTransaction().replace(CreatePostFragment.fragment_create_container, createPostConfirmationFragment).commitAllowingStateLoss();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -131,5 +129,10 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
     @Override
     public void onc10Selected(String c10) {
         mCurrent10 = c10;
+    }
+
+    @Override
+    public void onPostUploaded() {
+        getSupportFragmentManager().beginTransaction().replace(containerId, ToolbarFragment.newInstance()).commit();
     }
 }

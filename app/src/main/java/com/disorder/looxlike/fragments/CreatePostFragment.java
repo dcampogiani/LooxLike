@@ -47,6 +47,10 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
         void onc10Selected(String c10);
     }
 
+    public interface OnPostUploadedListener {
+        void onPostUploaded();
+    }
+
     public static CreatePostFragment newInstance(String c10, String photoFilePath) {
         CreatePostFragment result = new CreatePostFragment();
         Bundle bundle = new Bundle();
@@ -134,7 +138,14 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
 
     @Override
     public void postCreated() {
-        Snackbar.make(mCoordinatorLayout, "Uploaded", Snackbar.LENGTH_INDEFINITE).show();
+        OnPostUploadedListener onPostUploadedListener;
+        try {
+            onPostUploadedListener = (OnPostUploadedListener) getActivity();
+            onPostUploadedListener.onPostUploaded();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement OnPostUploadedListener");
+        }
     }
 
     @Override

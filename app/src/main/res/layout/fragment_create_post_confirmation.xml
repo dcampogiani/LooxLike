@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/post_image_height"
+        android:layout_height="@dimen/confirm_image_height"
         android:contentDescription="@string/post_image"
         android:scaleType="centerCrop" />
 
@@ -20,7 +20,8 @@
         android:layout_marginEnd="@dimen/insert_description_side_margin"
         android:layout_marginLeft="@dimen/insert_description_side_margin"
         android:layout_marginRight="@dimen/insert_description_side_margin"
-        android:layout_marginStart="@dimen/insert_description_side_margin">
+        android:layout_marginStart="@dimen/insert_description_side_margin"
+        android:layout_marginTop="24dp">
 
         <EditText
             android:id="@+id/description"

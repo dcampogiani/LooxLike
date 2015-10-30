@@ -3,4 +3,6 @@
 
     <dimen name="item_image_height">300dp</dimen>
 
+    <dimen name="confirm_image_height">100dp</dimen>
+
 </resources>
