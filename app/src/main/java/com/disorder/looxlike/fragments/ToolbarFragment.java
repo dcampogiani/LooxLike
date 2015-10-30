@@ -42,6 +42,8 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
         super.onActivityCreated(savedInstanceState);
         getPresentationComponent().inject(this);
         mMenuItemClickListener = new MenuItemClickListener(mToolbarPresenter);
+        mToolbar.setOnMenuItemClickListener(mMenuItemClickListener);
+
     }
 
 
@@ -52,7 +54,6 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
         ButterKnife.bind(this, root);
         mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
-        mToolbar.setOnMenuItemClickListener(mMenuItemClickListener);
         if (savedInstanceState == null)
             getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsTabsFragment.newInstance()).commit();
         return root;
@@ -63,6 +64,8 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
         //TODO load right fragment
         if (page == CREATE)
             getChildFragmentManager().beginTransaction().replace(fragment_main_content, CreatePostFragment.newInstance()).addToBackStack(null).commit();
+        else if (page == FAVOURITES)
+            getChildFragmentManager().beginTransaction().replace(fragment_main_content, LikedPostFragment.newInstance()).addToBackStack(null).commit();
         else
             throw new UnsupportedOperationException();
     }

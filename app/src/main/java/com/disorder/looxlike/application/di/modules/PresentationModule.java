@@ -135,4 +135,5 @@ public class PresentationModule {
     UserAvatarUrlGenerator providesUserAvatartUrlGenerator() {
         return new LooxLikeAPIUserAvatarGenerator(BuildConfig.API_BASE_URL);
     }
+
 }

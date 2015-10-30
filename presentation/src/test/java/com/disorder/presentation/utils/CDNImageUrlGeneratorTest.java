@@ -35,7 +35,7 @@ public class CDNImageUrlGeneratorTest {
     @Test
     public void testHighQuality() throws Exception {
         String expected = "http://cdn.yoox.biz/37/37647512DD_13_f.jpg";
-        String result = subjectUnderTest.getUrl(c10, ImageUrlGenerator.ZOOM_LEVEL.HIGHT);
+        String result = subjectUnderTest.getUrl(c10, ImageUrlGenerator.ZOOM_LEVEL.HIGH);
         assertThat(result, is(expected));
     }
 }
