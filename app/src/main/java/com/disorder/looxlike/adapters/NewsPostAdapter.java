@@ -82,7 +82,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(NewsPostAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final NewsPostAdapter.ViewHolder holder, final int position) {
 
         if (almostAtTheEnd(position)) {
             ScrollListener scrollListener = mScrollListenerReference.get();
@@ -93,9 +93,8 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         final NewsPost item = mData.get(position);
         ImageView avatar = holder.avatar;
         TextView username = holder.userName;
-        TextView likes = holder.likes;
+        final TextView likes = holder.likes;
         ImageView photo = holder.photo;
-
         mImageDownloader.request(mUserAvatarUrlGenerator.getUrl(item.username()), avatar);
         mImageDownloader.request(item.photoUrl(), photo);
 
@@ -105,11 +104,9 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
             String likesText = likes.getContext().getResources().getQuantityString(R.plurals.likes, item.likes(), item.likes()) + " " + item.username();
             likes.setText(likesText);
         } else likes.setText(likes.getContext().getString(R.string.no_likes));
-        @DrawableRes int favourite_icon = R.drawable.ic_favorite_accent_empty_36dp;
-        if (item.liked())
-            favourite_icon = R.drawable.ic_favorite_accent_full_36dp;
-        Drawable fullFavourite = ContextCompat.getDrawable(likes.getContext(), favourite_icon);
-        likes.setCompoundDrawablesWithIntrinsicBounds(fullFavourite, null, null, null);
+
+        setLikedIcon(likes, item.liked());
+
         holder.description.setText(item.description());
         holder.creation.setText(item.creation());
 
@@ -127,11 +124,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostListener postListener = mPostListenerReference.get();
-                if (postListener != null) {
-                    likePostWithId(item.id());
-                    postListener.onLike(item);
-                }
+                toggleLikePost(likes, position);
             }
         });
         holder.buy.setOnClickListener(new View.OnClickListener() {
@@ -155,9 +148,19 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         return currentItem > threshold;
     }
 
-    private void likePostWithId(long id) {
+    private void toggleLikePost(TextView textView, int position) {
+        PostListener postListener = mPostListenerReference.get();
+        if (postListener != null) {
+            NewsPost updatedItem = mData.get(position);
+            setLikedIcon(textView, !updatedItem.liked());
+            toggleLikePostStatus(updatedItem.id());
+            postListener.onLike(updatedItem);
+        }
+    }
+
+    private void toggleLikePostStatus(long id) {
         int size = mData.size();
-        for (int i = 0; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             NewsPost currentPost = mData.get(i);
             boolean newLikeStatus = !currentPost.liked();
             if (currentPost.id() == id) {
@@ -166,6 +169,21 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
             }
         }
     }
+
+    private void setLikedIcon(TextView textView, boolean liked) {
+        @DrawableRes int favourite_icon = getLikedIcon(liked);
+        Drawable fullFavourite = ContextCompat.getDrawable(textView.getContext(), favourite_icon);
+        textView.setCompoundDrawablesWithIntrinsicBounds(fullFavourite, null, null, null);
+    }
+
+    private
+    @DrawableRes
+    int getLikedIcon(boolean value) {
+        if (value)
+            return R.drawable.ic_favorite_accent_full_36dp;
+        else return R.drawable.ic_favorite_accent_empty_36dp;
+    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
