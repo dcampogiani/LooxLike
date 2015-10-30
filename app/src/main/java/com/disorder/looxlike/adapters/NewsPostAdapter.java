@@ -128,8 +128,10 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 PostListener postListener = mPostListenerReference.get();
-                if (postListener != null)
+                if (postListener != null) {
+                    likePostWithId(item.id());
                     postListener.onLike(item);
+                }
             }
         });
         holder.buy.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +153,18 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         final int currentItem = position + 1;
         final float threshold = mData.size() * loadMorePercentageThreshold;
         return currentItem > threshold;
+    }
+
+    private void likePostWithId(long id) {
+        int size = mData.size();
+        for (int i = 0; i <= size; i++) {
+            NewsPost currentPost = mData.get(i);
+            boolean newLikeStatus = !currentPost.liked();
+            if (currentPost.id() == id) {
+                NewsPost updatedPost = NewsPost.updateLike(currentPost, newLikeStatus);
+                mData.set(i, updatedPost);
+            }
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
