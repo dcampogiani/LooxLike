@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 
@@ -19,21 +20,38 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCreatePostListener, CreatePostFragment.OnTakePictureRequestListener {
+public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCreatePostListener, CreatePostFragment.OnTakePictureRequestListener, CreatePostFragment.Onc10SelectedListener, CreatePostFragment.OnPostUploadedListener {
 
     private static final int REQUEST_TAKE_PHOTO = 1;
+
+    private static final String CURRENT_PHOTO_PATH_KEY = "CURRENT_PHOTO_PATH_KEY";
+    private static final String CURRENT_C10_KEY = "CURRENT_C10_KEY";
+
+    private static final int containerId = R.id.fragment_container;
+
     private String mCurrentPhotoPath;
+    private String mCurrent10;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int containerId = R.id.fragment_container;
         if (savedInstanceState == null)
             getSupportFragmentManager().beginTransaction().add(containerId, ToolbarFragment.newInstance()).commit();
+        else {
+            mCurrent10 = savedInstanceState.getString(CURRENT_C10_KEY);
+            mCurrentPhotoPath = savedInstanceState.getString(CURRENT_PHOTO_PATH_KEY);
+        }
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CURRENT_C10_KEY, mCurrent10);
+        outState.putString(CURRENT_PHOTO_PATH_KEY, mCurrentPhotoPath);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,9 +68,9 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
 
     @Override
     public void onBackPressed() {
-        ToolbarFragment toolbarFragment = (ToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if (toolbarFragment != null) {
-            FragmentManager childFragmentManager = toolbarFragment.getChildFragmentManager();
+        Fragment nestedFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (nestedFragment != null) {
+            FragmentManager childFragmentManager = nestedFragment.getChildFragmentManager();
             int count = childFragmentManager.getBackStackEntryCount();
             if (count > 0)
                 childFragmentManager.popBackStack();
@@ -63,15 +81,8 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            ToolbarFragment toolbarFragment = (ToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-            if (toolbarFragment != null) {
-                CreatePostFragment createPostFragment = (CreatePostFragment) toolbarFragment.getChildFragmentManager().findFragmentById(ToolbarFragment.fragment_main_content);
-                if (createPostFragment != null)
-                    createPostFragment.setPhotoFilePath(mCurrentPhotoPath);
-
-            }
-
-
+            CreatePostFragment createPostFragment = CreatePostFragment.newInstance(mCurrent10, mCurrentPhotoPath);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, createPostFragment).commitAllowingStateLoss();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -113,5 +124,15 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    @Override
+    public void onc10Selected(String c10) {
+        mCurrent10 = c10;
+    }
+
+    @Override
+    public void onPostUploaded() {
+        getSupportFragmentManager().beginTransaction().replace(containerId, ToolbarFragment.newInstance()).commit();
     }
 }

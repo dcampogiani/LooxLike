@@ -20,9 +20,15 @@
 
     <string name="insert_order_hint">Insert your order</string>
 
+    <string name="insert_description_hint">Insert your description</string>
+
     <string name="generic_error">ops…something went wrong!</string>
 
     <string name="select_item">Which item do you want to post?</string>
+
+    <string name="description_must_be_valid">Description could not be empty</string>
+
+    <string name="upload_post">Post it!</string>
 
     <plurals name="likes">
         <item quantity="one">1 wants to LooxLike</item>

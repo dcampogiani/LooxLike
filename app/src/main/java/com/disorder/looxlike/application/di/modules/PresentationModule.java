@@ -136,4 +136,9 @@ public class PresentationModule {
         return new LooxLikeAPIUserAvatarGenerator(BuildConfig.API_BASE_URL);
     }
 
+    @Provides
+    @PerActivity
+    CreatePostPresenter providesCreatePostPresenter(CreatePostPresenterImpl presenter) {
+        return presenter;
+    }
 }

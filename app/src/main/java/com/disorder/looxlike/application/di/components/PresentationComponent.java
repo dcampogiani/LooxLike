@@ -5,6 +5,7 @@ import android.content.Context;
 import com.disorder.looxlike.application.di.PerActivity;
 import com.disorder.looxlike.application.di.modules.PresentationModule;
 import com.disorder.looxlike.fragments.CheckFragmentOrder;
+import com.disorder.looxlike.fragments.CreatePostFragment;
 import com.disorder.looxlike.fragments.ItemSelectionFragment;
 import com.disorder.looxlike.fragments.LikedPostFragment;
 import com.disorder.looxlike.fragments.NewsFragment;
@@ -12,6 +13,7 @@ import com.disorder.looxlike.fragments.ToolbarFragment;
 import com.disorder.networking.services.LooxLikeAPI;
 import com.disorder.presentation.model.mapper.NewsPostMapper;
 import com.disorder.presentation.presenter.ToolbarPresenter;
+import com.disorder.presentation.presenter.creation.CreatePostPresenter;
 import com.disorder.presentation.presenter.creation.ItemSelectionPresenter;
 import com.disorder.presentation.presenter.creation.OrderCheckPresenter;
 import com.disorder.presentation.presenter.news.LikedPostPresenter;
@@ -34,6 +36,8 @@ public interface PresentationComponent {
     void inject(CheckFragmentOrder checkOrderFragment);
 
     void inject(ItemSelectionFragment itemSelectionFragment);
+
+    void inject(CreatePostFragment createPostFragment);
 
     void inject(LikedPostFragment likedPostFragment);
 
