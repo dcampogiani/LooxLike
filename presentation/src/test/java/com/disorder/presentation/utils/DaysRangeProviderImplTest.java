@@ -12,8 +12,7 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricGradleTestRunner.class)
@@ -31,21 +30,21 @@ public class DaysRangeProviderImplTest {
     public void shouldBeToday() {
         String expected = "Today";
         String result = subjectUnderTest.getString(0);
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
     public void shouldBeYesterday() {
         String expected = "Yesterday";
         String result = subjectUnderTest.getString(1);
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
     public void shouldBeSevenDaysAgo() {
         String expected = "7 days ago";
         String result = subjectUnderTest.getString(7);
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 
 }

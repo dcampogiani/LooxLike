@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.threeten.bp.LocalDateTime;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class DateIntervalCalculatorImplTest {
 
@@ -29,7 +29,7 @@ public class DateIntervalCalculatorImplTest {
         LocalDateTime end = LocalDateTime.of(2015, 10, 17, 17, 50);
         long expected = 1;
         long result = subjectUnderTest.getDays(start, end);
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class DateIntervalCalculatorImplTest {
         LocalDateTime end = LocalDateTime.of(2015, 11, 16, 17, 50);
         long expected = 31;
         long result = subjectUnderTest.getDays(start, end);
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
@@ -47,6 +47,6 @@ public class DateIntervalCalculatorImplTest {
         LocalDateTime end = LocalDateTime.of(2016, 10, 16, 17, 50);
         long expected = 366;
         long result = subjectUnderTest.getDays(start, end);
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 }

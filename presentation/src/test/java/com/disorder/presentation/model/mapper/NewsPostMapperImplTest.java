@@ -10,8 +10,8 @@ import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class NewsPostMapperImplTest {
 
@@ -33,14 +33,13 @@ public class NewsPostMapperImplTest {
         NewsPost networkResponse = new NewsPost(1, "description", "photo", "itemID", "2015-10-11T20:44:55", "rlovino", 2, true);
         com.disorder.presentation.model.NewsPost expected = com.disorder.presentation.model.NewsPost.create(1, "description", "photo", "itemID", "howShouldITestIt", "rlovino", 2, true);
         com.disorder.presentation.model.NewsPost result = subjectUnderTest.map(networkResponse);
-        assertThat(result.id(), is(expected.id()));
-        assertThat(result.photoUrl(), is(expected.photoUrl()));
-        assertThat(result.description(), is(expected.description()));
-        assertThat(result.c10(), is(expected.c10()));
-        assertThat(result.likes(), is(expected.likes()));
-        assertThat(result.username(), is(expected.username()));
-        assertThat(result.liked(), is(expected.liked()));
-
+        assertThat(result.id()).isEqualTo(expected.id());
+        assertThat(result.photoUrl()).isEqualTo(expected.photoUrl());
+        assertThat(result.description()).isEqualTo(expected.description());
+        assertThat(result.c10()).isEqualTo(expected.c10());
+        assertThat(result.likes()).isEqualTo(expected.likes());
+        assertThat(result.username()).isEqualTo(expected.username());
+        assertThat(result.liked()).isEqualTo(expected.liked());
     }
 
     @Test
@@ -48,8 +47,8 @@ public class NewsPostMapperImplTest {
         NewsPost[] networkResponse = new NewsPost[2];
         networkResponse[0] = new NewsPost(1, "description", "photo", "itemID", "2015-10-11T20:44:55", "rlovino", 2, true);
         networkResponse[1] = new NewsPost(2, "descriptio2", "phot2", "itemID2", "2015-10-11T20:44:55", "rlovino", 3, false);
-        int expectedLenght = 2;
+        int expectedLength = 2;
         com.disorder.presentation.model.NewsPost[] result = subjectUnderTest.map(networkResponse);
-        assertThat(result.length, is(expectedLenght));
+        assertThat(result).hasSize(expectedLength);
     }
 }
