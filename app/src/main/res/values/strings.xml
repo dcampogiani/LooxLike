@@ -26,7 +26,7 @@
 
     <string name="select_item">Which item do you want to post?</string>
 
-    <string name="description_must_be_valid">Description could not be empty</string>
+    <string name="description_must_be_valid">Description must be not empty</string>
 
     <string name="upload_post">Post it!</string>
 
