@@ -57,8 +57,7 @@ public class LikedPostFragment extends BaseFragment implements NewsView, LikedPo
 
 
     public static LikedPostFragment newInstance() {
-        LikedPostFragment likedPostFragment = new LikedPostFragment();
-        return likedPostFragment;
+        return new LikedPostFragment();
     }
 
     @Override

@@ -40,7 +40,7 @@ public class LooxLikeApplication extends Application {
         mLeakDetector = new LeakCanaryDetector(this);
     }
 
-    void initDagger() {
+    private void initDagger() {
         this.mApplicationComponent = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
     }
 }

@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class ToolbarFragment extends BaseFragment implements ToolbarView {
 
-    public static final int fragment_main_content = R.id.fragment_main_content;
+    private static final int fragment_main_content = R.id.fragment_main_content;
 
     @Bind(fragment_main_content)
     CoordinatorLayout mCoordinatorLayout;

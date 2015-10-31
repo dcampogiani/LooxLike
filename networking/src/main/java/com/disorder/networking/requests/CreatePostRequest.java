@@ -34,8 +34,7 @@ public class CreatePostRequest {
         CreatePostRequest that = (CreatePostRequest) o;
 
         if (!description.equals(that.description)) return false;
-        if (!c10.equals(that.c10)) return false;
-        return file.equals(that.file);
+        return c10.equals(that.c10) && file.equals(that.file);
     }
 
     @Override

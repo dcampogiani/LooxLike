@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class CreatePostFragment extends BaseFragment implements CreatePostView, CheckFragmentOrder.OnOrderValidListener, ItemSelectionFragment.OnItemSelectedListener, CreatePostConfirmationFragment.OnConfirmationListener {
 
-    public static final int fragment_create_container = R.id.fragment_create_container;
+    private static final int fragment_create_container = R.id.fragment_create_container;
 
     private static final String C10_KEY = "C10_KEY";
     private static final String PHOTO_FILE_PATH_KEY = "PHOTO_FILE_PATH_KEY";

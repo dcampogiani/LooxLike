@@ -21,7 +21,6 @@ public class LikedPostPresenter extends BaseNewsPresenter {
 
     @Override
     protected void validateParameters() {
-        return;
     }
 
     @Override

@@ -34,8 +34,8 @@ public class LikedPostAdapter extends RecyclerView.Adapter<LikedPostAdapter.View
     private final ImageDownloader mImageDownloader;
 
     public LikedPostAdapter(PhotoListener photoListener, ImageDownloader imageDownloader, ScrollListener scrollListener) {
-        mPostListenerReference = new WeakReference<PhotoListener>(photoListener);
-        mScrollListenerReference = new WeakReference<ScrollListener>(scrollListener);
+        mPostListenerReference = new WeakReference<>(photoListener);
+        mScrollListenerReference = new WeakReference<>(scrollListener);
         mImageDownloader = imageDownloader;
         mData = new ArrayList<>();
     }
