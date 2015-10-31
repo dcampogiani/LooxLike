@@ -8,7 +8,22 @@ public interface ImageDownloader {
         NONE, CROSS_FADE
     }
 
-    void request(String url, ImageView target);
+    Request request(String url);
 
-    void request(String url, ImageView target, Animation animation);
+    abstract class Request {
+        protected final String url; //required parameters
+
+        protected Animation animation = Animation.NONE; //optional parameters
+
+        public Request(String url) {
+            this.url = url;
+        }
+
+        public Request withAnimation(Animation animation) {
+            this.animation = animation;
+            return this;
+        }
+
+        public abstract void into(ImageView imageView);
+    }
 }

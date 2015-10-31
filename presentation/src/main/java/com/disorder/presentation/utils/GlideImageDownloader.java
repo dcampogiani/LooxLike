@@ -21,17 +21,29 @@ public class GlideImageDownloader implements ImageDownloader {
     }
 
     @Override
-    public void request(String url, ImageView target) {
-        request(url, target, null);
+    public Request request(String url) {
+        return new GlideRequest(url, mContext, placeholder);
     }
 
-    @Override
-    public void request(String url, ImageView target, Animation animation) {
-        DrawableRequestBuilder<String> builder = Glide.with(mContext).load(url).placeholder(GlideImageDownloader.placeholder);
-        if (animation == Animation.NONE)
-            builder.dontAnimate();
-        else
-            builder.crossFade();
-        builder.into(target);
+    private static class GlideRequest extends Request {
+
+        private final Context context;
+        private final int placeholder;
+
+        public GlideRequest(String url, Context context, @DrawableRes int placeholder) {
+            super(url);
+            this.context = context;
+            this.placeholder = placeholder;
+        }
+
+        @Override
+        public void into(ImageView imageView) {
+            DrawableRequestBuilder<String> builder = Glide.with(context).load(url).placeholder(placeholder);
+            if (animation == Animation.NONE)
+                builder.dontAnimate();
+            else
+                builder.crossFade();
+            builder.into(imageView);
+        }
     }
 }

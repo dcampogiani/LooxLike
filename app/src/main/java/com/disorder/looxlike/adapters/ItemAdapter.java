@@ -53,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         final String c10 = mData.get(position);
         ImageView imageView = holder.mImageView;
         String urlToLoad = mImageUrlGenerator.getUrl(c10, zoom_level);
-        mImageDownloader.request(urlToLoad, imageView);
+        mImageDownloader.request(urlToLoad).into(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

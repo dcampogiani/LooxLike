@@ -58,7 +58,7 @@ public class LikedPostAdapter extends RecyclerView.Adapter<LikedPostAdapter.View
 
         final NewsPost post = mData.get(position);
         ImageView photo = holder.photo;
-        mImageDownloader.request(post.photoUrl(), photo);
+        mImageDownloader.request(post.photoUrl()).withAnimation(ImageDownloader.Animation.CROSS_FADE).into(photo);
 
         final View.OnClickListener photoClickListener = new View.OnClickListener() {
             @Override
