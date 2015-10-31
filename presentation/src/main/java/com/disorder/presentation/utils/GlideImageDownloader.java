@@ -2,18 +2,19 @@ package com.disorder.presentation.utils;
 
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
+import com.disorder.presentation.R;
 
 public class GlideImageDownloader implements ImageDownloader {
 
     private final Context mContext;
-    private static final Drawable placeholder = new ColorDrawable(Color.TRANSPARENT);
+    private static final
+    @DrawableRes
+    int placeholder = R.drawable.ic_placeholder;
 
     public GlideImageDownloader(Context mContext) {
         this.mContext = mContext.getApplicationContext();
