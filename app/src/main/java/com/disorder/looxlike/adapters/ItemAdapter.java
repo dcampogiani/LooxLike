@@ -36,7 +36,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         this.mImageUrlGenerator = mImageUrlGenerator;
     }
 
-    public void addData(List<String> newData) {
+    public void setData(List<String> newData) {
+        this.mData.clear();
         this.mData.addAll(newData);
         notifyDataSetChanged();
     }

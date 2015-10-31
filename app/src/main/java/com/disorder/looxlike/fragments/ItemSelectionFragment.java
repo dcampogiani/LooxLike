@@ -101,7 +101,7 @@ public class ItemSelectionFragment extends BaseFragment implements ItemSelection
 
     @Override
     public void setModel(String[] items) {
-        mItemAdapter.addData(Arrays.asList(items));
+        mItemAdapter.setData(Arrays.asList(items));
     }
 
     @Override
