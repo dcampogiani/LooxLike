@@ -95,9 +95,7 @@ public class NewsPostAdapter extends RecyclerView.Adapter<NewsPostAdapter.ViewHo
         TextView username = holder.userName;
         final TextView likes = holder.likes;
         ImageView photo = holder.photo;
-        //mImageDownloader.request(mUserAvatarUrlGenerator.getUrl(item.username()), avatar, ImageDownloader.Animation.NONE);
         mImageDownloader.request(mUserAvatarUrlGenerator.getUrl(item.username())).into(avatar);
-        //mImageDownloader.request(item.photoUrl(), photo);
         mImageDownloader.request(item.photoUrl()).withAnimation(ImageDownloader.Animation.CROSS_FADE).into(photo);
 
         username.setText(item.username());
