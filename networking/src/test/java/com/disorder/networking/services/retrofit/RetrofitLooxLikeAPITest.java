@@ -26,7 +26,7 @@ public class RetrofitLooxLikeAPITest {
 
     @Test(expected = LooxLikeAPI.Unauthorized.class)
     public void shouldReturnNotAuthorized() throws Exception {
-        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, logLevel);
+        subjectUnderTest = new RetrofitLooxLikeAPI.Builder(baseUrl).logLevel(logLevel).build();
         subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
     }
 
@@ -34,14 +34,14 @@ public class RetrofitLooxLikeAPITest {
     public void shouldReturnBadRequest() throws Exception {
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("username", "wrongPassword", encoder);
-        subjectUnderTest = new RetrofitLooxLikeAPI(baseUrl, authorization, logLevel);
+        subjectUnderTest = new RetrofitLooxLikeAPI.Builder(baseUrl).logLevel(logLevel).authorization(authorization).build();
         subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
     }
 
     private RetrofitLooxLikeAPI getAuthApi() {
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("daniele", "password", encoder);
-        return new RetrofitLooxLikeAPI(baseUrl, authorization, logLevel);
+        return new RetrofitLooxLikeAPI.Builder(baseUrl).logLevel(logLevel).authorization(authorization).build();
     }
 
     @Test

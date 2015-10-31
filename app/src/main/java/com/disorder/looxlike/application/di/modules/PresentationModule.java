@@ -68,7 +68,7 @@ public class PresentationModule {
     LooxLikeAPI provideLooxLikeAPI() {
         Base64Encoder encoder = new ApacheBase64Encoder();
         Authorization authorization = new BasicAuthorization("daniele", "password", encoder);
-        return new RetrofitLooxLikeAPI(BuildConfig.API_BASE_URL, authorization);
+        return new RetrofitLooxLikeAPI.Builder(BuildConfig.API_BASE_URL).authorization(authorization).build();
     }
 
 

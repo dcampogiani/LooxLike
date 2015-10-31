@@ -27,26 +27,38 @@ public class RetrofitLooxLikeAPI implements LooxLikeAPI {
     private static final String CONTENT_TYPE_IMAGE_PNG = "image/png";
 
     private final RetrofitWrapperLooxLikeAPI mRetrofitWrapperLooxLikeAPI;
-    private final OkHttpClient httpClient;
     private final OkHttpOrderDetailsDownloader mOkHttpOrderDetailsDownloader;
 
+    public static class Builder {
+        private final String baseUrl;
 
-    public RetrofitLooxLikeAPI(String baseUrl, Authorization authorization) {
-        this.httpClient = new OkHttpClient();
-        this.mOkHttpOrderDetailsDownloader = new OkHttpOrderDetailsDownloader(httpClient, new RegExC10Extractor());
-        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, authorization, LogLevel.NONE, httpClient);
+        private LogLevel logLevel = LogLevel.NONE;
+        private Authorization authorization = null;
+
+        public Builder(String baseUrl) {
+            this.baseUrl = baseUrl;
+        }
+
+        public Builder logLevel(LogLevel logLevel) {
+            this.logLevel = logLevel;
+            return this;
+        }
+
+        public Builder authorization(Authorization authorization) {
+            this.authorization = authorization;
+            return this;
+        }
+
+        public RetrofitLooxLikeAPI build() {
+            return new RetrofitLooxLikeAPI(this);
+        }
+
     }
 
-    public RetrofitLooxLikeAPI(String baseUrl, LogLevel logLevel) {
-        this.httpClient = new OkHttpClient();
-        this.mOkHttpOrderDetailsDownloader = new OkHttpOrderDetailsDownloader(httpClient, new RegExC10Extractor());
-        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, null, logLevel, httpClient);
-    }
-
-    public RetrofitLooxLikeAPI(String baseUrl, Authorization authorization, LogLevel logLevel) {
-        this.httpClient = new OkHttpClient();
-        this.mOkHttpOrderDetailsDownloader = new OkHttpOrderDetailsDownloader(httpClient, new RegExC10Extractor());
-        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(baseUrl, authorization, logLevel, httpClient);
+    private RetrofitLooxLikeAPI(Builder builder) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        this.mOkHttpOrderDetailsDownloader = new OkHttpOrderDetailsDownloader(okHttpClient, new RegExC10Extractor());
+        this.mRetrofitWrapperLooxLikeAPI = buildRetrofitWrapper(builder.baseUrl, builder.authorization, builder.logLevel, okHttpClient);
     }
 
     private RetrofitWrapperLooxLikeAPI buildRetrofitWrapper(String baseUrl, Authorization authorization, LogLevel logLevel, OkHttpClient httpClient) {
