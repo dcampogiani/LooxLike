@@ -3,8 +3,7 @@ package com.disorder.networking.services.retrofit.internals;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class RegExC10ExtractorTest {
@@ -28,10 +27,9 @@ public class RegExC10ExtractorTest {
         String[] itemsC10 = subjectUnderTest.extract(rawHtml);
         String firstResult = itemsC10[0];
         String secondResult = itemsC10[1];
-        assertThat(itemsC10.length, is(expectedSize));
-        assertThat(firstResult, is(firstItem));
-        assertThat(secondResult, is(secondItem));
-
+        assertThat(itemsC10).hasSize(expectedSize);
+        assertThat(firstResult).isEqualTo(firstItem);
+        assertThat(secondResult).isEqualTo(secondItem);
     }
 
     private String getRawHtml() {

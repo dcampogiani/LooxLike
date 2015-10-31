@@ -4,28 +4,33 @@ import com.disorder.networking.utils.Base64Encoder;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Answers;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class BasicAuthorizationTest {
 
     private com.disorder.networking.authorization.BasicAuthorization subjectUnderTest;
 
+    @Mock(answer = Answers.RETURNS_SMART_NULLS)
+    private Base64Encoder base64Encoder;
+
     @Before
     public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
         String username = "username";
         String password = "password";
-        Base64Encoder encoder = buildDummyEncoder();
-        subjectUnderTest = new BasicAuthorization(username, password, encoder);
+        subjectUnderTest = new BasicAuthorization(username, password, base64Encoder);
     }
 
     @Test
     public void testGetHeader() throws Exception {
-        String expected = "Basic username:password";
+        String expected = "Basic ";
         String result = subjectUnderTest.getHeader();
-        assertThat(result, is(expected));
+        assertThat(result).startsWith(expected);
 
     }
 

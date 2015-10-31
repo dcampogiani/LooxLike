@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class OkHttpOrderDetailsDownloaderTest {
 
@@ -24,7 +24,7 @@ public class OkHttpOrderDetailsDownloaderTest {
     @Ignore
     public void testOrderDoesNotExist() throws Exception {
         String[] itemsC10 = subjectUnderTest.getItemsC10("pippo");
-        assertThat(itemsC10.length, is(0));
+        assertThat(itemsC10).hasSize(0);
     }
 
     @Test
@@ -32,8 +32,8 @@ public class OkHttpOrderDetailsDownloaderTest {
     public void testGetOneItem() throws Exception {
         String[] itemsC10 = subjectUnderTest.getItemsC10("2810Y2C321502A");
         String result = itemsC10[0];
-        assertThat(itemsC10.length, is(1));
-        assertThat(result, is("36731894KJ"));
+        assertThat(itemsC10).hasSize(0);
+        assertThat(result).isEqualTo("36731894KJ");
     }
 
     @Test
@@ -42,8 +42,8 @@ public class OkHttpOrderDetailsDownloaderTest {
         String[] itemsC10 = subjectUnderTest.getItemsC10("2310Y5AC115029");
         String firstResult = itemsC10[0];
         String secondResult = itemsC10[1];
-        assertThat(itemsC10.length, is(2));
-        assertThat(firstResult, is("37647512DD"));
-        assertThat(secondResult, is("37647512TK"));
+        assertThat(itemsC10).hasSize(2);
+        assertThat(firstResult).isEqualTo("37647512DD");
+        assertThat(secondResult).isEqualTo("37647512TK");
     }
 }

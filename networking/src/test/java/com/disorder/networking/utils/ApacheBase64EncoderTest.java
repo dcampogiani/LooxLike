@@ -1,7 +1,6 @@
 package com.disorder.networking.utils;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ApacheBase64EncoderTest {
 
@@ -18,6 +17,6 @@ public class ApacheBase64EncoderTest {
         String origin = "pippopluto";
         String expected = "cGlwcG9wbHV0bw==";
         String encoded = subjectUnderTest.encode(origin);
-        assertThat(encoded, is(expected));
+        assertThat(encoded).isEqualTo(expected);
     }
 }

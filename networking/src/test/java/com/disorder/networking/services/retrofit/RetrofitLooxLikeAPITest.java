@@ -13,9 +13,8 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class RetrofitLooxLikeAPITest {
 
@@ -49,13 +48,13 @@ public class RetrofitLooxLikeAPITest {
     public void testGetAllNews() throws Exception {
         subjectUnderTest = getAuthApi();
         NewsPost[] allPosts = subjectUnderTest.getNewsPosts(pageToTest).toBlocking().first();
-        assertNotNull(allPosts);
+        assertThat(allPosts).isNotEmpty();
     }
 
     private void testGetNewsByGender(LooxLikeAPI.Gender gender) {
         subjectUnderTest = getAuthApi();
-        NewsPost[] allPosts = subjectUnderTest.getNewsPosts(gender, pageToTest).toBlocking().first();
-        assertNotNull(allPosts);
+        NewsPost[] posts = subjectUnderTest.getNewsPosts(gender, pageToTest).toBlocking().first();
+        assertThat(posts).isNotEmpty();
     }
 
     @Test
@@ -83,10 +82,10 @@ public class RetrofitLooxLikeAPITest {
         File file = new File("cleanCode.png");
         CreatePostRequest request = new CreatePostRequest(description, c10, file);
         NewsPost created = subjectUnderTest.createPost(request).toBlocking().first();
-        assertThat(created.getDescription(), is(description));
-        assertThat(created.getC10(), is(c10));
-        assertThat(created.getNumLikes(), is(0));
-        assertThat(created.isLiked(), is(false));
+        assertThat(created.getDescription()).isEqualTo(description);
+        assertThat(created.getC10()).isEqualTo(c10);
+        assertThat(created.getNumLikes()).isEqualTo(0);
+        assertThat(created.isLiked()).isFalse();
     }
 
     @Test
@@ -94,7 +93,7 @@ public class RetrofitLooxLikeAPITest {
     public void testGetItemsFromNotExistingOrder() throws Exception {
         subjectUnderTest = getAuthApi();
         String[] items = subjectUnderTest.getItemsOfOrder("pippo").toBlocking().first();
-        assertThat(items.length, is(0));
+        assertThat(items).hasSize(0);
     }
 
     @Test
@@ -103,8 +102,8 @@ public class RetrofitLooxLikeAPITest {
         subjectUnderTest = getAuthApi();
         String[] items = subjectUnderTest.getItemsOfOrder("2810Y2C321502A").toBlocking().first();
         String result = items[0];
-        assertThat(items.length, is(1));
-        assertThat(result, is("36731894KJ"));
+        assertThat(items).hasSize(1);
+        assertThat(result).isEqualTo("36731894KJ");
     }
 
     @Test
@@ -114,9 +113,9 @@ public class RetrofitLooxLikeAPITest {
         String[] items = subjectUnderTest.getItemsOfOrder("2310Y5AC115029").toBlocking().first();
         String firstResult = items[0];
         String secondResult = items[1];
-        assertThat(items.length, is(2));
-        assertThat(firstResult, is("37647512DD"));
-        assertThat(secondResult, is("37647512TK"));
+        assertThat(items).hasSize(2);
+        assertThat(firstResult).isEqualTo("37647512DD");
+        assertThat(secondResult).isEqualTo("37647512TK");
     }
 
     @Test
@@ -124,7 +123,7 @@ public class RetrofitLooxLikeAPITest {
     public void testOrderHasItems() throws Exception {
         subjectUnderTest = getAuthApi();
         boolean result = subjectUnderTest.orderHasItems("2310Y5AC115029").toBlocking().first();
-        assertThat(result, is(true));
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -132,7 +131,7 @@ public class RetrofitLooxLikeAPITest {
     public void testOrderDoesNotHaveItems() throws Exception {
         subjectUnderTest = getAuthApi();
         boolean result = subjectUnderTest.orderHasItems("pippo").toBlocking().first();
-        assertThat(result, is(false));
+        assertThat(result).isFalse();
     }
 
     @Test
@@ -140,6 +139,6 @@ public class RetrofitLooxLikeAPITest {
     public void testGetLikedPost() throws Exception {
         subjectUnderTest = getAuthApi();
         NewsPost[] result = subjectUnderTest.getLikedPosts(pageToTest).toBlocking().single();
-        assertNotNull(result);
+        assertThat(result).isNotNull();
     }
 }
