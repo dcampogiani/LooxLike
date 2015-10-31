@@ -90,6 +90,13 @@ public class CreatePostFragment extends BaseFragment implements CreatePostView, 
     }
 
     @Override
+    public void onDestroy() {
+        if (mCreatePostPresenter != null)
+            mCreatePostPresenter.detachView();
+        super.onDestroy();
+    }
+
+    @Override
     public void onOrderValid(String orderId) {
         getChildFragmentManager().beginTransaction().replace(fragment_create_container, ItemSelectionFragment.newInstance(orderId)).addToBackStack(null).commit();
     }

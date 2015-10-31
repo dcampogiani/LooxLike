@@ -35,20 +35,24 @@ public class CreatePostPresenterImpl extends BasePresenter<CreatePostView> imple
 
         Observable<NewsPost> apiObservable = mLooxLikeAPI.createPost(request);
         Observable<NewsPost> scheduledObservable = scheduler.schedule(apiObservable);
-
-
         scheduledObservable.subscribe(new Action1<NewsPost>() {
             @Override
             public void call(NewsPost newsPost) {
-                getView().hideLoading();
-                getView().postCreated();
+                CreatePostView view = getView();
+                if (view != null) {
+                    view.hideLoading();
+                    view.postCreated();
+                }
 
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                getView().hideLoading();
-                getView().showError();
+                CreatePostView view = getView();
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError();
+                }
             }
         });
     }

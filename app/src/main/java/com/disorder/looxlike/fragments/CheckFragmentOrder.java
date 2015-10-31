@@ -82,6 +82,13 @@ public class CheckFragmentOrder extends BaseFragment implements CheckOrderView {
     }
 
     @Override
+    public void onDestroy() {
+        if (mOrderCheckPresenter != null)
+            mOrderCheckPresenter.detachView();
+        super.onDestroy();
+    }
+
+    @Override
     public void orderIsValid() {
         mTextInputLayout.setErrorEnabled(false);
 

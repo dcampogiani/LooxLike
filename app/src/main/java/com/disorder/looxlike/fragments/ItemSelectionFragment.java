@@ -90,6 +90,13 @@ public class ItemSelectionFragment extends BaseFragment implements ItemSelection
     }
 
     @Override
+    public void onDestroy() {
+        if (mItemSelectionPresenter != null)
+            mItemSelectionPresenter.detachView();
+        super.onDestroy();
+    }
+
+    @Override
     public void showLoading() {
         mProgressBar.animate().alpha(1).setInterpolator(new AccelerateDecelerateInterpolator());
     }

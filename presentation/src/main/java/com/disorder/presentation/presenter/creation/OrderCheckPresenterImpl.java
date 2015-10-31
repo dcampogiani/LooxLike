@@ -30,17 +30,23 @@ public class OrderCheckPresenterImpl extends BasePresenter<CheckOrderView> imple
         scheduledObservable.subscribe(new Action1<Boolean>() {
             @Override
             public void call(Boolean apiResponse) {
-                getView().hideLoading();
-                if (apiResponse)
-                    getView().orderIsValid();
-                else
-                    getView().orderIsNotValid();
+                CheckOrderView view = getView();
+                if (view != null) {
+                    view.hideLoading();
+                    if (apiResponse)
+                        view.orderIsValid();
+                    else
+                        view.orderIsNotValid();
+                }
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                getView().hideLoading();
-                getView().orderIsNotValid();
+                CheckOrderView view = getView();
+                if (view != null) {
+                    view.hideLoading();
+                    view.orderIsNotValid();
+                }
             }
         });
     }

@@ -30,13 +30,18 @@ public class ItemSelectionPresenterImpl extends BasePresenter<ItemSelectionView>
         scheduledObservable.subscribe(new Action1<String[]>() {
             @Override
             public void call(String[] items) {
-                getView().hideLoading();
-                getView().setModel(items);
+                ItemSelectionView view = getView();
+                if (view != null) {
+                    view.hideLoading();
+                    view.setModel(items);
+                }
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                getView().hideLoading();
+                ItemSelectionView view = getView();
+                if (view != null)
+                    view.hideLoading();
             }
         });
 
