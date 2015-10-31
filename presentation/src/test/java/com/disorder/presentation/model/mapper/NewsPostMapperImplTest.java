@@ -6,7 +6,9 @@ import com.disorder.presentation.utils.DaysRangeProvider;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.mockito.Answers;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -14,17 +16,15 @@ import static org.junit.Assert.assertThat;
 public class NewsPostMapperImplTest {
 
     private NewsPostMapperImpl subjectUnderTest;
+
+    @Mock(answer = Answers.RETURNS_SMART_NULLS)
     private DaysRangeProvider daysRangeProvider;
+    @Mock
+    private DateIntervalCalculator dateIntervalCalculator;
 
     @Before
     public void setUp() throws Exception {
-        DateIntervalCalculator dateIntervalCalculator = Mockito.mock(DateIntervalCalculator.class);
-        daysRangeProvider = new DaysRangeProvider() {
-            @Override
-            public String getString(int days) {
-                return "howShouldITestIt";
-            }
-        };
+        MockitoAnnotations.initMocks(this);
         subjectUnderTest = new NewsPostMapperImpl(dateIntervalCalculator, daysRangeProvider);
     }
 
