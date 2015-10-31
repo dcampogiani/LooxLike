@@ -1,6 +1,9 @@
 package com.disorder.looxlike.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,6 +22,10 @@ import butterknife.ButterKnife;
 
 public class ToolbarFragment extends BaseFragment implements ToolbarView {
 
+    public static final int fragment_main_content = R.id.fragment_main_content;
+
+    @Bind(fragment_main_content)
+    CoordinatorLayout mCoordinatorLayout;
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @BindString(R.string.app_name)
@@ -26,11 +33,6 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
 
     @Inject
     ToolbarPresenter mToolbarPresenter;
-
-    public static final int fragment_main_content = R.id.fragment_main_content;
-
-
-    private MenuItemClickListener mMenuItemClickListener;
 
     public static ToolbarFragment newInstance() {
         return new ToolbarFragment();
@@ -41,8 +43,7 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getPresentationComponent().inject(this);
-        mMenuItemClickListener = new MenuItemClickListener(mToolbarPresenter);
-        mToolbar.setOnMenuItemClickListener(mMenuItemClickListener);
+        mToolbar.setOnMenuItemClickListener(new MenuItemClickListener(mToolbarPresenter));
 
     }
 
@@ -52,22 +53,51 @@ public class ToolbarFragment extends BaseFragment implements ToolbarView {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_toolbar, container, false);
         ButterKnife.bind(this, root);
-        mToolbar.setTitle(mToolbarTitle);
         mToolbar.inflateMenu(R.menu.menu_main);
         if (savedInstanceState == null)
-            getChildFragmentManager().beginTransaction().replace(fragment_main_content, NewsTabsFragment.newInstance()).commit();
+            loadFirstPage();
         return root;
+    }
+
+    private void loadFirstPage() {
+        @Page int firstPage = NEWS;
+        String firstFragmentTag = Integer.toString(firstPage);
+        Fragment firstFragment = getFragmentForPage(firstPage);
+        getChildFragmentManager().beginTransaction().add(fragment_main_content, firstFragment, firstFragmentTag).commit();
     }
 
     @Override
     public void showPage(@Page int page) {
-        //TODO load right fragment
-        if (page == CREATE)
-            getChildFragmentManager().beginTransaction().replace(fragment_main_content, CreatePostFragment.newInstance()).addToBackStack(null).commit();
-        else if (page == FAVOURITES)
-            getChildFragmentManager().beginTransaction().replace(fragment_main_content, LikedPostFragment.newInstance()).addToBackStack(null).commit();
-        else
-            throw new UnsupportedOperationException();
+
+        if (isPageVisible(page))
+            return;
+
+        if (page == USER) {
+            Snackbar.make(mCoordinatorLayout, R.string.coming_soon, Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        String fragmentTag = Integer.toString(page);
+        Fragment fragmentToAdd = getFragmentForPage(page);
+        getChildFragmentManager().beginTransaction().replace(fragment_main_content, fragmentToAdd, fragmentTag).addToBackStack(null).commit();
+    }
+
+    private boolean isPageVisible(@Page int page) {
+        Fragment fragment = getChildFragmentManager().findFragmentByTag(Integer.toString(page));
+        return (fragment != null && fragment.isVisible());
+    }
+
+    private Fragment getFragmentForPage(@Page int page) {
+        switch (page) {
+            case NEWS:
+                return NewsTabsFragment.newInstance();
+            case FAVOURITES:
+                return LikedPostFragment.newInstance();
+            case CREATE:
+                return CreatePostFragment.newInstance();
+            default:
+                throw new IllegalArgumentException(Integer.toString(page));
+        }
     }
 
     @Override
