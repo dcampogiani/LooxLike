@@ -20,43 +20,26 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import icepick.Icepick;
+import icepick.State;
+
 public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCreatePostListener, CreatePostFragment.OnTakePictureRequestListener, CreatePostFragment.Onc10SelectedListener, CreatePostFragment.OnPostUploadedListener {
 
     private static final int REQUEST_TAKE_PHOTO = 1;
-
-    private static final String CURRENT_PHOTO_PATH_KEY = "CURRENT_PHOTO_PATH_KEY";
-    private static final String CURRENT_C10_KEY = "CURRENT_C10_KEY";
-
     private static final int containerId = R.id.fragment_container;
 
-    private String mCurrentPhotoPath;
-    private String mCurrent10;
+    @State
+    String mCurrentPhotoPath;
+    @State
+    String mCurrent10;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null)
             getSupportFragmentManager().beginTransaction().add(containerId, ToolbarFragment.newInstance()).commit();
-        else {
-            mCurrent10 = savedInstanceState.getString(CURRENT_C10_KEY);
-            mCurrentPhotoPath = savedInstanceState.getString(CURRENT_PHOTO_PATH_KEY);
-        }
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(CURRENT_C10_KEY, mCurrent10);
-        outState.putString(CURRENT_PHOTO_PATH_KEY, mCurrentPhotoPath);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
@@ -69,14 +52,12 @@ public class MainActivity extends BaseActivity implements NewsTabsFragment.OnCre
     @Override
     public void onBackPressed() {
         Fragment nestedFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if (nestedFragment instanceof CreatePostFragment) {
+        if (nestedFragment instanceof CreatePostFragment)
             getSupportFragmentManager().beginTransaction().replace(containerId, ToolbarFragment.newInstance()).commit();
-            return;
-        }
-        if (nestedFragment != null) {
+        else if (nestedFragment != null) {
             FragmentManager childFragmentManager = nestedFragment.getChildFragmentManager();
-            int count = childFragmentManager.getBackStackEntryCount();
-            if (count > 0)
+            int backStackEntryCount = childFragmentManager.getBackStackEntryCount();
+            if (backStackEntryCount > 0)
                 childFragmentManager.popBackStack();
             else super.onBackPressed();
         } else super.onBackPressed();
