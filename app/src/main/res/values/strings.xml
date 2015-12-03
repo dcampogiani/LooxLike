@@ -1,5 +1,38 @@
 <resources>
     <string name="app_name">LooxLike</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_news">News</string>
+    <string name="action_user">User</string>
+    <string name="action_favourites">Favourites</string>
+
+    <string name="news_all">All</string>
+    <string name="news_male">Man</string>
+    <string name="news_female">Woman</string>
+    <string name="news_no_gender">No Gender</string>
+
+
+    <string name="buy">Buy</string>
+    <string name="post_image">Post Image</string>
+    <string name="item_image">Item Image</string>
+
+    <string name="coming_soon">Coming soon</string>
+
+    <string name="no_likes">Be the first Loox lover</string>
+
+    <string name="insert_order_hint">Insert your order</string>
+
+    <string name="insert_description_hint">Insert your description</string>
+
+    <string name="generic_error">ops…something went wrong!</string>
+
+    <string name="select_item">Which item do you want to post?</string>
+
+    <string name="description_must_be_valid">Description must be not empty</string>
+
+    <string name="upload_post">Post it!</string>
+
+    <plurals name="likes">
+        <item quantity="one">1 wants to LooxLike</item>
+        <item quantity="other">%d want to LooxLike</item>
+    </plurals>
+
 </resources>

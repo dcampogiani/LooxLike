@@ -3,8 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:id="@+id/action_news"
+        android:title="@string/action_news"
+        android:icon="@drawable/ic_home_white_24dp"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_user"
+        android:title="@string/action_user"
+        android:icon="@drawable/ic_person_white_24dp"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_favourites"
+        android:title="@string/action_favourites"
+        android:icon="@drawable/ic_favorite_white_24dp"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
 </menu>

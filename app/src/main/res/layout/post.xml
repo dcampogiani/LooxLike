@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/avatar_diameter"
+            android:layout_height="@dimen/avatar_diameter"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/default_side_margin"
+            android:layout_marginLeft="@dimen/default_side_margin"
+            android:layout_marginRight="@dimen/default_side_margin"
+            android:layout_marginStart="@dimen/default_side_margin"
+            app:civ_border_color="@color/accent"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            tools:text="Federica Nargi" />
+
+    </LinearLayout>
+
+    <include layout="@layout/photo_post" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/default_side_margin"
+        android:layout_marginLeft="@dimen/default_side_margin"
+        android:layout_marginRight="@dimen/default_side_margin"
+        android:layout_marginStart="@dimen/default_side_margin"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/likes"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:drawableLeft="@drawable/ic_favorite_accent_empty_36dp"
+                tools:drawableStart="@drawable/ic_favorite_accent_empty_36dp"
+                android:gravity="center_vertical"
+                tools:text="25 people want to LooxLike fnargi" />
+
+            <ImageButton
+                android:id="@+id/buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/buy"
+                android:src="@drawable/ic_shopping_basket_accent_36dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            tools:text="Sono figa?" />
+
+        <TextView
+            android:id="@+id/creation"
+            style="@style/Base.TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            tools:text="Yesterday" />
+
+    </LinearLayout>
+
+</LinearLayout>
