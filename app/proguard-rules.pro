@@ -24,6 +24,11 @@
 -keepclasseswithmembernames class * {
     @butterknife.* <fields>;
 }
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+#END BUTTERKNIFE
 #BEGIN OKHTTP
 -keepattributes Signature
 -keepattributes *Annotation*
@@ -58,11 +63,3 @@
     public *;
 }
 #END GLIDE
-
-#BEGIN ICEPICK
--dontwarn icepick.**
--keep class **$$Icepick { *; }
--keepclasseswithmembernames class * {
-    @icepick.* <fields>;
-}
-#END ICEPICK
